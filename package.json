@@ -4,12 +4,20 @@
   "description": "A static asset server boilerplate",
   "main": "index.js",
   "scripts": {
+    "start": "gulp clean && cd ./src && git pull origin && npm i && gulp build:prod && cp -R ./build/dst/. ../assets && cd .. && gulp start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Rik Hoffbauer",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^3.9.0"
+    "del": "^2.1.0",
+    "gulp": "^3.9.0",
+    "gulp-load-plugins": "^1.1.0",
+    "gulp-run": "^1.6.11",
+    "gulp-shell": "^0.5.1",
+    "gulp-util": "^3.0.7",
+    "include-all": "^0.1.6",
+    "run-sequence": "^1.1.5"
   },
   "dependencies": {
     "lodash": "^3.10.1",

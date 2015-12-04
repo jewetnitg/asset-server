@@ -411,10 +411,7 @@ var _srcFactoriesApplication2 = _interopRequireDefault(_srcFactoriesApplication)
 
 exports['default'] = _srcFactoriesApplication2['default'];
 module.exports = exports['default'];
-},{"./src/factories/Application":40}],5:[function(require,module,exports){
-/**
- * @author rik
- */
+},{"./src/factories/Application":83}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -423,999 +420,13 @@ Object.defineProperty(exports, '__esModule', {
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _frontendModel = require('frontend-model');
+var _srcFactoriesModel = require('./src/factories/Model');
 
-var _frontendModel2 = _interopRequireDefault(_frontendModel);
+var _srcFactoriesModel2 = _interopRequireDefault(_srcFactoriesModel);
 
-var ModelController = Object.defineProperties({
-
-  list: function list(req) {
-    var _model = _frontendModel2['default'].models[req.route.model];
-
-    return _model.fetch().then(function () {
-      _model.listenTo('change', function () {
-        req.sync({
-          collection: _model.data
-        });
-      });
-
-      req.destruct = function () {
-        // stop listeners etc.
-      };
-
-      return {
-        collection: _model.data
-      };
-    });
-  },
-
-  details: function details(req) {
-    var _model = _frontendModel2['default'].models[req.route.model];
-    var id = req.param('id') || req.param(_model.idKey);
-
-    return _model.fetch(id).then(function (model) {
-      _model.listenTo(model, 'change', function () {
-        req.sync({
-          model: _model.byId[id]
-        });
-      });
-
-      req.destruct = function () {
-        // stop listeners etc.
-      };
-
-      return {
-        model: model
-      };
-    });
-  }
-
-}, {
-  collection: {
-    get: function get() {
-      return this.model && _frontendModel2['default'].models[this.model];
-    },
-    configurable: true,
-    enumerable: true
-  }
-});
-
-exports['default'] = ModelController;
+exports['default'] = _srcFactoriesModel2['default'];
 module.exports = exports['default'];
-},{"frontend-model":60}],6:[function(require,module,exports){
-/**
- * @author rik
- */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-function allowIfIdIsEven(req) {
-  return req.param('id') % 2 === 0 ? Promise.resolve() : Promise.reject();
-}
-
-exports['default'] = allowIfIdIsEven;
-module.exports = exports['default'];
-},{}],7:[function(require,module,exports){
-arguments[4][6][0].apply(exports,arguments)
-},{"dup":6}],8:[function(require,module,exports){
-/**
- * @author rik
- */
-
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-var appConfig = {
-
-  defaultLocale: 'en-GB',
-  defaultConnection: 'local-xhr'
-
-};
-
-exports['default'] = appConfig;
-module.exports = exports['default'];
-},{}],9:[function(require,module,exports){
-/**
- * @author rik
- */
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-function bootstrap() {
-  return Promise.resolve();
-}
-
-exports["default"] = bootstrap;
-module.exports = exports["default"];
-},{}],10:[function(require,module,exports){
-/**
- * @author rik
- */
-
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-var connectionConfig = {
-  'local-xhr': {
-    name: 'local-xhr',
-    url: 'http://localhost:1337',
-    adapter: 'XHR'
-  }
-};
-
-exports['default'] = connectionConfig;
-module.exports = exports['default'];
-},{}],11:[function(require,module,exports){
-/**
- * @author rik
- */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-var viewConfig = {
-
-  defaultImplementation: 'handlebars',
-  templateBaseUrl: 'templates/'
-
-};
-
-exports['default'] = viewConfig;
-module.exports = exports['default'];
-},{}],12:[function(require,module,exports){
-/**
- * @author rik
- */
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var staticViewsConfig = {};
-
-exports["default"] = staticViewsConfig;
-module.exports = exports["default"];
-},{}],13:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var en_GB = {
-
-  words: {
-    general: {
-      "yes": "yes"
-    }
-  }
-
-};
-
-exports["default"] = en_GB;
-module.exports = exports["default"];
-},{}],14:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var nl_NL = {
-
-  words: {
-    general: {
-      "yes": "ja"
-    }
-  }
-
-};
-
-exports["default"] = nl_NL;
-module.exports = exports["default"];
-},{}],15:[function(require,module,exports){
-arguments[4][5][0].apply(exports,arguments)
-},{"dup":5,"frontend-model":60}],16:[function(require,module,exports){
-arguments[4][6][0].apply(exports,arguments)
-},{"dup":6}],17:[function(require,module,exports){
-arguments[4][6][0].apply(exports,arguments)
-},{"dup":6}],18:[function(require,module,exports){
-arguments[4][8][0].apply(exports,arguments)
-},{"dup":8}],19:[function(require,module,exports){
-arguments[4][9][0].apply(exports,arguments)
-},{"dup":9}],20:[function(require,module,exports){
-arguments[4][10][0].apply(exports,arguments)
-},{"dup":10}],21:[function(require,module,exports){
-arguments[4][11][0].apply(exports,arguments)
-},{"dup":11}],22:[function(require,module,exports){
-arguments[4][12][0].apply(exports,arguments)
-},{"dup":12}],23:[function(require,module,exports){
-arguments[4][13][0].apply(exports,arguments)
-},{"dup":13}],24:[function(require,module,exports){
-arguments[4][14][0].apply(exports,arguments)
-},{"dup":14}],25:[function(require,module,exports){
-/**
- * @author rik
- */
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var modelsConfig = {
-  exposeGlobally: false
-};
-
-exports["default"] = modelsConfig;
-module.exports = exports["default"];
-},{}],26:[function(require,module,exports){
-/**
- * @author rik
- */
-
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-var routerConfig = {
-  defaultRoute: '/asd'
-};
-
-exports['default'] = routerConfig;
-module.exports = exports['default'];
-},{}],27:[function(require,module,exports){
-/**
- * @author rik
- */
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var routes = {};
-
-exports["default"] = routes;
-module.exports = exports["default"];
-},{}],28:[function(require,module,exports){
-arguments[4][12][0].apply(exports,arguments)
-},{"dup":12}],29:[function(require,module,exports){
-arguments[4][11][0].apply(exports,arguments)
-},{"dup":11}],30:[function(require,module,exports){
-arguments[4][25][0].apply(exports,arguments)
-},{"dup":25}],31:[function(require,module,exports){
-arguments[4][26][0].apply(exports,arguments)
-},{"dup":26}],32:[function(require,module,exports){
-arguments[4][27][0].apply(exports,arguments)
-},{"dup":27}],33:[function(require,module,exports){
-arguments[4][12][0].apply(exports,arguments)
-},{"dup":12}],34:[function(require,module,exports){
-arguments[4][11][0].apply(exports,arguments)
-},{"dup":11}],35:[function(require,module,exports){
-/**
- * @author rik
- */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var files = {'api/controllers/ModelController': require('./api/controllers/ModelController.js'),'api/policies/alwaysAllow': require('./api/policies/alwaysAllow.js'),'api/policies/alwaysDeny': require('./api/policies/alwaysDeny.js'),'config/app': require('./config/app.js'),'config/bootstrap': require('./config/bootstrap.js'),'config/connections': require('./config/connections.js'),'config/env/dev': require('./config/env/dev.js'),'config/env/prod': require('./config/env/prod.js'),'config/locales/en-GB': require('./config/locales/en-GB.js'),'config/locales/nl-NL': require('./config/locales/nl-NL.js'),'config/mobile/api/controllers/ModelController': require('./config/mobile/api/controllers/ModelController.js'),'config/mobile/api/policies/alwaysAllow': require('./config/mobile/api/policies/alwaysAllow.js'),'config/mobile/api/policies/alwaysDeny': require('./config/mobile/api/policies/alwaysDeny.js'),'config/mobile/config/app': require('./config/mobile/config/app.js'),'config/mobile/config/bootstrap': require('./config/mobile/config/bootstrap.js'),'config/mobile/config/connections': require('./config/mobile/config/connections.js'),'config/mobile/config/env/dev': require('./config/mobile/config/env/dev.js'),'config/mobile/config/env/prod': require('./config/mobile/config/env/prod.js'),'config/mobile/config/locales/en-GB': require('./config/mobile/config/locales/en-GB.js'),'config/mobile/config/locales/nl-NL': require('./config/mobile/config/locales/nl-NL.js'),'config/mobile/config/models': require('./config/mobile/config/models.js'),'config/mobile/config/router': require('./config/mobile/config/router.js'),'config/mobile/config/routes': require('./config/mobile/config/routes.js'),'config/mobile/config/staticViews': require('./config/mobile/config/staticViews.js'),'config/mobile/config/views': require('./config/mobile/config/views.js'),'config/models': require('./config/models.js'),'config/router': require('./config/router.js'),'config/routes': require('./config/routes.js'),'config/staticViews': require('./config/staticViews.js'),'config/views': require('./config/views.js'),'libraries/jquery': require('./libraries/jquery.js'),'libraries/riot': require('./libraries/riot.js')};
-
-var defaultImplementation = {};
-
-_lodash2['default'].each(files, function (file, path) {
-  var objPath = path.replace(/\/|\\/g, '.');
-
-  _lodash2['default'].set(defaultImplementation, objPath, file);
-});
-
-exports['default'] = defaultImplementation;
-module.exports = exports['default'];
-},{"./api/controllers/ModelController.js":5,"./api/policies/alwaysAllow.js":6,"./api/policies/alwaysDeny.js":7,"./config/app.js":8,"./config/bootstrap.js":9,"./config/connections.js":10,"./config/env/dev.js":11,"./config/env/prod.js":12,"./config/locales/en-GB.js":13,"./config/locales/nl-NL.js":14,"./config/mobile/api/controllers/ModelController.js":15,"./config/mobile/api/policies/alwaysAllow.js":16,"./config/mobile/api/policies/alwaysDeny.js":17,"./config/mobile/config/app.js":18,"./config/mobile/config/bootstrap.js":19,"./config/mobile/config/connections.js":20,"./config/mobile/config/env/dev.js":21,"./config/mobile/config/env/prod.js":22,"./config/mobile/config/locales/en-GB.js":23,"./config/mobile/config/locales/nl-NL.js":24,"./config/mobile/config/models.js":25,"./config/mobile/config/router.js":26,"./config/mobile/config/routes.js":27,"./config/mobile/config/staticViews.js":28,"./config/mobile/config/views.js":29,"./config/models.js":30,"./config/router.js":31,"./config/routes.js":32,"./config/staticViews.js":33,"./config/views.js":34,"./libraries/jquery.js":36,"./libraries/riot.js":37,"lodash":90}],36:[function(require,module,exports){
-/**
- * @author rik
- */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _jquery = require('jquery');
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-exports['default'] = _jquery2['default'];
-module.exports = exports['default'];
-},{"jquery":89}],37:[function(require,module,exports){
-/**
- * @author rik
- */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _riot = require('riot');
-
-var _riot2 = _interopRequireDefault(_riot);
-
-exports['default'] = _riot2['default'];
-module.exports = exports['default'];
-},{"riot":92}],38:[function(require,module,exports){
-/**
- * @author rik
- */
-
-// source: http://stackoverflow.com/questions/3514784/what-is-the-best-way-to-detect-a-mobile-device-in-jquery
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var isMobile = false; //initiate as false
-// device detection
-if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent.substr(0, 4))) isMobile = true;
-
-exports["default"] = isMobile;
-module.exports = exports["default"];
-},{}],39:[function(require,module,exports){
-/**
- * @author rik
- */
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var session = {};
-
-exports["default"] = session;
-module.exports = exports["default"];
-},{}],40:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _frontendModel = require('frontend-model');
-
-var _frontendModel2 = _interopRequireDefault(_frontendModel);
-
-var _frontendView = require('frontend-view');
-
-var _frontendView2 = _interopRequireDefault(_frontendView);
-
-var _frontendTranslator = require('frontend-translator');
-
-var _frontendTranslator2 = _interopRequireDefault(_frontendTranslator);
-
-var _Controller = require('./Controller');
-
-var _Controller2 = _interopRequireDefault(_Controller);
-
-var _Service = require('./Service');
-
-var _Service2 = _interopRequireDefault(_Service);
-
-var _Router = require('./Router');
-
-var _Router2 = _interopRequireDefault(_Router);
-
-var _constantsDefaultImplementationIndex = require('../constants/defaultImplementation/index');
-
-var _constantsDefaultImplementationIndex2 = _interopRequireDefault(_constantsDefaultImplementationIndex);
-
-var _constantsSession = require('../constants/session');
-
-var _constantsSession2 = _interopRequireDefault(_constantsSession);
-
-var _helpersFactoryRunner = require('../helpers/factoryRunner');
-
-var _helpersFactoryRunner2 = _interopRequireDefault(_helpersFactoryRunner);
-
-var _singletonsImplementation = require('../singletons/implementation');
-
-var _singletonsImplementation2 = _interopRequireDefault(_singletonsImplementation);
-
-var _constantsIsMobile = require('../constants/isMobile');
-
-var _constantsIsMobile2 = _interopRequireDefault(_constantsIsMobile);
-
-// frontend-communicator module, use the one used by the frontend-model module
-// so we a single communicator instead of multiple
-var communicator = _frontendModel2['default'].communicator;
-
-/**
- * @class Application
- *
- * @param options {Object} Object containing the properties listed below
- *
- * @property api {Object} Object containing the api (models, requests, controllers, services)
- * @property components {Object} Object containing the components (Adapters and ViewEngines)
- * @property config {Object} Object containing the configuration objects
- * @property env {String} String representing the runtime environment
- */
-function Application() {
-  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-  var opts = _lodash2['default'].merge({}, _constantsDefaultImplementationIndex2['default'], options);
-
-  if (options.libraries.riot) {
-    _frontendView2['default'].riot = options.libraries.riot;
-  }
-
-  var constructedImplementation = implement(opts);
-
-  var props = {
-    session: {
-      value: _constantsSession2['default']
-    },
-    api: {
-      value: constructedImplementation.api
-    },
-    models: {
-      value: constructedImplementation.api.models
-    },
-    config: {
-      value: constructedImplementation.config
-    },
-    communicator: {
-      value: constructedImplementation.communicator
-    },
-    translator: {
-      value: constructedImplementation.translator
-    },
-    options: {
-      value: opts
-    }
-  };
-
-  var app = window.app = Object.create(Application.prototype, props);
-
-  startApplication(app);
-
-  return app;
-}
-
-Application.prototype = Object.defineProperties({
-
-  /**
-   * Connects a Connection using the frontend-communicator module.
-   * Please refer to the frontend-communicator module to read more on this.
-   *
-   * @method connect
-   * @memberof Application
-   * @instance
-   *
-   * @param {String} [connection=defaultConnection specified in config/app.js] - The name of the Connection to connect
-   *
-   * @returns {Promise<Object>} A promise that resolves with a frontend-communicator Connection instance with the provided name
-   */
-  connect: function connect() {
-    var connection = arguments.length <= 0 || arguments[0] === undefined ? this.config.app.defaultConnection : arguments[0];
-
-    return this.communicator.connect(connection);
-  },
-
-  /**
-   * Executes one or more policies, see the frontend-policies documentation for more info.
-   *
-   * @method policy
-   * @memberof Application
-   * @instance
-   *
-   * @param policies {String|Array<String>} The policies to execute
-   * @param {Object} [data={}] - Data/params for the policy 'request'
-   *
-   * @returns {Promise} A promise that resolves if all policies pass and rejects if one or more don't
-   */
-  policy: function policy() {
-    var policies = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
-    var data = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
-    return this.router.policy(policies, data);
-  },
-
-  /**
-   * Gets a translation in the current locale and fills it with data.
-   *
-   * @method translate
-   * @memberof Application
-   * @instance
-   *
-   * @todo implement
-   *
-   * @param wordPath {String} Path to the word, 'general.yes' for example
-   * @param data {Object} Object to fill the translation with
-   *
-   * @returns {String} The translation filled with data
-   */
-  translate: function translate(wordPath) {
-    var data = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
-    return this.translator.translate(wordPath, data);
-  },
-
-  /**
-   * Sets the current locale.
-   *
-   * @method setLocale
-   * @memberof Application
-   * @instance
-   *
-   * @todo implement
-   *
-   * @param {String} [locale=defaultLocale specified in config/app.js] - The locale to set
-   *
-   */
-  setLocale: function setLocale() {
-    var locale = arguments.length <= 0 || arguments[0] === undefined ? this.config.app.defaultLocale : arguments[0];
-
-    return this.translator.setLocale(locale);
-  }
-
-}, {
-  server: {
-
-    /**
-     * The server property of the default connection. Please refer to the frontend-communicator module for more information.
-     *
-     * @name server
-     * @memberof Application
-     * @instance
-     *
-     * @type Object|undefined
-     */
-
-    get: function get() {
-      return this.connection && this.connection.server || this.communicator.servers[this.config.app.defaultConnection];
-    },
-    configurable: true,
-    enumerable: true
-  }
-});
-
-function startApplication(app) {
-  return app.connect().then(function (connection) {
-    app.connection = connection;
-    return Promise.resolve();
-  }).then(app.config.bootstrap).then(function () {
-    app.router = _singletonsImplementation2['default'].router = (0, _Router2['default'])(app.options);
-  });
-}
-
-function implement() {
-  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-  applyDevice(options);
-  applyEnv(options);
-
-  implementCommunicator(options, _singletonsImplementation2['default']);
-  implementModel(options, _singletonsImplementation2['default']);
-  implementTranslator(options, _singletonsImplementation2['default']);
-  implementStaticViews(options, _singletonsImplementation2['default']);
-  implementRouter(options, _singletonsImplementation2['default']);
-  implementFramework(options, _singletonsImplementation2['default']);
-
-  _singletonsImplementation2['default'].config = options.config;
-  _singletonsImplementation2['default'].api.views = options.api.views;
-
-  return _singletonsImplementation2['default'];
-}
-
-function implementCommunicator(opts, dst) {
-  (0, _helpersFactoryRunner2['default'])(communicator.Adapter, opts.components.adapters, dst.components.adapters);
-  (0, _helpersFactoryRunner2['default'])(communicator.Connection, opts.config.connections, dst.config.connections);
-  communicator.defaultConnection = opts.config.app.defaultConnection;
-
-  (0, _helpersFactoryRunner2['default'])(communicator.Request, opts.api.requests, dst.api.requests);
-
-  dst.communicator = communicator;
-}
-
-function implementModel(opts, dst) {
-  (0, _helpersFactoryRunner2['default'])(_frontendModel2['default'], opts.api.models, dst.api.models);
-}
-
-function implementTranslator(opts, dst) {
-  dst.translator = (0, _frontendTranslator2['default'])({
-    defaultLocale: opts.config.app.defaultLocale,
-    locales: opts.config.locales
-  });
-}
-
-function implementStaticViews(opts, dst) {
-  (0, _helpersFactoryRunner2['default'])(_frontendView2['default'], opts.api.staticViews, {}, {
-    'static': true
-  });
-
-  dst.api.staticViews = _frontendView2['default'].staticViews;
-}
-
-function implementRouter(opts, dst) {
-  (0, _helpersFactoryRunner2['default'])(_Controller2['default'], opts.api.controllers, dst.api.controllers);
-}
-
-function implementFramework(opts, dst) {
-  (0, _helpersFactoryRunner2['default'])(_Service2['default'], opts.api.services, dst.api.services);
-}
-
-function applyDevice(options) {
-  if (_constantsIsMobile2['default']) {
-    _lodash2['default'].merge(options, options.config.mobile || {});
-  }
-}
-
-function applyEnv(options) {
-  if (options.env) {
-    var env = options.config.env[options.env];
-
-    if (env) {
-      _lodash2['default'].merge(options, env);
-    }
-  }
-}
-
-exports['default'] = Application;
-module.exports = exports['default'];
-},{"../constants/defaultImplementation/index":35,"../constants/isMobile":38,"../constants/session":39,"../helpers/factoryRunner":44,"../singletons/implementation":45,"./Controller":41,"./Router":42,"./Service":43,"frontend-model":60,"frontend-translator":82,"frontend-view":85,"lodash":90}],41:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _frontendModel = require('frontend-model');
-
-var _frontendModel2 = _interopRequireDefault(_frontendModel);
-
-/**
- * @class Controller
- *
- * @param options {Object} Object containing the properties listed below
- *
- * @property model {String} Reference to a name of a model, if specified and valid, this.controller will contain the model instance.
- *
- */
-function Controller() {
-  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-  var controller = Object.create(Controller.prototype);
-
-  _lodash2['default'].extend(controller, options);
-
-  // bind the context for all methods provided
-  _lodash2['default'].bindAll(controller, _lodash2['default'].methods(options));
-
-  return controller;
-}
-
-Controller.prototype = Object.defineProperties({
-
-  /**
-   * Returns a list of all models, if a (valid) model is defined, if not, throws an Error.
-   * Returns the models on the collection property on the resolved object.
-   *
-   * @method list
-   * @memberof Controller
-   * @instance
-   *
-   * @param req {ControllerRequest}
-   *
-   * @returns {Promise<Object>}
-   */
-  list: function list(req) {
-    var _this = this;
-
-    if (this.collection) {
-      return this.collection.fetch().then(function () {
-        _this.collection.listenTo('change', function () {
-          req.sync({
-            collection: _this.collection.data
-          });
-        });
-
-        return {
-          collection: _this.collection.data
-        };
-      });
-    } else {
-      throw new Error('Can\'t execute Controller#list, Controller has no (valid) model.');
-    }
-  },
-
-  /**
-   * Returns a single model, if a (valid) model is defined, if not, throws an Error.
-   * Returns the model on the model property on the resolved object.
-   *
-   * @param req {ControllerRequest}
-   *
-   * @returns {Promise<Object>}
-   */
-  details: function details(req) {
-    var _this2 = this;
-
-    if (this.collection) {
-      var id = req.param('id') || req.param(this.collection.idKey);
-
-      return this.collection.fetch(id).then(function (model) {
-        _this2.collection.listenTo(model, 'change', function () {
-          req.sync(model);
-        });
-
-        return {
-          model: model
-        };
-      });
-    } else {
-      throw new Error('Can\'t execute Controller#list, Controller has no (valid) model.');
-    }
-  }
-
-}, {
-  collection: {
-    get: function get() {
-      return this.model && _frontendModel2['default'].models[this.model];
-    },
-    configurable: true,
-    enumerable: true
-  }
-});
-
-exports['default'] = Controller;
-module.exports = exports['default'];
-},{"frontend-model":60,"lodash":90}],42:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _singletonsImplementation = require('../singletons/implementation');
-
-var _singletonsImplementation2 = _interopRequireDefault(_singletonsImplementation);
-
-var _constantsSession = require('../constants/session');
-
-var _constantsSession2 = _interopRequireDefault(_constantsSession);
-
-var _frontendView = require('frontend-view');
-
-var _frontendView2 = _interopRequireDefault(_frontendView);
-
-var _frontendRouter = require('frontend-router');
-
-var _frontendRouter2 = _interopRequireDefault(_frontendRouter);
-
-/**
- * Please refer to the documentation of the frontend-router module for more information
- *
- * @class Router
- * @author Rik Hoffbauer
- *
- * @param options {Object} The framework implementation, ie. {config: {...}, api: {...}, ...}
- *
- * @returns {FrontendRouter} frontend-router instance
- *
- * @todo validate properties
- * @todo call staticViews
- */
-function Router() {
-  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-  var views = {};
-  var currentView = null;
-
-  //noinspection JSPotentiallyInvalidConstructorUsage
-  _frontendRouter2['default'].policyExecutor.requestFactory.prototype.session = _constantsSession2['default'];
-
-  var opts = _lodash2['default'].extend({}, options.config.router, {
-    success: function success(route, data) {
-      if (currentView) {
-        currentView.hide();
-      }
-
-      currentView = ensureViewForRoute(views, route);
-
-      currentView.render(data);
-      console.log('success', route, data);
-    },
-    sync: function sync(route, data) {
-      var view = ensureViewForRoute(views, route);
-      view.sync(data);
-      console.log('sync', route, data);
-    },
-    fail: function fail(route, data) {
-      switch (data.reason) {
-        case 'policy':
-          console.log('policies failed for route', route, data);
-          break;
-        case 'controller':
-          console.log('controller failed for route', route, data);
-          break;
-      }
-    },
-    routes: options.config.routes,
-    policies: options.api.policies,
-    controllers: _singletonsImplementation2['default'].api.controllers
-  });
-
-  return (0, _frontendRouter2['default'])(opts);
-}
-
-function ensureViewForRoute(views, route) {
-  var viewName = route.view;
-
-  if (!views[viewName]) {
-    _singletonsImplementation2['default'].api.views[viewName].name = _singletonsImplementation2['default'].api.views[viewName].name || viewName;
-    views[viewName] = (0, _frontendView2['default'])(_singletonsImplementation2['default'].api.views[viewName]);
-  }
-
-  return views[viewName];
-}
-
-exports['default'] = Router;
-module.exports = exports['default'];
-},{"../constants/session":39,"../singletons/implementation":45,"frontend-router":75,"frontend-view":85,"lodash":90}],43:[function(require,module,exports){
-/**
- * @author rik
- */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _frontendModel = require('frontend-model');
-
-var _frontendModel2 = _interopRequireDefault(_frontendModel);
-
-function Service() {
-  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-  var service = Object.create(Service.prototype);
-
-  _lodash2['default'].extend(service, options);
-
-  // bind the context for all methods provided
-  _lodash2['default'].bindAll(service, _lodash2['default'].methods(options));
-
-  return service;
-}
-
-Service.prototype = Object.defineProperties({}, {
-  collection: {
-    get: function get() {
-      return this.model && _frontendModel2['default'].models[this.model];
-    },
-    configurable: true,
-    enumerable: true
-  }
-});
-
-exports['default'] = Service;
-module.exports = exports['default'];
-},{"frontend-model":60,"lodash":90}],44:[function(require,module,exports){
-/**
- * @author rik
- */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-function factoryRunner(factory, src, dst, extendObj) {
-  if (dst === undefined) dst = src;
-  return (function () {
-    _lodash2['default'].each(src, function (obj, name) {
-      obj.name = obj.name || name;
-
-      if (extendObj) {
-        _lodash2['default'].extend(obj, extendObj);
-      }
-
-      dst[obj.name] = factory(obj);
-    });
-  })();
-}
-
-exports['default'] = factoryRunner;
-module.exports = exports['default'];
-},{"lodash":90}],45:[function(require,module,exports){
-/**
- * @author rik
- */
-
-/**
- * Singleton that contains the constructed implementation of the framework
- *
- * @name implementation
- * @type Object
- */
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var implementation = {
-  api: {
-    models: {},
-    controllers: {},
-    views: {},
-    requests: {},
-    services: {}
-  },
-  components: {
-    adapters: {}
-  },
-  config: {
-    app: {},
-    connections: {},
-    models: {},
-    router: {},
-    views: {},
-    routes: {}
-  }
-};
-
-exports["default"] = implementation;
-module.exports = exports["default"];
-},{}],46:[function(require,module,exports){
+},{"./src/factories/Model":21}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1430,7 +441,7 @@ var _srcFactoriesCommunicator2 = _interopRequireDefault(_srcFactoriesCommunicato
 
 exports['default'] = _srcFactoriesCommunicator2['default'];
 module.exports = exports['default'];
-},{"./src/factories/Communicator":49}],47:[function(require,module,exports){
+},{"./src/factories/Communicator":9}],7:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -1472,7 +483,7 @@ var XHR = {
 
 exports['default'] = XHR;
 module.exports = exports['default'];
-},{"jquery":89}],48:[function(require,module,exports){
+},{"jquery":89}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1561,7 +572,7 @@ function Adapter() {
 
 exports['default'] = Adapter;
 module.exports = exports['default'];
-},{"../validators/Adapter":57,"./LazyLoader":51,"lodash":90}],49:[function(require,module,exports){
+},{"../validators/Adapter":17,"./LazyLoader":11,"lodash":90}],9:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -1889,7 +900,7 @@ Communicator.prototype = Object.defineProperties({
 
 exports['default'] = Communicator;
 module.exports = exports['default'];
-},{"./Adapter":48,"./Connection":50,"./Request":52,"lodash":90}],50:[function(require,module,exports){
+},{"./Adapter":8,"./Connection":10,"./Request":12,"lodash":90}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2245,7 +1256,7 @@ Connection.prototype = {
 
 exports['default'] = Connection;
 module.exports = exports['default'];
-},{"../helpers/concatenateUrls":53,"../validators/Connection":58,"./Request":52,"lodash":90}],51:[function(require,module,exports){
+},{"../helpers/concatenateUrls":13,"../validators/Connection":18,"./Request":12,"lodash":90}],11:[function(require,module,exports){
 /**
  * @author Rik Hoffbauer
  * @module LazyLoader
@@ -2463,7 +1474,7 @@ LazyLoader.prototype = {
 
 exports['default'] = LazyLoader;
 module.exports = exports['default'];
-},{"lodash":90}],52:[function(require,module,exports){
+},{"lodash":90}],12:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -2672,7 +1683,7 @@ Request.prototype = {
 
 exports['default'] = Request;
 module.exports = exports['default'];
-},{"../helpers/extractSplatsFromRoute":55,"../helpers/replaceSplatsInRouteWithData":56,"../validators/Request":59,"lodash":90}],53:[function(require,module,exports){
+},{"../helpers/extractSplatsFromRoute":15,"../helpers/replaceSplatsInRouteWithData":16,"../validators/Request":19,"lodash":90}],13:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -2727,7 +1738,7 @@ function concatenateTwoUrls(url1, url2) {
 
 exports['default'] = concatenateUrls;
 module.exports = exports['default'];
-},{"lodash":90}],54:[function(require,module,exports){
+},{"lodash":90}],14:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -2765,7 +1776,7 @@ function dataSatisfiesRoute() {
 
 exports['default'] = dataSatisfiesRoute;
 module.exports = exports['default'];
-},{"lodash":90}],55:[function(require,module,exports){
+},{"lodash":90}],15:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -2797,7 +1808,7 @@ function extractSplatsFromRoute() {
 
 exports['default'] = extractSplatsFromRoute;
 module.exports = exports['default'];
-},{"lodash":90}],56:[function(require,module,exports){
+},{"lodash":90}],16:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -2833,7 +1844,7 @@ function replaceSplatsInRouteWithData() {
 
 exports['default'] = replaceSplatsInRouteWithData;
 module.exports = exports['default'];
-},{"lodash":90}],57:[function(require,module,exports){
+},{"lodash":90}],17:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -2908,7 +1919,7 @@ var adapterValidator = {
 
 exports['default'] = adapterValidator;
 module.exports = exports['default'];
-},{}],58:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -2951,7 +1962,7 @@ var connectionValidator = {
 
 exports['default'] = connectionValidator;
 module.exports = exports['default'];
-},{}],59:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -3029,22 +2040,7 @@ var requestValidator = {
 
 exports['default'] = requestValidator;
 module.exports = exports['default'];
-},{"../helpers/dataSatisfiesRoute":54,"lodash":90}],60:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _srcFactoriesModel = require('./src/factories/Model');
-
-var _srcFactoriesModel2 = _interopRequireDefault(_srcFactoriesModel);
-
-exports['default'] = _srcFactoriesModel2['default'];
-module.exports = exports['default'];
-},{"./src/factories/Model":62}],61:[function(require,module,exports){
+},{"../helpers/dataSatisfiesRoute":14,"lodash":90}],20:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -3197,7 +2193,7 @@ function bindInternalModelEventListener(event) {
 
 exports['default'] = Listener;
 module.exports = exports['default'];
-},{"events":2,"lodash":90}],62:[function(require,module,exports){
+},{"events":2,"lodash":90}],21:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -3901,7 +2897,7 @@ var privateApi = {
 
 exports['default'] = Model;
 module.exports = exports['default'];
-},{"../helpers/makeRestRequestsForModel":65,"../helpers/replaceObjectProperties":66,"../singletons/communicator":67,"../singletons/models":68,"../singletons/modelsById":69,"../specs/ModelSpec":70,"./Listener":61,"./Queue":63,"./Repository":64,"events":2,"lodash":90}],63:[function(require,module,exports){
+},{"../helpers/makeRestRequestsForModel":24,"../helpers/replaceObjectProperties":25,"../singletons/communicator":26,"../singletons/models":27,"../singletons/modelsById":28,"../specs/ModelSpec":29,"./Listener":20,"./Queue":22,"./Repository":23,"events":2,"lodash":90}],22:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -3986,7 +2982,7 @@ Queue.prototype = {
 
 exports['default'] = Queue;
 module.exports = exports['default'];
-},{"lodash":90}],64:[function(require,module,exports){
+},{"lodash":90}],23:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -4118,7 +3114,7 @@ Repository.prototype = {
 
 exports['default'] = Repository;
 module.exports = exports['default'];
-},{"../helpers/replaceObjectProperties":66,"lodash":90}],65:[function(require,module,exports){
+},{"../helpers/replaceObjectProperties":25,"lodash":90}],24:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -4169,7 +3165,7 @@ function makeRestRequestsForModel(model, privateApi) {
 
 exports['default'] = makeRestRequestsForModel;
 module.exports = exports['default'];
-},{}],66:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -4214,7 +3210,7 @@ function replaceObjectProperties() {
 
 exports['default'] = replaceObjectProperties;
 module.exports = exports['default'];
-},{"lodash":90}],67:[function(require,module,exports){
+},{"lodash":90}],26:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -4244,7 +3240,7 @@ var communicator = (0, _frontendCommunicator2['default'])({
 
 exports['default'] = communicator;
 module.exports = exports['default'];
-},{"frontend-communicator":46,"frontend-communicator/src/adapters/XHR":47}],68:[function(require,module,exports){
+},{"frontend-communicator":6,"frontend-communicator/src/adapters/XHR":7}],27:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -4257,7 +3253,7 @@ var models = {};
 
 exports["default"] = models;
 module.exports = exports["default"];
-},{}],69:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -4270,7 +3266,7 @@ var modelsById = {};
 
 exports["default"] = modelsById;
 module.exports = exports["default"];
-},{}],70:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -4394,7 +3390,7 @@ function ModelSpec(options, Model) {
 
 exports['default'] = ModelSpec;
 module.exports = exports['default'];
-},{"../singletons/communicator":67,"../singletons/models":68,"../singletons/modelsById":69,"../validators/Model":71,"lodash":90}],71:[function(require,module,exports){
+},{"../singletons/communicator":26,"../singletons/models":27,"../singletons/modelsById":28,"../validators/Model":30,"lodash":90}],30:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -4460,7 +3456,22 @@ var ModelValidator = {
 
 exports['default'] = ModelValidator;
 module.exports = exports['default'];
-},{"../singletons/communicator":67,"../singletons/models":68}],72:[function(require,module,exports){
+},{"../singletons/communicator":26,"../singletons/models":27}],31:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _srcFactoriesRouter = require('./src/factories/Router');
+
+var _srcFactoriesRouter2 = _interopRequireDefault(_srcFactoriesRouter);
+
+exports.Router = _srcFactoriesRouter2['default'];
+exports['default'] = _srcFactoriesRouter2['default'];
+},{"./src/factories/Router":37}],32:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -4475,7 +3486,7 @@ var _srcFactoriesPolicyExecutor2 = _interopRequireDefault(_srcFactoriesPolicyExe
 
 exports['default'] = _srcFactoriesPolicyExecutor2['default'];
 module.exports = exports['default'];
-},{"./src/factories/PolicyExecutor":73}],73:[function(require,module,exports){
+},{"./src/factories/PolicyExecutor":33}],33:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -4608,7 +3619,7 @@ PolicyExecutor.prototype = {
 
 exports['default'] = PolicyExecutor;
 module.exports = exports['default'];
-},{"./Request":74,"lodash":90}],74:[function(require,module,exports){
+},{"./Request":34,"lodash":90}],34:[function(require,module,exports){
 /**
  * @author rik
  */
@@ -4676,1225 +3687,7 @@ Request.prototype = {
 
 exports['default'] = Request;
 module.exports = exports['default'];
-},{"lodash":90}],75:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _srcFactoriesRouter = require('./src/factories/Router');
-
-var _srcFactoriesRouter2 = _interopRequireDefault(_srcFactoriesRouter);
-
-exports.Router = _srcFactoriesRouter2['default'];
-exports['default'] = _srcFactoriesRouter2['default'];
-},{"./src/factories/Router":77}],76:[function(require,module,exports){
-/**
- * @author rik
- */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _frontendPoliciesSrcFactoriesRequest = require('frontend-policies/src/factories/Request');
-
-var _frontendPoliciesSrcFactoriesRequest2 = _interopRequireDefault(_frontendPoliciesSrcFactoriesRequest);
-
-/**
- * @class ControllerRequest
- * @extends Request
- *
- * @param options {Object} Object containing the properties
- *
- * @property params {Object} - inherited from {@link Request}, object containing the parameters
- * @property route {Object} - route object
- */
-function ControllerRequest() {
-  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-  var req = (0, _frontendPoliciesSrcFactoriesRequest2['default'])(options.params, ControllerRequest.prototype);
-
-  req.route = options.route;
-  req.destruct = options.destruct || req.destruct;
-
-  req.route.router.grapnel.on('navigate', function () {
-    req.sync = _lodash2['default'].noop;
-    req.destruct();
-  });
-
-  return req;
-}
-
-ControllerRequest.prototype = {
-
-  /**
-   * Called when the ControllerRequest is destructed,
-   * this should be overridden in a Controller and stop all listeners for that Controller.
-   *
-   * @method destruct
-   * @memberof ControllerRequest
-   * @instance
-   * @abstract
-   */
-  destruct: function destruct() {
-    // abstract, should be overridden in a Controller
-  },
-
-  /**
-   * Syncs data for a route, will call the Router#sync(route, data) method
-   *
-   * @method sync
-   * @instance
-   * @memberof ControllerRequest
-   *
-   * @param data
-   */
-  sync: function sync() {
-    var data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-    this.route.router.sync(this.route, data);
-  }
-
-};
-
-exports['default'] = ControllerRequest;
-module.exports = exports['default'];
-},{"frontend-policies/src/factories/Request":74,"lodash":90}],77:[function(require,module,exports){
-/**
- * @author rik
- */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _grapnel = require('grapnel');
-
-var _grapnel2 = _interopRequireDefault(_grapnel);
-
-var _middlewareController = require('./middleware/controller');
-
-var _middlewareController2 = _interopRequireDefault(_middlewareController);
-
-var _middlewarePolicies = require('./middleware/policies');
-
-var _middlewarePolicies2 = _interopRequireDefault(_middlewarePolicies);
-
-var _singletonsPolicyExecutor = require('../singletons/policyExecutor');
-
-var _singletonsPolicyExecutor2 = _interopRequireDefault(_singletonsPolicyExecutor);
-
-/**
- * The Router factory / class, responsible for creating a Router.
- *
- * @class Router
- *
- * @param options {Object}
- *
- * @property controllers {Object<Object<Function>>} Hashmap containing Controllers
- * @property policies {Object<Function>} Hashmap containing policies
- * @property routes {Object<Object>} Hashmap containing routes
- * @property success {Function} Function that gets executed when a route has successfully executed
- * @property fail {Function} Function that gets executed when a route has failed to execute successfully
- * @property sync {Function} Function that gets executed when a controller syncs
- * @property {String} [anchorSelector='a[href^="/"]:not([href^="//"])'] - jQuery selector that represents all anchors that should be event.preventDefault()'ed and use the router to navigate instead
- *
- * @property pushState {Boolean} Grapnel pushState option
- * @property root {Boolean} Grapnel root option
- * @property env {Boolean} Grapnel env option
- * @property mode {Boolean} Grapnel mode option
- * @property hashBang {Boolean} Grapnel hashBang option
- *
- * @todo implement defaultRoute, notFoundRoute, errorRoute (for controller errors)
- *
- * @example
- * const router = Router({
- *   pushState: true,
- *   success(route, data) {
- *     // the route and data resolved from the Controller
- *   },
- *   fail(route, data) {
- *     // the failed route and data from policy/controller that failed
- *     data.reason; // 'policy' or 'controller'
- *     data.data; // data policy/controlller rejected with
- *   },
- *   sync(route, data) {
- *     // controller sync happened for the route passed in with data passed in
- *   },
- *   routes: {
- *     '/testReject': {
- *       policies: ['test'],
- *       controller: 'test.test'
- *     }
- *   },
- *   '/testResolve': {
- *       policies: [],
- *       controller: 'test.test'
- *     }
- *   },
- *   policies: {
- *     test: function() {
- *       return Promise.reject();
- *     }
- *   },
- *   controllers: {
- *     test: {
- *       test: function () {
- *         return {
- *           test: true
- *         }
- *       }
- *     }
- *   }
- * });
- *
- */
-function Router() {
-  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-  _lodash2['default'].merge(options, Router.defaults, options);
-
-  if (typeof options.success !== 'function') {
-    throw new Error('Can\'t construct router, success method not provided.');
-  }
-
-  if (typeof options.fail !== 'function') {
-    throw new Error('Can\'t construct router, fail method not provided.');
-  }
-
-  if (typeof options.sync !== 'function') {
-    throw new Error('Can\'t construct router, sync method not provided.');
-  }
-
-  if (typeof options.routes !== 'object') {
-    throw new Error('Can\'t construct router, routes object not provided.');
-  }
-
-  if (typeof options.policies !== 'object') {
-    throw new Error('Can\'t construct router, policies object not provided.');
-  }
-
-  if (typeof options.controllers !== 'object') {
-    throw new Error('Can\'t construct router, controllers object not provided.');
-  }
-
-  var props = {
-
-    /**
-     * The options as passed into the factory
-     *
-     * @name options
-     * @memberof Router
-     * @instance
-     * @type Object
-     */
-    options: {
-      value: options
-    },
-    success: {
-      value: options.success
-    },
-    fail: {
-      value: options.fail
-    },
-    sync: {
-      value: options.sync
-    },
-    controllers: {
-      value: options.controllers
-    }
-  };
-
-  Router.policyExecutor.add(options.policies);
-
-  var router = Object.create(Router.prototype, props);
-
-  makeAnchorDOMElementsUseRouterNavigate(router, options.anchorSelector);
-
-  /**
-   * An instance of the Grapnel router, responsible for actual routing
-   *
-   * @name grapnel
-   * @memberof Router
-   * @instance
-   * @type Object
-   */
-  router.grapnel = constructGrapnelRouter(options, router);
-
-  return router;
-}
-
-/**
- * Default properties for objects passed into the Router factory,
- * gets merged (deeply) with the options passed in.
- *
- * @name defaults
- * @memberof Router
- * @static
- * @type Object
- * @property {Object<Function>} [policies={}] Policies specified as a hashmap
- * @property {Object<Object<Function>>} [controllers={}] Controllers specified as a hashmap
- */
-Router.defaults = {
-  policies: {},
-  controllers: {}
-};
-
-/**
- * Default properties for route objects, gets merged (deeply) with the routes.
- *
- * @name routeDefaults
- * @memberof Router
- * @static
- * @type Object
- * @default {}
- */
-Router.routeDefaults = {};
-
-/**
- * The {@link PolicyExecutor} instance all {@link Router}s use, this may be overridden
- *
- * @name policyExecutor
- * @memberof Router
- * @static
- * @type PolicyExecutor
- */
-Router.policyExecutor = _singletonsPolicyExecutor2['default'];
-
-Router.prototype = {
-
-  /**
-   * Navigates to a url
-   *
-   * @method navigate
-   * @memberof Router
-   * @instance
-   *
-   * @param url {String} Url to navigate to
-   * @param {Object} [options] - Object containing the properties listed below
-   *
-   * @property [trigger=true] {Boolean} - Indicates a route event should be triggered, so the route gets executed
-   * @property [replace=false] {Boolean} - Indicates the history item should be replaced
-   *
-   * @todo add a data param so that urls an contains splats that will be filled with the data
-   * @example
-   * // regular navigate
-   * router.navigate('/user/3');
-   * // replace the history item
-   * router.navigate('/user/6', {
-   *   replace: true
-   * });
-   * // dont trigger event, route won't be handled
-   * router.navigate('/user/6', {
-   *   trigger: false
-   * });
-   */
-  navigate: function navigate(url) {
-    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
-    _lodash2['default'].defaults(options, {
-      trigger: true,
-      replace: false
-    });
-
-    if (!options.trigger) {
-      if (options.replace) {
-        replaceNavigate(this.grapnel, url);
-      } else {
-        this.grapnel.show(url);
-      }
-    } else {
-      if (options.replace) {
-        replaceNavigate(this.grapnel, url);
-        this.reload();
-      } else {
-        this.grapnel.navigate(url);
-      }
-    }
-  },
-
-  /**
-   * Reloads the current page without actually reloading
-   *
-   * @method reload
-   * @memberof Router
-   * @instance
-   * @example
-   * route.reload();
-   */
-  reload: function reload() {
-    var event = this.grapnel.options.mode === 'pushState' ? 'navigate' : 'hashchange';
-    this.grapnel.trigger(event);
-  },
-
-  /**
-   * Redirects to a url, replaces the current history item.
-   *
-   * @method redirect
-   * @memberof Router
-   * @instance
-   *
-   * @param url {String} Url to redirect to
-   *
-   * @todo add a data param so that urls an contains splats that will be filled with the data
-   * @example
-   * router.redirect('/user/5');
-   */
-  redirect: function redirect(url) {
-    this.navigate(url, {
-      replace: true
-    });
-  },
-
-  /**
-   * Executes one or more policies.
-   *
-   * @method policy
-   * @memberof Router
-   * @instance
-   *
-   * @param policy {String|Array<String>} Policy / Policies to execute
-   * @param data {Object} 'Request' data
-   * @example
-   * router.policy('isLoggedIn')
-   *   .then(...)
-   * router.policy(['isLoggedIn', 'isLoggedInUser'], userModel)
-   *   .then(...)
-   */
-  policy: function policy() {
-    var _policy = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
-
-    var data = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
-    return Router.policyExecutor.execute(_policy, data);
-  }
-
-};
-
-// @todo reserach if this is necessary
-function makeAnchorDOMElementsUseRouterNavigate(router, anchorSelector) {
-  var elements = document.querySelectorAll(anchorSelector || 'a[href^="/"]:not([href^="//"])');
-
-  _lodash2['default'].each(elements, function (element) {
-    element.addEventListener('click', function (e) {
-      e.preventDefault();
-      var url = e.target.href;
-      router.navigate(url);
-    });
-  });
-}
-
-// originally take from Grapnel.fragment.set, changed to replace the current history item instead of add to the history
-function replaceNavigate(grapnel, frag) {
-  if (grapnel.options.mode === 'pushState') {
-    frag = grapnel.options.root ? grapnel.options.root + frag : frag;
-    window.history.replaceState({}, "", frag);
-  } else if (window.location) {
-    frag = (grapnel.options.hashBang ? '!' : '') + frag;
-    if (!window.history.replaceState) {
-      console.error('Can\'t replace url to \'' + frag + '\', replaceState not available, falling back to doing normal navigate, which creates a history item.');
-      window.location.hash = frag;
-    } else {
-      window.history.replaceState({}, "", '#' + frag);
-    }
-  } else {
-    window._pathname = frag || '';
-  }
-}
-
-function constructGrapnelRouter(options, router) {
-  if (options === undefined) options = {};
-
-  router.grapnel = new _grapnel2['default']({
-    pushState: options.pushState,
-    root: options.root,
-    env: options.env,
-    mode: options.mode,
-    hashBang: options.hashBang
-  });
-
-  addRoutesToGrapnelRouter(options, router);
-
-  return router.grapnel;
-}
-
-function addRoutesToGrapnelRouter(options, router) {
-  _lodash2['default'].each(options.routes, function (route, routeName) {
-    _lodash2['default'].merge(route, Router.routeDefaults, {
-      route: routeName,
-      router: router
-    }, route);
-
-    var middleware = [(0, _middlewarePolicies2['default'])(route), (0, _middlewareController2['default'])(route)];
-
-    middleware.unshift(route.route);
-    router.grapnel.get.apply(router.grapnel, middleware);
-
-    return route;
-  });
-}
-
-exports['default'] = Router;
-module.exports = exports['default'];
-},{"../singletons/policyExecutor":81,"./middleware/controller":78,"./middleware/policies":79,"grapnel":88,"lodash":90}],78:[function(require,module,exports){
-/**
- * @author rik
- */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _helpersExecuteController = require('../../helpers/executeController');
-
-var _helpersExecuteController2 = _interopRequireDefault(_helpersExecuteController);
-
-function controllerMiddlewareFactory(route) {
-  return function controllerMiddleware(req, res) {
-    //noinspection JSUnresolvedVariable
-    (0, _helpersExecuteController2['default'])(route.controller, req.params, route).then(function (data) {
-      route.router.success(route, data);
-    }, function (data) {
-      res.preventDefault();
-      route.router.fail(route, {
-        reason: 'controller',
-        data: data
-      });
-    });
-  };
-}
-
-exports['default'] = controllerMiddlewareFactory;
-module.exports = exports['default'];
-},{"../../helpers/executeController":80}],79:[function(require,module,exports){
-/**
- * @author rik
- */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-function policyMiddlewareFactory(route) {
-  return function policyMiddleware(req, res, next) {
-    if (route.policies && route.policies.length) {
-      route.router.policy(route.policies, req.params).then(function () {
-        next();
-      }, function (data) {
-        res.preventDefault();
-        if (route.unauthorized) {
-          route.router.redirect(route.unauthorized);
-        }
-
-        route.router.fail(route, {
-          reason: 'policy',
-          data: data
-        });
-      });
-    } else {
-      next();
-    }
-  };
-}
-
-exports['default'] = policyMiddlewareFactory;
-module.exports = exports['default'];
-},{}],80:[function(require,module,exports){
-/**
- * @author rik
- */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _factoriesControllerRequest = require('../factories/ControllerRequest');
-
-var _factoriesControllerRequest2 = _interopRequireDefault(_factoriesControllerRequest);
-
-/**
- * Executes a controller from a given hashmap
- * @param controller
- * @param data
- * @param route
- * @param router
- * @returns {Promise.<*>}
- */
-function executeController(controller, data, route) {
-  switch (typeof controller) {
-    case 'string':
-      return executeControllerSpecifiedAsString(controller, data, route);
-      break;
-    case 'function':
-      return executeControllerSpecifiedAsFunction(data, route, controller);
-      break;
-    default:
-      return Promise.resolve(data);
-  }
-}
-
-function executeControllerSpecifiedAsString(controller, data, route) {
-  var controllerFunction = getControllerByPath(route.router.controllers, controller);
-
-  return executeController(controllerFunction, data, route);
-}
-
-function executeControllerSpecifiedAsFunction(data, route, controller) {
-  var req = makeControllerRequest(data, route);
-
-  return wrapInPromise(function () {
-    return controller(req);
-  });
-}
-
-function getControllerByPath(controllers, path) {
-  var controllerFunction = _lodash2['default'].get(controllers, path);
-
-  if (!controllerFunction) {
-    throw new Error('Controller \'' + path + '\' not defined.');
-  }
-
-  return controllerFunction;
-}
-
-function wrapInPromise(fn) {
-  return Promise.resolve().then(function () {
-    return fn();
-  });
-}
-
-function makeControllerRequest(params, route) {
-  return (0, _factoriesControllerRequest2['default'])({
-    params: params,
-    route: route
-  });
-}
-
-exports['default'] = executeController;
-module.exports = exports['default'];
-},{"../factories/ControllerRequest":76,"lodash":90}],81:[function(require,module,exports){
-/**
- * @author rik
- */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _frontendPolicies = require('frontend-policies');
-
-var _frontendPolicies2 = _interopRequireDefault(_frontendPolicies);
-
-var policyExecutor = (0, _frontendPolicies2['default'])();
-
-exports['default'] = policyExecutor;
-module.exports = exports['default'];
-},{"frontend-policies":72}],82:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _srcFactoriesTranslator = require('./src/factories/Translator');
-
-var _srcFactoriesTranslator2 = _interopRequireDefault(_srcFactoriesTranslator);
-
-exports['default'] = _srcFactoriesTranslator2['default'];
-module.exports = exports['default'];
-},{"./src/factories/Translator":83}],83:[function(require,module,exports){
-/**
- * @author rik
- */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _helpersEscapeRegExp = require('../helpers/escapeRegExp');
-
-var _helpersEscapeRegExp2 = _interopRequireDefault(_helpersEscapeRegExp);
-
-/**
- * The Translator is in charge of executing policies. Policies can be provided when constructing or when constructed by using the {@link Translator#add} method, policies can be executed using the {@link Translator#execute} method. For information on the req object passed into policies, please refer to the documentation of the {@link Request}.
- *
- * @class Translator
- *
- * @param options {Object} Object with the properties listed below
- *
- * @property locales {Object<Object>} Hashmap with locales
- * @property defaultLocale {String} Name/key of the default locale
- * @property delimiters {Array<String>} Array with two items, the start and end delimiter for template variables respectively
- * @property options {Object} The options object passed in
- *
- * @example
- * const translator = Translator({
- *   defaultLocale: 'en-GB',
- *   delimiters: ['{{', '}}'],
- *   locales: {
- *     'en-GB': {
- *       words: {
- *         'test': 'Test {{name}}!'
- *       },
- *       converters: {}
- *     }
- *   }
- * });
- */
-function Translator() {
-  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-  _lodash2['default'].defaults(options, Translator.defaults);
-
-  var startDelimiter = (0, _helpersEscapeRegExp2['default'])(options.delimiters[0]);
-  var endDelimiter = (0, _helpersEscapeRegExp2['default'])(options.delimiters[1]);
-
-  var props = {
-    locales: {
-      value: options.locales || {}
-    },
-    locale: {
-      value: options.defaultLocale,
-      writable: true
-    },
-    startDelimiterRegex: {
-      value: new RegExp('^' + startDelimiter)
-    },
-    endDelimiterRegex: {
-      value: new RegExp(endDelimiter + '$')
-    },
-    templateRegex: {
-      value: new RegExp(startDelimiter + '\\s*([\\s|\\S]+)\\s*' + endDelimiter, 'g')
-    },
-    options: {
-      value: options
-    }
-  };
-
-  return Object.create(Translator.prototype, props);
-}
-
-/**
- * Defaults for the options passed into the {@link Translator} factory
- *
- * @name defaults
- * @memberof Translator
- * @static
- * @type Object
- * @property {Array<String>} [delimiters=['{{', '}}']] The start and end delimiter for template variables
- */
-Translator.defaults = {
-  delimiters: ['{{', '}}']
-};
-
-Translator.prototype = Object.defineProperties({
-
-  /**
-   * Adds one or more languages.
-   *
-   * @memberof Translator
-   * @instance
-   *
-   * @param name {String|Object} Name of the language, or a hashmap of policies
-   * @param localeDefinition {Object|undefined} The definition of the language, has a words and converters property
-   *
-   * @example
-   * translator.add('nl-NL', {
-   *   words: {},
-   *   converters: {
-   *     currency() {},
-   *     temperature() {}
-   *   }
-   * });
-   * // or
-   * translator.add({
-   *   'nl-NL': {
-   *     words: {},
-   *     converters: {
-   *       currency() {},
-   *       temperature() {}
-   *     }
-   *   }
-   * });
-   */
-  add: function add(name, localeDefinition) {
-    var _this = this;
-
-    var type = typeof name;
-    if (type === 'object') {
-      _lodash2['default'].each(name, function (_languageDefinition, _name) {
-        _this.add(_name, _languageDefinition);
-      });
-    } else if (type === 'string') {
-      this.locales[name] = localeDefinition;
-    }
-  },
-
-  /**
-   * Sets the current locale
-   *
-   * @method setLocale
-   * @memberof Translator
-   * @instance
-   *
-   * @param locale {String} The locale to set
-   * @example
-   * translator.setLocale('en-GB')
-   */
-  setLocale: function setLocale(locale) {
-    if (!this.locales[locale]) {
-      throw new Error('Can\'t set locale to \'' + locale + '\', locale doesn\'t exist.');
-    }
-
-    this.locale = locale;
-  },
-
-  /**
-   * Translates a word with data, key may be a path (like 'basic.yes')
-   *
-   * @method translate
-   * @memberof Translator
-   * @instance
-   *
-   * @param key {String} The key of the word to translate (may be deep using dots)
-   * @param {Object} [data={}] - Data to fill the translation with
-   *
-   * @returns {String}
-   *
-   * @example
-   * // where the translation for 'basic.greet' is 'hello {{model.name}}!'
-   * < translator.translate('basic.greet', {model: {name: 'BOB'}});
-   * > "hello BOB!"
-   */
-  translate: function translate(key) {
-    var _this2 = this;
-
-    var data = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
-    if (!this.currentLocale) {
-      throw new Error('Can\'t translate \'' + key + '\', no current locale.');
-    }
-
-    var translation = _lodash2['default'].get(this.currentLocale.words, key);
-
-    if (!translation) {
-      throw new Error('Can\'t find translation for \'' + key + '\', translation not found for the current locale \'' + this.locale + '\'.');
-    }
-
-    var variableMatches = translation.match(this.templateRegex);
-
-    _lodash2['default'].each(variableMatches, function (match) {
-      var key = match.replace(_this2.startDelimiterRegex, '').replace(_this2.endDelimiterRegex, '').replace(/\s+/g, '');
-      var val = _lodash2['default'].get(data, key);
-      val = typeof val !== 'undefined' ? val : "";
-
-      translation = translation.replace(match, val);
-    });
-
-    return translation;
-  }
-
-}, {
-  converters: {
-
-    /**
-     * Converters for the current locale
-     * @name converters
-     * @memberof Translator
-     * @instance
-     * @type Object
-     */
-
-    get: function get() {
-      return this.currentLocale && this.currentLocale.converters;
-    },
-    configurable: true,
-    enumerable: true
-  },
-  words: {
-
-    /**
-     * Words for the current locale
-     * @name words
-     * @memberof Translator
-     * @instance
-     * @type Object
-     */
-
-    get: function get() {
-      return this.currentLocale && this.currentLocale.words;
-    },
-    configurable: true,
-    enumerable: true
-  },
-  currentLocale: {
-
-    /**
-     * The current locale object
-     * @name currentLocale
-     * @memberof Translator
-     * @instance
-     * @type Object
-     */
-
-    get: function get() {
-      return this.locale && this.locales[this.locale];
-    },
-    configurable: true,
-    enumerable: true
-  }
-});
-
-exports['default'] = Translator;
-module.exports = exports['default'];
-},{"../helpers/escapeRegExp":84,"lodash":90}],84:[function(require,module,exports){
-/**
- * @author rik
- */
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-function escapeRegExp() {
-  var str = arguments.length <= 0 || arguments[0] === undefined ? "" : arguments[0];
-
-  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-}
-
-exports["default"] = escapeRegExp;
-module.exports = exports["default"];
-},{}],85:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _srcFactoriesView = require('./src/factories/View');
-
-var _srcFactoriesView2 = _interopRequireDefault(_srcFactoriesView);
-
-exports['default'] = _srcFactoriesView2['default'];
-module.exports = exports['default'];
-},{"./src/factories/View":86}],86:[function(require,module,exports){
-/**
- * @author rik
- */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _jquery = require('jquery');
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _riotRiotCompiler = require('riot/riot+compiler');
-
-var _riotRiotCompiler2 = _interopRequireDefault(_riotRiotCompiler);
-
-var _validatorsView = require('../validators/View');
-
-var _validatorsView2 = _interopRequireDefault(_validatorsView);
-
-/**
- * @class View
- *
- * @param options {Object} Object containing the properties listed below
- *
- * @property holder {String} jQuery selector, refers to the element this view should be appended to
- * @property tag {String} Refers to a riot tag
- * @property static {Boolean} Indicates whether this is a static {@link View}
- */
-function View() {
-  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-  _lodash2['default'].defaults(options, View.defaults);
-
-  _validatorsView2['default'].construct(options);
-
-  var props = {
-    tag: {
-      value: options.tag
-    },
-    holder: {
-      value: options.holder
-    },
-    'static': {
-      value: options['static']
-    }
-  };
-
-  var view = Object.create(View.prototype, props);
-
-  view._display = 'block';
-
-  if (options['static'] === true) {
-    View.staticViews[options.name] = view;
-    view.render();
-    view.hide();
-  }
-
-  return view;
-}
-
-/**
- * Riot object the View uses, this should be used to run compiles, mounts etc.
- * It may be overridden, but this should only done before any View is constructed.
- *
- * @name riot
- * @memberof View
- * @static
- * @type {riot}
- */
-View.riot = _riotRiotCompiler2['default'];
-
-/**
- * All static {@link View}s will be put on here using their name as the key
- *
- * @memberof View
- * @static
- * @type Object
- */
-View.staticViews = {};
-
-/**
- * Default properties of {@link View}s, these may be overridden
- * @memberof View
- * @static
- * @type Object
- * @property {String} [holder='body'] - Default holder
- * @property {String} [static=false] - Whether the view is static
- */
-View.defaults = {
-  holder: 'body',
-  'static': false
-};
-
-View.prototype = Object.defineProperties({
-
-  /**
-   * Hides the {@link View}
-   * @method hide
-   * @memberof View
-   * @instance
-   */
-  hide: function hide() {
-    this._display = this.el.style.display;
-    this.el.style.display = 'none';
-  },
-
-  /**
-   * Shows the {@link View}
-   * @method show
-   * @memberof View
-   * @instance
-   */
-  show: function show() {
-    this.el.style.display = this._display;
-  },
-
-  /**
-   * Renders the riot tag to the DOM (into the $holder)
-   *
-   * @method render
-   * @memberof View
-   * @instance
-   *
-   * @param data {Object} Data to be made available to the riot tag
-   */
-  render: function render() {
-    var data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-    if (!this.tagInstance) {
-      var $el = (0, _jquery2['default'])(emptyTag(this.tag));
-      $el.appendTo(this.$holder);
-      this.tagInstance = View.riot.mount($el[0], this.tag, data)[0];
-      this._display = this.el.style.display;
-    } else {
-      this.sync(data);
-      this.show();
-    }
-  },
-
-  /**
-   * Syncs data to the riot tag
-   *
-   * @method sync
-   * @memberof View
-   * @instance
-   *
-   * @param data {Object} Data for the riot tag, will be extended with the current data
-   */
-  sync: function sync() {
-    var data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-    this.tagInstance.update(data);
-  },
-
-  /**
-   * Removes the {@link View}
-   *
-   * @method hide
-   * @memberof View
-   * @instance
-   */
-  remove: function remove() {
-    // @todo what do we do with the keepTheParent parameter
-    this.tagInstance.unmount();
-    this.$el.remove();
-  }
-
-}, {
-  el: {
-
-    /**
-     * The root element of this view
-     * @name el
-     * @memberof View
-     * @instance
-     * @type HTMLElement|null
-     */
-
-    get: function get() {
-      return this.tagInstance ? this.tagInstance.root : null;
-    },
-    configurable: true,
-    enumerable: true
-  },
-  $el: {
-
-    /**
-     * The root element wrapped in jQuery
-     * @name $el
-     * @memberof View
-     * @instance
-     * @type jQuery|null
-     */
-
-    get: function get() {
-      return this.el ? (0, _jquery2['default'])(this.el) : null;
-    },
-    configurable: true,
-    enumerable: true
-  },
-  $holder: {
-
-    /**
-     * The holder wrapped in jQuery
-     * @name $holder
-     * @memberof View
-     * @instance
-     * @type jQuery
-     */
-
-    get: function get() {
-      return (0, _jquery2['default'])(this.holder || this.$holder);
-    },
-    configurable: true,
-    enumerable: true
-  }
-});
-
-function emptyTag(tagName) {
-  return '<' + tagName + '></' + tagName + '>';
-}
-
-exports['default'] = View;
-module.exports = exports['default'];
-},{"../validators/View":87,"jquery":89,"lodash":90,"riot/riot+compiler":91}],87:[function(require,module,exports){
-/**
- * @author rik
- */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _jquery = require('jquery');
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var ViewValidator = {
-
-  construct: function construct() {
-    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-    if (options['static'] && (!options.name || typeof options.name !== 'string')) {
-      throw new Error('Can\'t construct static view, no name specified');
-    }
-
-    if (!options.tag || typeof options.tag !== 'string') {
-      throw new Error('Can\'t construct view, no tag specified');
-    }
-
-    if (!(options.holder && typeof options.holder === 'string') && !(options.$holder && options.$holder.length)) {
-      throw new Error('Can\'t construct view, no holder specified');
-    }
-
-    if (!(options.holder && (0, _jquery2['default'])(options.holder).length) && !(options.$holder && options.$holder.length)) {
-      throw new Error('Can\'t construct view, holder not found in DOM');
-    }
-  }
-
-};
-
-exports['default'] = ViewValidator;
-module.exports = exports['default'];
-},{"jquery":89}],88:[function(require,module,exports){
+},{"lodash":90}],35:[function(require,module,exports){
 (function (process){
 /****
  * Grapnel
@@ -6323,7 +4116,2214 @@ module.exports = exports['default'];
 
 }).call(this,require('_process'))
 
-},{"_process":3}],89:[function(require,module,exports){
+},{"_process":3}],36:[function(require,module,exports){
+/**
+ * @author rik
+ */
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _frontendPoliciesSrcFactoriesRequest = require('frontend-policies/src/factories/Request');
+
+var _frontendPoliciesSrcFactoriesRequest2 = _interopRequireDefault(_frontendPoliciesSrcFactoriesRequest);
+
+/**
+ * @class ControllerRequest
+ * @extends Request
+ *
+ * @param options {Object} Object containing the properties
+ *
+ * @property params {Object} - inherited from {@link Request}, object containing the parameters
+ * @property route {Object} - route object
+ */
+function ControllerRequest() {
+  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+  var req = (0, _frontendPoliciesSrcFactoriesRequest2['default'])(options.params, ControllerRequest.prototype);
+
+  req.route = options.route;
+  req.destruct = options.destruct || req.destruct;
+
+  req.route.router.grapnel.on('navigate', function () {
+    req.sync = _lodash2['default'].noop;
+    req.destruct();
+  });
+
+  return req;
+}
+
+ControllerRequest.prototype = {
+
+  /**
+   * Called when the ControllerRequest is destructed,
+   * this should be overridden in a Controller and stop all listeners for that Controller.
+   *
+   * @method destruct
+   * @memberof ControllerRequest
+   * @instance
+   * @abstract
+   */
+  destruct: function destruct() {
+    // abstract, should be overridden in a Controller
+  },
+
+  /**
+   * Syncs data for a route, will call the Router#sync(route, data) method
+   *
+   * @method sync
+   * @instance
+   * @memberof ControllerRequest
+   *
+   * @param data
+   */
+  sync: function sync() {
+    var data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+    this.route.router.sync(this.route, data);
+  }
+
+};
+
+exports['default'] = ControllerRequest;
+module.exports = exports['default'];
+},{"frontend-policies/src/factories/Request":34,"lodash":90}],37:[function(require,module,exports){
+/**
+ * @author rik
+ */
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _grapnel = require('grapnel');
+
+var _grapnel2 = _interopRequireDefault(_grapnel);
+
+var _middlewareController = require('./middleware/controller');
+
+var _middlewareController2 = _interopRequireDefault(_middlewareController);
+
+var _middlewarePolicies = require('./middleware/policies');
+
+var _middlewarePolicies2 = _interopRequireDefault(_middlewarePolicies);
+
+var _singletonsPolicyExecutor = require('../singletons/policyExecutor');
+
+var _singletonsPolicyExecutor2 = _interopRequireDefault(_singletonsPolicyExecutor);
+
+/**
+ * The Router factory / class, responsible for creating a Router.
+ *
+ * @class Router
+ *
+ * @param options {Object}
+ *
+ * @property controllers {Object<Object<Function>>} Hashmap containing Controllers
+ * @property policies {Object<Function>} Hashmap containing policies
+ * @property routes {Object<Object>} Hashmap containing routes
+ * @property success {Function} Function that gets executed when a route has successfully executed
+ * @property fail {Function} Function that gets executed when a route has failed to execute successfully
+ * @property sync {Function} Function that gets executed when a controller syncs
+ * @property {String} [anchorSelector='a[href^="/"]:not([href^="//"])'] - jQuery selector that represents all anchors that should be event.preventDefault()'ed and use the router to navigate instead
+ *
+ * @property pushState {Boolean} Grapnel pushState option
+ * @property root {Boolean} Grapnel root option
+ * @property env {Boolean} Grapnel env option
+ * @property mode {Boolean} Grapnel mode option
+ * @property hashBang {Boolean} Grapnel hashBang option
+ *
+ * @todo implement defaultRoute, notFoundRoute, errorRoute (for controller errors)
+ *
+ * @example
+ * const router = Router({
+ *   pushState: true,
+ *   success(route, data) {
+ *     // the route and data resolved from the Controller
+ *   },
+ *   fail(route, data) {
+ *     // the failed route and data from policy/controller that failed
+ *     data.reason; // 'policy' or 'controller'
+ *     data.data; // data policy/controlller rejected with
+ *   },
+ *   sync(route, data) {
+ *     // controller sync happened for the route passed in with data passed in
+ *   },
+ *   routes: {
+ *     '/testReject': {
+ *       policies: ['test'],
+ *       controller: 'test.test'
+ *     }
+ *   },
+ *   '/testResolve': {
+ *       policies: [],
+ *       controller: 'test.test'
+ *     }
+ *   },
+ *   policies: {
+ *     test: function() {
+ *       return Promise.reject();
+ *     }
+ *   },
+ *   controllers: {
+ *     test: {
+ *       test: function () {
+ *         return {
+ *           test: true
+ *         }
+ *       }
+ *     }
+ *   }
+ * });
+ *
+ */
+function Router() {
+  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+  _lodash2['default'].merge(options, Router.defaults, options);
+
+  if (typeof options.success !== 'function') {
+    throw new Error('Can\'t construct router, success method not provided.');
+  }
+
+  if (typeof options.fail !== 'function') {
+    throw new Error('Can\'t construct router, fail method not provided.');
+  }
+
+  if (typeof options.sync !== 'function') {
+    throw new Error('Can\'t construct router, sync method not provided.');
+  }
+
+  if (typeof options.routes !== 'object') {
+    throw new Error('Can\'t construct router, routes object not provided.');
+  }
+
+  if (typeof options.policies !== 'object') {
+    throw new Error('Can\'t construct router, policies object not provided.');
+  }
+
+  if (typeof options.controllers !== 'object') {
+    throw new Error('Can\'t construct router, controllers object not provided.');
+  }
+
+  var props = {
+
+    /**
+     * The options as passed into the factory
+     *
+     * @name options
+     * @memberof Router
+     * @instance
+     * @type Object
+     */
+    options: {
+      value: options
+    },
+    success: {
+      value: options.success
+    },
+    fail: {
+      value: options.fail
+    },
+    sync: {
+      value: options.sync
+    },
+    controllers: {
+      value: options.controllers
+    }
+  };
+
+  Router.policyExecutor.add(options.policies);
+
+  var router = Object.create(Router.prototype, props);
+
+  makeAnchorDOMElementsUseRouterNavigate(router, options.anchorSelector);
+
+  /**
+   * An instance of the Grapnel router, responsible for actual routing
+   *
+   * @name grapnel
+   * @memberof Router
+   * @instance
+   * @type Object
+   */
+  router.grapnel = constructGrapnelRouter(options, router);
+
+  return router;
+}
+
+/**
+ * Default properties for objects passed into the Router factory,
+ * gets merged (deeply) with the options passed in.
+ *
+ * @name defaults
+ * @memberof Router
+ * @static
+ * @type Object
+ * @property {Object<Function>} [policies={}] Policies specified as a hashmap
+ * @property {Object<Object<Function>>} [controllers={}] Controllers specified as a hashmap
+ */
+Router.defaults = {
+  policies: {},
+  controllers: {}
+};
+
+/**
+ * Default properties for route objects, gets merged (deeply) with the routes.
+ *
+ * @name routeDefaults
+ * @memberof Router
+ * @static
+ * @type Object
+ * @default {}
+ */
+Router.routeDefaults = {};
+
+/**
+ * The {@link PolicyExecutor} instance all {@link Router}s use, this may be overridden
+ *
+ * @name policyExecutor
+ * @memberof Router
+ * @static
+ * @type PolicyExecutor
+ */
+Router.policyExecutor = _singletonsPolicyExecutor2['default'];
+
+Router.prototype = {
+
+  /**
+   * Navigates to a url
+   *
+   * @method navigate
+   * @memberof Router
+   * @instance
+   *
+   * @param url {String} Url to navigate to
+   * @param {Object} [options] - Object containing the properties listed below
+   *
+   * @property [trigger=true] {Boolean} - Indicates a route event should be triggered, so the route gets executed
+   * @property [replace=false] {Boolean} - Indicates the history item should be replaced
+   *
+   * @todo add a data param so that urls an contains splats that will be filled with the data
+   * @example
+   * // regular navigate
+   * router.navigate('/user/3');
+   * // replace the history item
+   * router.navigate('/user/6', {
+   *   replace: true
+   * });
+   * // dont trigger event, route won't be handled
+   * router.navigate('/user/6', {
+   *   trigger: false
+   * });
+   */
+  navigate: function navigate(url) {
+    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+    _lodash2['default'].defaults(options, {
+      trigger: true,
+      replace: false
+    });
+
+    if (!options.trigger) {
+      if (options.replace) {
+        replaceNavigate(this.grapnel, url);
+      } else {
+        this.grapnel.show(url);
+      }
+    } else {
+      if (options.replace) {
+        replaceNavigate(this.grapnel, url);
+        this.reload();
+      } else {
+        this.grapnel.navigate(url);
+      }
+    }
+  },
+
+  /**
+   * Reloads the current page without actually reloading
+   *
+   * @method reload
+   * @memberof Router
+   * @instance
+   * @example
+   * route.reload();
+   */
+  reload: function reload() {
+    var event = this.grapnel.options.mode === 'pushState' ? 'navigate' : 'hashchange';
+    this.grapnel.trigger(event);
+  },
+
+  /**
+   * Redirects to a url, replaces the current history item.
+   *
+   * @method redirect
+   * @memberof Router
+   * @instance
+   *
+   * @param url {String} Url to redirect to
+   *
+   * @todo add a data param so that urls an contains splats that will be filled with the data
+   * @example
+   * router.redirect('/user/5');
+   */
+  redirect: function redirect(url) {
+    this.navigate(url, {
+      replace: true
+    });
+  },
+
+  /**
+   * Executes one or more policies.
+   *
+   * @method policy
+   * @memberof Router
+   * @instance
+   *
+   * @param policy {String|Array<String>} Policy / Policies to execute
+   * @param data {Object} 'Request' data
+   * @example
+   * router.policy('isLoggedIn')
+   *   .then(...)
+   * router.policy(['isLoggedIn', 'isLoggedInUser'], userModel)
+   *   .then(...)
+   */
+  policy: function policy() {
+    var _policy = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+
+    var data = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+    return Router.policyExecutor.execute(_policy, data);
+  }
+
+};
+
+// @todo reserach if this is necessary
+function makeAnchorDOMElementsUseRouterNavigate(router, anchorSelector) {
+  var elements = document.querySelectorAll(anchorSelector || 'a[href^="/"]:not([href^="//"])');
+
+  _lodash2['default'].each(elements, function (element) {
+    element.addEventListener('click', function (e) {
+      e.preventDefault();
+      var url = e.target.href;
+      router.navigate(url);
+    });
+  });
+}
+
+// originally take from Grapnel.fragment.set, changed to replace the current history item instead of add to the history
+function replaceNavigate(grapnel, frag) {
+  if (grapnel.options.mode === 'pushState') {
+    frag = grapnel.options.root ? grapnel.options.root + frag : frag;
+    window.history.replaceState({}, "", frag);
+  } else if (window.location) {
+    frag = (grapnel.options.hashBang ? '!' : '') + frag;
+    if (!window.history.replaceState) {
+      console.error('Can\'t replace url to \'' + frag + '\', replaceState not available, falling back to doing normal navigate, which creates a history item.');
+      window.location.hash = frag;
+    } else {
+      window.history.replaceState({}, "", '#' + frag);
+    }
+  } else {
+    window._pathname = frag || '';
+  }
+}
+
+function constructGrapnelRouter(options, router) {
+  if (options === undefined) options = {};
+
+  router.grapnel = new _grapnel2['default']({
+    pushState: options.pushState,
+    root: options.root,
+    env: options.env,
+    mode: options.mode,
+    hashBang: options.hashBang
+  });
+
+  addRoutesToGrapnelRouter(options, router);
+
+  return router.grapnel;
+}
+
+function addRoutesToGrapnelRouter(options, router) {
+  _lodash2['default'].each(options.routes, function (route, routeName) {
+    _lodash2['default'].merge(route, Router.routeDefaults, {
+      route: routeName,
+      router: router
+    }, route);
+
+    var middleware = [(0, _middlewarePolicies2['default'])(route), (0, _middlewareController2['default'])(route)];
+
+    middleware.unshift(route.route);
+    router.grapnel.get.apply(router.grapnel, middleware);
+
+    return route;
+  });
+}
+
+exports['default'] = Router;
+module.exports = exports['default'];
+},{"../singletons/policyExecutor":41,"./middleware/controller":38,"./middleware/policies":39,"grapnel":35,"lodash":90}],38:[function(require,module,exports){
+/**
+ * @author rik
+ */
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _helpersExecuteController = require('../../helpers/executeController');
+
+var _helpersExecuteController2 = _interopRequireDefault(_helpersExecuteController);
+
+function controllerMiddlewareFactory(route) {
+  return function controllerMiddleware(req, res) {
+    //noinspection JSUnresolvedVariable
+    (0, _helpersExecuteController2['default'])(route.controller, req.params, route).then(function (data) {
+      route.router.success(route, data);
+    }, function (data) {
+      res.preventDefault();
+      route.router.fail(route, {
+        reason: 'controller',
+        data: data
+      });
+    });
+  };
+}
+
+exports['default'] = controllerMiddlewareFactory;
+module.exports = exports['default'];
+},{"../../helpers/executeController":40}],39:[function(require,module,exports){
+/**
+ * @author rik
+ */
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+function policyMiddlewareFactory(route) {
+  return function policyMiddleware(req, res, next) {
+    if (route.policies && route.policies.length) {
+      route.router.policy(route.policies, req.params).then(function () {
+        next();
+      }, function (data) {
+        res.preventDefault();
+        if (route.unauthorized) {
+          route.router.redirect(route.unauthorized);
+        }
+
+        route.router.fail(route, {
+          reason: 'policy',
+          data: data
+        });
+      });
+    } else {
+      next();
+    }
+  };
+}
+
+exports['default'] = policyMiddlewareFactory;
+module.exports = exports['default'];
+},{}],40:[function(require,module,exports){
+/**
+ * @author rik
+ */
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _factoriesControllerRequest = require('../factories/ControllerRequest');
+
+var _factoriesControllerRequest2 = _interopRequireDefault(_factoriesControllerRequest);
+
+/**
+ * Executes a controller from a given hashmap
+ * @param controller
+ * @param data
+ * @param route
+ * @param router
+ * @returns {Promise.<*>}
+ */
+function executeController(controller, data, route) {
+  switch (typeof controller) {
+    case 'string':
+      return executeControllerSpecifiedAsString(controller, data, route);
+      break;
+    case 'function':
+      return executeControllerSpecifiedAsFunction(data, route, controller);
+      break;
+    default:
+      return Promise.resolve(data);
+  }
+}
+
+function executeControllerSpecifiedAsString(controller, data, route) {
+  var controllerFunction = getControllerByPath(route.router.controllers, controller);
+
+  return executeController(controllerFunction, data, route);
+}
+
+function executeControllerSpecifiedAsFunction(data, route, controller) {
+  var req = makeControllerRequest(data, route);
+
+  return wrapInPromise(function () {
+    return controller(req);
+  });
+}
+
+function getControllerByPath(controllers, path) {
+  var controllerFunction = _lodash2['default'].get(controllers, path);
+
+  if (!controllerFunction) {
+    throw new Error('Controller \'' + path + '\' not defined.');
+  }
+
+  return controllerFunction;
+}
+
+function wrapInPromise(fn) {
+  return Promise.resolve().then(function () {
+    return fn();
+  });
+}
+
+function makeControllerRequest(params, route) {
+  return (0, _factoriesControllerRequest2['default'])({
+    params: params,
+    route: route
+  });
+}
+
+exports['default'] = executeController;
+module.exports = exports['default'];
+},{"../factories/ControllerRequest":36,"lodash":90}],41:[function(require,module,exports){
+/**
+ * @author rik
+ */
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _frontendPolicies = require('frontend-policies');
+
+var _frontendPolicies2 = _interopRequireDefault(_frontendPolicies);
+
+var policyExecutor = (0, _frontendPolicies2['default'])();
+
+exports['default'] = policyExecutor;
+module.exports = exports['default'];
+},{"frontend-policies":32}],42:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _srcFactoriesTranslator = require('./src/factories/Translator');
+
+var _srcFactoriesTranslator2 = _interopRequireDefault(_srcFactoriesTranslator);
+
+exports['default'] = _srcFactoriesTranslator2['default'];
+module.exports = exports['default'];
+},{"./src/factories/Translator":43}],43:[function(require,module,exports){
+/**
+ * @author rik
+ */
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _helpersEscapeRegExp = require('../helpers/escapeRegExp');
+
+var _helpersEscapeRegExp2 = _interopRequireDefault(_helpersEscapeRegExp);
+
+/**
+ * The Translator is in charge of executing policies. Policies can be provided when constructing or when constructed by using the {@link Translator#add} method, policies can be executed using the {@link Translator#execute} method. For information on the req object passed into policies, please refer to the documentation of the {@link Request}.
+ *
+ * @class Translator
+ *
+ * @param options {Object} Object with the properties listed below
+ *
+ * @property locales {Object<Object>} Hashmap with locales
+ * @property defaultLocale {String} Name/key of the default locale
+ * @property delimiters {Array<String>} Array with two items, the start and end delimiter for template variables respectively
+ * @property options {Object} The options object passed in
+ *
+ * @example
+ * const translator = Translator({
+ *   defaultLocale: 'en-GB',
+ *   delimiters: ['{{', '}}'],
+ *   locales: {
+ *     'en-GB': {
+ *       words: {
+ *         'test': 'Test {{name}}!'
+ *       },
+ *       converters: {}
+ *     }
+ *   }
+ * });
+ */
+function Translator() {
+  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+  _lodash2['default'].defaults(options, Translator.defaults);
+
+  var startDelimiter = (0, _helpersEscapeRegExp2['default'])(options.delimiters[0]);
+  var endDelimiter = (0, _helpersEscapeRegExp2['default'])(options.delimiters[1]);
+
+  var props = {
+    locales: {
+      value: options.locales || {}
+    },
+    locale: {
+      value: options.defaultLocale,
+      writable: true
+    },
+    startDelimiterRegex: {
+      value: new RegExp('^' + startDelimiter)
+    },
+    endDelimiterRegex: {
+      value: new RegExp(endDelimiter + '$')
+    },
+    templateRegex: {
+      value: new RegExp(startDelimiter + '\\s*([\\s|\\S]+)\\s*' + endDelimiter, 'g')
+    },
+    options: {
+      value: options
+    }
+  };
+
+  return Object.create(Translator.prototype, props);
+}
+
+/**
+ * Defaults for the options passed into the {@link Translator} factory
+ *
+ * @name defaults
+ * @memberof Translator
+ * @static
+ * @type Object
+ * @property {Array<String>} [delimiters=['{{', '}}']] The start and end delimiter for template variables
+ */
+Translator.defaults = {
+  delimiters: ['{{', '}}']
+};
+
+Translator.prototype = Object.defineProperties({
+
+  /**
+   * Adds one or more languages.
+   *
+   * @memberof Translator
+   * @instance
+   *
+   * @param name {String|Object} Name of the language, or a hashmap of policies
+   * @param localeDefinition {Object|undefined} The definition of the language, has a words and converters property
+   *
+   * @example
+   * translator.add('nl-NL', {
+   *   words: {},
+   *   converters: {
+   *     currency() {},
+   *     temperature() {}
+   *   }
+   * });
+   * // or
+   * translator.add({
+   *   'nl-NL': {
+   *     words: {},
+   *     converters: {
+   *       currency() {},
+   *       temperature() {}
+   *     }
+   *   }
+   * });
+   */
+  add: function add(name, localeDefinition) {
+    var _this = this;
+
+    var type = typeof name;
+    if (type === 'object') {
+      _lodash2['default'].each(name, function (_languageDefinition, _name) {
+        _this.add(_name, _languageDefinition);
+      });
+    } else if (type === 'string') {
+      this.locales[name] = localeDefinition;
+    }
+  },
+
+  /**
+   * Sets the current locale
+   *
+   * @method setLocale
+   * @memberof Translator
+   * @instance
+   *
+   * @param locale {String} The locale to set
+   * @example
+   * translator.setLocale('en-GB')
+   */
+  setLocale: function setLocale(locale) {
+    if (!this.locales[locale]) {
+      throw new Error('Can\'t set locale to \'' + locale + '\', locale doesn\'t exist.');
+    }
+
+    this.locale = locale;
+  },
+
+  /**
+   * Translates a word with data, key may be a path (like 'basic.yes')
+   *
+   * @method translate
+   * @memberof Translator
+   * @instance
+   *
+   * @param key {String} The key of the word to translate (may be deep using dots)
+   * @param {Object} [data={}] - Data to fill the translation with
+   *
+   * @returns {String}
+   *
+   * @example
+   * // where the translation for 'basic.greet' is 'hello {{model.name}}!'
+   * < translator.translate('basic.greet', {model: {name: 'BOB'}});
+   * > "hello BOB!"
+   */
+  translate: function translate(key) {
+    var _this2 = this;
+
+    var data = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+    if (!this.currentLocale) {
+      throw new Error('Can\'t translate \'' + key + '\', no current locale.');
+    }
+
+    var translation = _lodash2['default'].get(this.currentLocale.words, key);
+
+    if (!translation) {
+      throw new Error('Can\'t find translation for \'' + key + '\', translation not found for the current locale \'' + this.locale + '\'.');
+    }
+
+    var variableMatches = translation.match(this.templateRegex);
+
+    _lodash2['default'].each(variableMatches, function (match) {
+      var key = match.replace(_this2.startDelimiterRegex, '').replace(_this2.endDelimiterRegex, '').replace(/\s+/g, '');
+      var val = _lodash2['default'].get(data, key);
+      val = typeof val !== 'undefined' ? val : "";
+
+      translation = translation.replace(match, val);
+    });
+
+    return translation;
+  }
+
+}, {
+  converters: {
+
+    /**
+     * Converters for the current locale
+     * @name converters
+     * @memberof Translator
+     * @instance
+     * @type Object
+     */
+
+    get: function get() {
+      return this.currentLocale && this.currentLocale.converters;
+    },
+    configurable: true,
+    enumerable: true
+  },
+  words: {
+
+    /**
+     * Words for the current locale
+     * @name words
+     * @memberof Translator
+     * @instance
+     * @type Object
+     */
+
+    get: function get() {
+      return this.currentLocale && this.currentLocale.words;
+    },
+    configurable: true,
+    enumerable: true
+  },
+  currentLocale: {
+
+    /**
+     * The current locale object
+     * @name currentLocale
+     * @memberof Translator
+     * @instance
+     * @type Object
+     */
+
+    get: function get() {
+      return this.locale && this.locales[this.locale];
+    },
+    configurable: true,
+    enumerable: true
+  }
+});
+
+exports['default'] = Translator;
+module.exports = exports['default'];
+},{"../helpers/escapeRegExp":44,"lodash":90}],44:[function(require,module,exports){
+/**
+ * @author rik
+ */
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function escapeRegExp() {
+  var str = arguments.length <= 0 || arguments[0] === undefined ? "" : arguments[0];
+
+  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+}
+
+exports["default"] = escapeRegExp;
+module.exports = exports["default"];
+},{}],45:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _srcFactoriesView = require('./src/factories/View');
+
+var _srcFactoriesView2 = _interopRequireDefault(_srcFactoriesView);
+
+exports['default'] = _srcFactoriesView2['default'];
+module.exports = exports['default'];
+},{"./src/factories/View":46}],46:[function(require,module,exports){
+/**
+ * @author rik
+ */
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _riotRiotCompiler = require('riot/riot+compiler');
+
+var _riotRiotCompiler2 = _interopRequireDefault(_riotRiotCompiler);
+
+var _validatorsView = require('../validators/View');
+
+var _validatorsView2 = _interopRequireDefault(_validatorsView);
+
+/**
+ * @class View
+ *
+ * @param options {Object} Object containing the properties listed below
+ *
+ * @property holder {String} jQuery selector, refers to the element this view should be appended to
+ * @property tag {String} Refers to a riot tag
+ * @property static {Boolean} Indicates whether this is a static {@link View}
+ */
+function View() {
+  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+  _lodash2['default'].defaults(options, View.defaults);
+
+  _validatorsView2['default'].construct(options);
+
+  var props = {
+    tag: {
+      value: options.tag
+    },
+    holder: {
+      value: options.holder
+    },
+    'static': {
+      value: options['static']
+    }
+  };
+
+  var view = Object.create(View.prototype, props);
+
+  view._display = 'block';
+
+  if (options['static'] === true) {
+    View.staticViews[options.name] = view;
+    view.render();
+    view.hide();
+  }
+
+  return view;
+}
+
+/**
+ * Riot object the View uses, this should be used to run compiles, mounts etc.
+ * It may be overridden, but this should only done before any View is constructed.
+ *
+ * @name riot
+ * @memberof View
+ * @static
+ * @type {riot}
+ */
+View.riot = _riotRiotCompiler2['default'];
+
+/**
+ * All static {@link View}s will be put on here using their name as the key
+ *
+ * @memberof View
+ * @static
+ * @type Object
+ */
+View.staticViews = {};
+
+/**
+ * Default properties of {@link View}s, these may be overridden
+ * @memberof View
+ * @static
+ * @type Object
+ * @property {String} [holder='body'] - Default holder
+ * @property {String} [static=false] - Whether the view is static
+ */
+View.defaults = {
+  holder: 'body',
+  'static': false
+};
+
+View.prototype = Object.defineProperties({
+
+  /**
+   * Hides the {@link View}
+   * @method hide
+   * @memberof View
+   * @instance
+   */
+  hide: function hide() {
+    this._display = this.el.style.display;
+    this.el.style.display = 'none';
+  },
+
+  /**
+   * Shows the {@link View}
+   * @method show
+   * @memberof View
+   * @instance
+   */
+  show: function show() {
+    this.el.style.display = this._display;
+  },
+
+  /**
+   * Renders the riot tag to the DOM (into the $holder)
+   *
+   * @method render
+   * @memberof View
+   * @instance
+   *
+   * @param data {Object} Data to be made available to the riot tag
+   */
+  render: function render() {
+    var data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+    if (!this.tagInstance) {
+      var $el = (0, _jquery2['default'])(emptyTag(this.tag));
+      $el.appendTo(this.$holder);
+      this.tagInstance = View.riot.mount($el[0], this.tag, data)[0];
+      this._display = this.el.style.display;
+    } else {
+      this.sync(data);
+      this.show();
+    }
+  },
+
+  /**
+   * Syncs data to the riot tag
+   *
+   * @method sync
+   * @memberof View
+   * @instance
+   *
+   * @param data {Object} Data for the riot tag, will be extended with the current data
+   */
+  sync: function sync() {
+    var data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+    this.tagInstance.update(data);
+  },
+
+  /**
+   * Removes the {@link View}
+   *
+   * @method hide
+   * @memberof View
+   * @instance
+   */
+  remove: function remove() {
+    // @todo what do we do with the keepTheParent parameter
+    this.tagInstance.unmount();
+    this.$el.remove();
+  }
+
+}, {
+  el: {
+
+    /**
+     * The root element of this view
+     * @name el
+     * @memberof View
+     * @instance
+     * @type HTMLElement|null
+     */
+
+    get: function get() {
+      return this.tagInstance ? this.tagInstance.root : null;
+    },
+    configurable: true,
+    enumerable: true
+  },
+  $el: {
+
+    /**
+     * The root element wrapped in jQuery
+     * @name $el
+     * @memberof View
+     * @instance
+     * @type jQuery|null
+     */
+
+    get: function get() {
+      return this.el ? (0, _jquery2['default'])(this.el) : null;
+    },
+    configurable: true,
+    enumerable: true
+  },
+  $holder: {
+
+    /**
+     * The holder wrapped in jQuery
+     * @name $holder
+     * @memberof View
+     * @instance
+     * @type jQuery
+     */
+
+    get: function get() {
+      return (0, _jquery2['default'])(this.holder || this.$holder);
+    },
+    configurable: true,
+    enumerable: true
+  }
+});
+
+function emptyTag(tagName) {
+  return '<' + tagName + '></' + tagName + '>';
+}
+
+exports['default'] = View;
+module.exports = exports['default'];
+},{"../validators/View":47,"jquery":89,"lodash":90,"riot/riot+compiler":91}],47:[function(require,module,exports){
+/**
+ * @author rik
+ */
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var ViewValidator = {
+
+  construct: function construct() {
+    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+    if (options['static'] && (!options.name || typeof options.name !== 'string')) {
+      throw new Error('Can\'t construct static view, no name specified');
+    }
+
+    if (!options.tag || typeof options.tag !== 'string') {
+      throw new Error('Can\'t construct view, no tag specified');
+    }
+
+    if (!(options.holder && typeof options.holder === 'string') && !(options.$holder && options.$holder.length)) {
+      throw new Error('Can\'t construct view, no holder specified');
+    }
+
+    if (!(options.holder && (0, _jquery2['default'])(options.holder).length) && !(options.$holder && options.$holder.length)) {
+      throw new Error('Can\'t construct view, holder not found in DOM');
+    }
+  }
+
+};
+
+exports['default'] = ViewValidator;
+module.exports = exports['default'];
+},{"jquery":89}],48:[function(require,module,exports){
+/**
+ * @author rik
+ */
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _frontendModel = require('frontend-model');
+
+var _frontendModel2 = _interopRequireDefault(_frontendModel);
+
+var ModelController = Object.defineProperties({
+
+  list: function list(req) {
+    var _model = _frontendModel2['default'].models[req.route.model];
+
+    return _model.fetch().then(function () {
+      _model.listenTo('change', function () {
+        req.sync({
+          collection: _model.data
+        });
+      });
+
+      req.destruct = function () {
+        // stop listeners etc.
+      };
+
+      return {
+        collection: _model.data
+      };
+    });
+  },
+
+  details: function details(req) {
+    var _model = _frontendModel2['default'].models[req.route.model];
+    var id = req.param('id') || req.param(_model.idKey);
+
+    return _model.fetch(id).then(function (model) {
+      _model.listenTo(model, 'change', function () {
+        req.sync({
+          model: _model.byId[id]
+        });
+      });
+
+      req.destruct = function () {
+        // stop listeners etc.
+      };
+
+      return {
+        model: model
+      };
+    });
+  }
+
+}, {
+  collection: {
+    get: function get() {
+      return this.model && _frontendModel2['default'].models[this.model];
+    },
+    configurable: true,
+    enumerable: true
+  }
+});
+
+exports['default'] = ModelController;
+module.exports = exports['default'];
+},{"frontend-model":5}],49:[function(require,module,exports){
+/**
+ * @author rik
+ */
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+function allowIfIdIsEven(req) {
+  return req.param('id') % 2 === 0 ? Promise.resolve() : Promise.reject();
+}
+
+exports['default'] = allowIfIdIsEven;
+module.exports = exports['default'];
+},{}],50:[function(require,module,exports){
+arguments[4][49][0].apply(exports,arguments)
+},{"dup":49}],51:[function(require,module,exports){
+/**
+ * @author rik
+ */
+
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var appConfig = {
+
+  defaultLocale: 'en-GB',
+  defaultConnection: 'local-xhr'
+
+};
+
+exports['default'] = appConfig;
+module.exports = exports['default'];
+},{}],52:[function(require,module,exports){
+/**
+ * @author rik
+ */
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function bootstrap() {
+  return Promise.resolve();
+}
+
+exports["default"] = bootstrap;
+module.exports = exports["default"];
+},{}],53:[function(require,module,exports){
+/**
+ * @author rik
+ */
+
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var connectionConfig = {
+  'local-xhr': {
+    name: 'local-xhr',
+    url: 'http://localhost:1337',
+    adapter: 'XHR'
+  }
+};
+
+exports['default'] = connectionConfig;
+module.exports = exports['default'];
+},{}],54:[function(require,module,exports){
+/**
+ * @author rik
+ */
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var viewConfig = {
+
+  defaultImplementation: 'handlebars',
+  templateBaseUrl: 'templates/'
+
+};
+
+exports['default'] = viewConfig;
+module.exports = exports['default'];
+},{}],55:[function(require,module,exports){
+/**
+ * @author rik
+ */
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var staticViewsConfig = {};
+
+exports["default"] = staticViewsConfig;
+module.exports = exports["default"];
+},{}],56:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var en_GB = {
+
+  words: {
+    general: {
+      "yes": "yes"
+    }
+  }
+
+};
+
+exports["default"] = en_GB;
+module.exports = exports["default"];
+},{}],57:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var nl_NL = {
+
+  words: {
+    general: {
+      "yes": "ja"
+    }
+  }
+
+};
+
+exports["default"] = nl_NL;
+module.exports = exports["default"];
+},{}],58:[function(require,module,exports){
+arguments[4][48][0].apply(exports,arguments)
+},{"dup":48,"frontend-model":5}],59:[function(require,module,exports){
+arguments[4][49][0].apply(exports,arguments)
+},{"dup":49}],60:[function(require,module,exports){
+arguments[4][49][0].apply(exports,arguments)
+},{"dup":49}],61:[function(require,module,exports){
+arguments[4][51][0].apply(exports,arguments)
+},{"dup":51}],62:[function(require,module,exports){
+arguments[4][52][0].apply(exports,arguments)
+},{"dup":52}],63:[function(require,module,exports){
+arguments[4][53][0].apply(exports,arguments)
+},{"dup":53}],64:[function(require,module,exports){
+arguments[4][54][0].apply(exports,arguments)
+},{"dup":54}],65:[function(require,module,exports){
+arguments[4][55][0].apply(exports,arguments)
+},{"dup":55}],66:[function(require,module,exports){
+arguments[4][56][0].apply(exports,arguments)
+},{"dup":56}],67:[function(require,module,exports){
+arguments[4][57][0].apply(exports,arguments)
+},{"dup":57}],68:[function(require,module,exports){
+/**
+ * @author rik
+ */
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var modelsConfig = {
+  exposeGlobally: false
+};
+
+exports["default"] = modelsConfig;
+module.exports = exports["default"];
+},{}],69:[function(require,module,exports){
+/**
+ * @author rik
+ */
+
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var routerConfig = {
+  defaultRoute: '/asd'
+};
+
+exports['default'] = routerConfig;
+module.exports = exports['default'];
+},{}],70:[function(require,module,exports){
+/**
+ * @author rik
+ */
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var routes = {};
+
+exports["default"] = routes;
+module.exports = exports["default"];
+},{}],71:[function(require,module,exports){
+arguments[4][55][0].apply(exports,arguments)
+},{"dup":55}],72:[function(require,module,exports){
+arguments[4][54][0].apply(exports,arguments)
+},{"dup":54}],73:[function(require,module,exports){
+arguments[4][68][0].apply(exports,arguments)
+},{"dup":68}],74:[function(require,module,exports){
+arguments[4][69][0].apply(exports,arguments)
+},{"dup":69}],75:[function(require,module,exports){
+arguments[4][70][0].apply(exports,arguments)
+},{"dup":70}],76:[function(require,module,exports){
+arguments[4][55][0].apply(exports,arguments)
+},{"dup":55}],77:[function(require,module,exports){
+arguments[4][54][0].apply(exports,arguments)
+},{"dup":54}],78:[function(require,module,exports){
+/**
+ * @author rik
+ */
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var files = {'api/controllers/ModelController': require('./api/controllers/ModelController.js'),'api/policies/alwaysAllow': require('./api/policies/alwaysAllow.js'),'api/policies/alwaysDeny': require('./api/policies/alwaysDeny.js'),'config/app': require('./config/app.js'),'config/bootstrap': require('./config/bootstrap.js'),'config/connections': require('./config/connections.js'),'config/env/dev': require('./config/env/dev.js'),'config/env/prod': require('./config/env/prod.js'),'config/locales/en-GB': require('./config/locales/en-GB.js'),'config/locales/nl-NL': require('./config/locales/nl-NL.js'),'config/mobile/api/controllers/ModelController': require('./config/mobile/api/controllers/ModelController.js'),'config/mobile/api/policies/alwaysAllow': require('./config/mobile/api/policies/alwaysAllow.js'),'config/mobile/api/policies/alwaysDeny': require('./config/mobile/api/policies/alwaysDeny.js'),'config/mobile/config/app': require('./config/mobile/config/app.js'),'config/mobile/config/bootstrap': require('./config/mobile/config/bootstrap.js'),'config/mobile/config/connections': require('./config/mobile/config/connections.js'),'config/mobile/config/env/dev': require('./config/mobile/config/env/dev.js'),'config/mobile/config/env/prod': require('./config/mobile/config/env/prod.js'),'config/mobile/config/locales/en-GB': require('./config/mobile/config/locales/en-GB.js'),'config/mobile/config/locales/nl-NL': require('./config/mobile/config/locales/nl-NL.js'),'config/mobile/config/models': require('./config/mobile/config/models.js'),'config/mobile/config/router': require('./config/mobile/config/router.js'),'config/mobile/config/routes': require('./config/mobile/config/routes.js'),'config/mobile/config/staticViews': require('./config/mobile/config/staticViews.js'),'config/mobile/config/views': require('./config/mobile/config/views.js'),'config/models': require('./config/models.js'),'config/router': require('./config/router.js'),'config/routes': require('./config/routes.js'),'config/staticViews': require('./config/staticViews.js'),'config/views': require('./config/views.js'),'libraries/jquery': require('./libraries/jquery.js'),'libraries/riot': require('./libraries/riot.js')};
+
+var defaultImplementation = {};
+
+_lodash2['default'].each(files, function (file, path) {
+  var objPath = path.replace(/\/|\\/g, '.');
+
+  _lodash2['default'].set(defaultImplementation, objPath, file);
+});
+
+exports['default'] = defaultImplementation;
+module.exports = exports['default'];
+},{"./api/controllers/ModelController.js":48,"./api/policies/alwaysAllow.js":49,"./api/policies/alwaysDeny.js":50,"./config/app.js":51,"./config/bootstrap.js":52,"./config/connections.js":53,"./config/env/dev.js":54,"./config/env/prod.js":55,"./config/locales/en-GB.js":56,"./config/locales/nl-NL.js":57,"./config/mobile/api/controllers/ModelController.js":58,"./config/mobile/api/policies/alwaysAllow.js":59,"./config/mobile/api/policies/alwaysDeny.js":60,"./config/mobile/config/app.js":61,"./config/mobile/config/bootstrap.js":62,"./config/mobile/config/connections.js":63,"./config/mobile/config/env/dev.js":64,"./config/mobile/config/env/prod.js":65,"./config/mobile/config/locales/en-GB.js":66,"./config/mobile/config/locales/nl-NL.js":67,"./config/mobile/config/models.js":68,"./config/mobile/config/router.js":69,"./config/mobile/config/routes.js":70,"./config/mobile/config/staticViews.js":71,"./config/mobile/config/views.js":72,"./config/models.js":73,"./config/router.js":74,"./config/routes.js":75,"./config/staticViews.js":76,"./config/views.js":77,"./libraries/jquery.js":79,"./libraries/riot.js":80,"lodash":90}],79:[function(require,module,exports){
+/**
+ * @author rik
+ */
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+exports['default'] = _jquery2['default'];
+module.exports = exports['default'];
+},{"jquery":89}],80:[function(require,module,exports){
+/**
+ * @author rik
+ */
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _riot = require('riot');
+
+var _riot2 = _interopRequireDefault(_riot);
+
+exports['default'] = _riot2['default'];
+module.exports = exports['default'];
+},{"riot":92}],81:[function(require,module,exports){
+/**
+ * @author rik
+ */
+
+// source: http://stackoverflow.com/questions/3514784/what-is-the-best-way-to-detect-a-mobile-device-in-jquery
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var isMobile = false; //initiate as false
+// device detection
+if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent.substr(0, 4))) isMobile = true;
+
+exports["default"] = isMobile;
+module.exports = exports["default"];
+},{}],82:[function(require,module,exports){
+/**
+ * @author rik
+ */
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var session = {};
+
+exports["default"] = session;
+module.exports = exports["default"];
+},{}],83:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _frontendModel = require('frontend-model');
+
+var _frontendModel2 = _interopRequireDefault(_frontendModel);
+
+var _frontendView = require('frontend-view');
+
+var _frontendView2 = _interopRequireDefault(_frontendView);
+
+var _frontendTranslator = require('frontend-translator');
+
+var _frontendTranslator2 = _interopRequireDefault(_frontendTranslator);
+
+var _Controller = require('./Controller');
+
+var _Controller2 = _interopRequireDefault(_Controller);
+
+var _Service = require('./Service');
+
+var _Service2 = _interopRequireDefault(_Service);
+
+var _Router = require('./Router');
+
+var _Router2 = _interopRequireDefault(_Router);
+
+var _constantsDefaultImplementationIndex = require('../constants/defaultImplementation/index');
+
+var _constantsDefaultImplementationIndex2 = _interopRequireDefault(_constantsDefaultImplementationIndex);
+
+var _constantsSession = require('../constants/session');
+
+var _constantsSession2 = _interopRequireDefault(_constantsSession);
+
+var _helpersFactoryRunner = require('../helpers/factoryRunner');
+
+var _helpersFactoryRunner2 = _interopRequireDefault(_helpersFactoryRunner);
+
+var _singletonsImplementation = require('../singletons/implementation');
+
+var _singletonsImplementation2 = _interopRequireDefault(_singletonsImplementation);
+
+var _constantsIsMobile = require('../constants/isMobile');
+
+var _constantsIsMobile2 = _interopRequireDefault(_constantsIsMobile);
+
+// frontend-communicator module, use the one used by the frontend-model module
+// so we a single communicator instead of multiple
+var communicator = _frontendModel2['default'].communicator;
+
+/**
+ * @class Application
+ *
+ * @param options {Object} Object containing the properties listed below
+ *
+ * @property api {Object} Object containing the api (models, requests, controllers, services)
+ * @property components {Object} Object containing the components (Adapters and ViewEngines)
+ * @property config {Object} Object containing the configuration objects
+ * @property env {String} String representing the runtime environment
+ */
+function Application() {
+  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+  var opts = _lodash2['default'].merge({}, _constantsDefaultImplementationIndex2['default'], options);
+
+  if (options.libraries.riot) {
+    _frontendView2['default'].riot = options.libraries.riot;
+  }
+
+  var constructedImplementation = implement(opts);
+
+  var props = {
+    session: {
+      value: _constantsSession2['default']
+    },
+    api: {
+      value: constructedImplementation.api
+    },
+    models: {
+      value: constructedImplementation.api.models
+    },
+    config: {
+      value: constructedImplementation.config
+    },
+    communicator: {
+      value: constructedImplementation.communicator
+    },
+    translator: {
+      value: constructedImplementation.translator
+    },
+    options: {
+      value: opts
+    }
+  };
+
+  var app = window.app = Object.create(Application.prototype, props);
+
+  startApplication(app);
+
+  return app;
+}
+
+Application.prototype = Object.defineProperties({
+
+  /**
+   * Connects a Connection using the frontend-communicator module.
+   * Please refer to the frontend-communicator module to read more on this.
+   *
+   * @method connect
+   * @memberof Application
+   * @instance
+   *
+   * @param {String} [connection=defaultConnection specified in config/app.js] - The name of the Connection to connect
+   *
+   * @returns {Promise<Object>} A promise that resolves with a frontend-communicator Connection instance with the provided name
+   */
+  connect: function connect() {
+    var connection = arguments.length <= 0 || arguments[0] === undefined ? this.config.app.defaultConnection : arguments[0];
+
+    return this.communicator.connect(connection);
+  },
+
+  /**
+   * Executes one or more policies, see the frontend-policies documentation for more info.
+   *
+   * @method policy
+   * @memberof Application
+   * @instance
+   *
+   * @param policies {String|Array<String>} The policies to execute
+   * @param {Object} [data={}] - Data/params for the policy 'request'
+   *
+   * @returns {Promise} A promise that resolves if all policies pass and rejects if one or more don't
+   */
+  policy: function policy() {
+    var policies = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+    var data = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+    return this.router.policy(policies, data);
+  },
+
+  /**
+   * Gets a translation in the current locale and fills it with data.
+   *
+   * @method translate
+   * @memberof Application
+   * @instance
+   *
+   * @todo implement
+   *
+   * @param wordPath {String} Path to the word, 'general.yes' for example
+   * @param data {Object} Object to fill the translation with
+   *
+   * @returns {String} The translation filled with data
+   */
+  translate: function translate(wordPath) {
+    var data = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+    return this.translator.translate(wordPath, data);
+  },
+
+  /**
+   * Sets the current locale.
+   *
+   * @method setLocale
+   * @memberof Application
+   * @instance
+   *
+   * @todo implement
+   *
+   * @param {String} [locale=defaultLocale specified in config/app.js] - The locale to set
+   *
+   */
+  setLocale: function setLocale() {
+    var locale = arguments.length <= 0 || arguments[0] === undefined ? this.config.app.defaultLocale : arguments[0];
+
+    return this.translator.setLocale(locale);
+  }
+
+}, {
+  server: {
+
+    /**
+     * The server property of the default connection. Please refer to the frontend-communicator module for more information.
+     *
+     * @name server
+     * @memberof Application
+     * @instance
+     *
+     * @type Object|undefined
+     */
+
+    get: function get() {
+      return this.connection && this.connection.server || this.communicator.servers[this.config.app.defaultConnection];
+    },
+    configurable: true,
+    enumerable: true
+  }
+});
+
+function startApplication(app) {
+  return app.connect().then(function (connection) {
+    app.connection = connection;
+    return Promise.resolve();
+  }).then(app.config.bootstrap).then(function () {
+    app.router = _singletonsImplementation2['default'].router = (0, _Router2['default'])(app.options);
+  });
+}
+
+function implement() {
+  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+  applyDevice(options);
+  applyEnv(options);
+
+  implementCommunicator(options, _singletonsImplementation2['default']);
+  implementModel(options, _singletonsImplementation2['default']);
+  implementTranslator(options, _singletonsImplementation2['default']);
+  implementStaticViews(options, _singletonsImplementation2['default']);
+  implementRouter(options, _singletonsImplementation2['default']);
+  implementFramework(options, _singletonsImplementation2['default']);
+
+  _singletonsImplementation2['default'].config = options.config;
+  _singletonsImplementation2['default'].api.views = options.api.views;
+
+  return _singletonsImplementation2['default'];
+}
+
+function implementCommunicator(opts, dst) {
+  (0, _helpersFactoryRunner2['default'])(communicator.Adapter, opts.components.adapters, dst.components.adapters);
+  (0, _helpersFactoryRunner2['default'])(communicator.Connection, opts.config.connections, dst.config.connections);
+  communicator.defaultConnection = opts.config.app.defaultConnection;
+
+  (0, _helpersFactoryRunner2['default'])(communicator.Request, opts.api.requests, dst.api.requests);
+
+  dst.communicator = communicator;
+}
+
+function implementModel(opts, dst) {
+  (0, _helpersFactoryRunner2['default'])(_frontendModel2['default'], opts.api.models, dst.api.models);
+}
+
+function implementTranslator(opts, dst) {
+  dst.translator = (0, _frontendTranslator2['default'])({
+    defaultLocale: opts.config.app.defaultLocale,
+    locales: opts.config.locales
+  });
+}
+
+function implementStaticViews(opts, dst) {
+  (0, _helpersFactoryRunner2['default'])(_frontendView2['default'], opts.api.staticViews, {}, {
+    'static': true
+  });
+
+  dst.api.staticViews = _frontendView2['default'].staticViews;
+}
+
+function implementRouter(opts, dst) {
+  (0, _helpersFactoryRunner2['default'])(_Controller2['default'], opts.api.controllers, dst.api.controllers);
+}
+
+function implementFramework(opts, dst) {
+  (0, _helpersFactoryRunner2['default'])(_Service2['default'], opts.api.services, dst.api.services);
+}
+
+function applyDevice(options) {
+  if (_constantsIsMobile2['default']) {
+    _lodash2['default'].merge(options, options.config.mobile || {});
+  }
+}
+
+function applyEnv(options) {
+  if (options.env) {
+    var env = options.config.env[options.env];
+
+    if (env) {
+      _lodash2['default'].merge(options, env);
+    }
+  }
+}
+
+exports['default'] = Application;
+module.exports = exports['default'];
+},{"../constants/defaultImplementation/index":78,"../constants/isMobile":81,"../constants/session":82,"../helpers/factoryRunner":87,"../singletons/implementation":88,"./Controller":84,"./Router":85,"./Service":86,"frontend-model":5,"frontend-translator":42,"frontend-view":45,"lodash":90}],84:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _frontendModel = require('frontend-model');
+
+var _frontendModel2 = _interopRequireDefault(_frontendModel);
+
+/**
+ * @class Controller
+ *
+ * @param options {Object} Object containing the properties listed below
+ *
+ * @property model {String} Reference to a name of a model, if specified and valid, this.controller will contain the model instance.
+ *
+ */
+function Controller() {
+  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+  var controller = Object.create(Controller.prototype);
+
+  _lodash2['default'].extend(controller, options);
+
+  // bind the context for all methods provided
+  _lodash2['default'].bindAll(controller, _lodash2['default'].methods(options));
+
+  return controller;
+}
+
+Controller.prototype = Object.defineProperties({
+
+  /**
+   * Returns a list of all models, if a (valid) model is defined, if not, throws an Error.
+   * Returns the models on the collection property on the resolved object.
+   *
+   * @method list
+   * @memberof Controller
+   * @instance
+   *
+   * @param req {ControllerRequest}
+   *
+   * @returns {Promise<Object>}
+   */
+  list: function list(req) {
+    var _this = this;
+
+    if (this.collection) {
+      return this.collection.fetch().then(function () {
+        _this.collection.listenTo('change', function () {
+          req.sync({
+            collection: _this.collection.data
+          });
+        });
+
+        return {
+          collection: _this.collection.data
+        };
+      });
+    } else {
+      throw new Error('Can\'t execute Controller#list, Controller has no (valid) model.');
+    }
+  },
+
+  /**
+   * Returns a single model, if a (valid) model is defined, if not, throws an Error.
+   * Returns the model on the model property on the resolved object.
+   *
+   * @param req {ControllerRequest}
+   *
+   * @returns {Promise<Object>}
+   */
+  details: function details(req) {
+    var _this2 = this;
+
+    if (this.collection) {
+      var id = req.param('id') || req.param(this.collection.idKey);
+
+      return this.collection.fetch(id).then(function (model) {
+        _this2.collection.listenTo(model, 'change', function () {
+          req.sync(model);
+        });
+
+        return {
+          model: model
+        };
+      });
+    } else {
+      throw new Error('Can\'t execute Controller#list, Controller has no (valid) model.');
+    }
+  }
+
+}, {
+  collection: {
+    get: function get() {
+      return this.model && _frontendModel2['default'].models[this.model];
+    },
+    configurable: true,
+    enumerable: true
+  }
+});
+
+exports['default'] = Controller;
+module.exports = exports['default'];
+},{"frontend-model":5,"lodash":90}],85:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _singletonsImplementation = require('../singletons/implementation');
+
+var _singletonsImplementation2 = _interopRequireDefault(_singletonsImplementation);
+
+var _constantsSession = require('../constants/session');
+
+var _constantsSession2 = _interopRequireDefault(_constantsSession);
+
+var _frontendView = require('frontend-view');
+
+var _frontendView2 = _interopRequireDefault(_frontendView);
+
+var _frontendRouter = require('frontend-router');
+
+var _frontendRouter2 = _interopRequireDefault(_frontendRouter);
+
+/**
+ * Please refer to the documentation of the frontend-router module for more information
+ *
+ * @class Router
+ * @author Rik Hoffbauer
+ *
+ * @param options {Object} The framework implementation, ie. {config: {...}, api: {...}, ...}
+ *
+ * @returns {FrontendRouter} frontend-router instance
+ *
+ * @todo validate properties
+ * @todo call staticViews
+ */
+function Router() {
+  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+  var views = {};
+  var currentView = null;
+
+  //noinspection JSPotentiallyInvalidConstructorUsage
+  _frontendRouter2['default'].policyExecutor.requestFactory.prototype.session = _constantsSession2['default'];
+
+  var opts = _lodash2['default'].extend({}, options.config.router, {
+    success: function success(route, data) {
+      if (currentView) {
+        currentView.hide();
+      }
+
+      currentView = ensureViewForRoute(views, route);
+
+      currentView.render(data);
+      console.log('success', route, data);
+    },
+    sync: function sync(route, data) {
+      var view = ensureViewForRoute(views, route);
+      view.sync(data);
+      console.log('sync', route, data);
+    },
+    fail: function fail(route, data) {
+      switch (data.reason) {
+        case 'policy':
+          console.log('policies failed for route', route, data);
+          break;
+        case 'controller':
+          console.log('controller failed for route', route, data);
+          break;
+      }
+    },
+    routes: options.config.routes,
+    policies: options.api.policies,
+    controllers: _singletonsImplementation2['default'].api.controllers
+  });
+
+  return (0, _frontendRouter2['default'])(opts);
+}
+
+function ensureViewForRoute(views, route) {
+  var viewName = route.view;
+
+  if (!views[viewName]) {
+    _singletonsImplementation2['default'].api.views[viewName].name = _singletonsImplementation2['default'].api.views[viewName].name || viewName;
+    views[viewName] = (0, _frontendView2['default'])(_singletonsImplementation2['default'].api.views[viewName]);
+  }
+
+  return views[viewName];
+}
+
+exports['default'] = Router;
+module.exports = exports['default'];
+},{"../constants/session":82,"../singletons/implementation":88,"frontend-router":31,"frontend-view":45,"lodash":90}],86:[function(require,module,exports){
+/**
+ * @author rik
+ */
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _frontendModel = require('frontend-model');
+
+var _frontendModel2 = _interopRequireDefault(_frontendModel);
+
+function Service() {
+  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+  var service = Object.create(Service.prototype);
+
+  _lodash2['default'].extend(service, options);
+
+  // bind the context for all methods provided
+  _lodash2['default'].bindAll(service, _lodash2['default'].methods(options));
+
+  return service;
+}
+
+Service.prototype = Object.defineProperties({}, {
+  collection: {
+    get: function get() {
+      return this.model && _frontendModel2['default'].models[this.model];
+    },
+    configurable: true,
+    enumerable: true
+  }
+});
+
+exports['default'] = Service;
+module.exports = exports['default'];
+},{"frontend-model":5,"lodash":90}],87:[function(require,module,exports){
+/**
+ * @author rik
+ */
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+function factoryRunner(factory, src, dst, extendObj) {
+  if (dst === undefined) dst = src;
+  return (function () {
+    _lodash2['default'].each(src, function (obj, name) {
+      obj.name = obj.name || name;
+
+      if (extendObj) {
+        _lodash2['default'].extend(obj, extendObj);
+      }
+
+      dst[obj.name] = factory(obj);
+    });
+  })();
+}
+
+exports['default'] = factoryRunner;
+module.exports = exports['default'];
+},{"lodash":90}],88:[function(require,module,exports){
+/**
+ * @author rik
+ */
+
+/**
+ * Singleton that contains the constructed implementation of the framework
+ *
+ * @name implementation
+ * @type Object
+ */
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var implementation = {
+  api: {
+    models: {},
+    controllers: {},
+    views: {},
+    requests: {},
+    services: {}
+  },
+  components: {
+    adapters: {}
+  },
+  config: {
+    app: {},
+    connections: {},
+    models: {},
+    router: {},
+    views: {},
+    routes: {}
+  }
+};
+
+exports["default"] = implementation;
+module.exports = exports["default"];
+},{}],89:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -33056,388 +33056,388 @@ riot.Tag = Tag
 
 },{}],93:[function(require,module,exports){
 "use strict";
-var __cov_UZjnz$UFDobr7bTJL3d1kQ = Function('return this')();
-if (!__cov_UZjnz$UFDobr7bTJL3d1kQ.__coverage__) {
-   __cov_UZjnz$UFDobr7bTJL3d1kQ.__coverage__ = {};
+var __cov_CGGmzWBpiIrgOP5l2sGn1g = Function('return this')();
+if (!__cov_CGGmzWBpiIrgOP5l2sGn1g.__coverage__) {
+   __cov_CGGmzWBpiIrgOP5l2sGn1g.__coverage__ = {};
 }
-__cov_UZjnz$UFDobr7bTJL3d1kQ = __cov_UZjnz$UFDobr7bTJL3d1kQ.__coverage__;
-if (!__cov_UZjnz$UFDobr7bTJL3d1kQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/controllers/UserController.js']) {
-   __cov_UZjnz$UFDobr7bTJL3d1kQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/controllers/UserController.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/controllers/UserController.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 0, "14": 0, "15": 0, "16": 0, "17": 0, "18": 0, "19": 0, "20": 0, "21": 0 }, "b": {}, "f": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0 }, "fnMap": { "1": { "name": "someMethod", "line": 7, "loc": { "start": { "line": 7, "column": 12 }, "end": { "line": 7, "column": 18 } } }, "2": { "name": "someOtherMethod", "line": 11, "loc": { "start": { "line": 11, "column": 17 }, "end": { "line": 11, "column": 23 } } }, "3": { "name": "anotherMethod", "line": 15, "loc": { "start": { "line": 15, "column": 15 }, "end": { "line": 15, "column": 21 } } }, "4": { "name": "yetAnotherMethod", "line": 23, "loc": { "start": { "line": 23, "column": 18 }, "end": { "line": 23, "column": 24 } } }, "5": { "name": "testMethod", "line": 31, "loc": { "start": { "line": 31, "column": 12 }, "end": { "line": 31, "column": 18 } } }, "6": { "name": "(anonymous_6)", "line": 35, "loc": { "start": { "line": 35, "column": 12 }, "end": { "line": 35, "column": 21 } } }, "7": { "name": "(anonymous_7)", "line": 36, "loc": { "start": { "line": 36, "column": 45 }, "end": { "line": 36, "column": 57 } } }, "8": { "name": "getUserWithId56", "line": 48, "loc": { "start": { "line": 48, "column": 17 }, "end": { "line": 48, "column": 23 } } }, "9": { "name": "(anonymous_9)", "line": 50, "loc": { "start": { "line": 50, "column": 12 }, "end": { "line": 50, "column": 21 } } }, "10": { "name": "(anonymous_10)", "line": 51, "loc": { "start": { "line": 51, "column": 37 }, "end": { "line": 51, "column": 43 } } }, "11": { "name": "(anonymous_11)", "line": 58, "loc": { "start": { "line": 58, "column": 23 }, "end": { "line": 58, "column": 29 } } }, "12": { "name": "(anonymous_12)", "line": 62, "loc": { "start": { "line": 62, "column": 40 }, "end": { "line": 62, "column": 52 } } } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 5, "column": 0 }, "end": { "line": 73, "column": 2 } }, "3": { "start": { "line": 8, "column": 11 }, "end": { "line": 8, "column": 44 } }, "4": { "start": { "line": 12, "column": 11 }, "end": { "line": 12, "column": 41 } }, "5": { "start": { "line": 16, "column": 11 }, "end": { "line": 20, "column": 7 } }, "6": { "start": { "line": 24, "column": 11 }, "end": { "line": 28, "column": 7 } }, "7": { "start": { "line": 32, "column": 10 }, "end": { "line": 32, "column": 31 } }, "8": { "start": { "line": 34, "column": 11 }, "end": { "line": 45, "column": 9 } }, "9": { "start": { "line": 36, "column": 11 }, "end": { "line": 40, "column": 11 } }, "10": { "start": { "line": 37, "column": 13 }, "end": { "line": 39, "column": 13 } }, "11": { "start": { "line": 42, "column": 15 }, "end": { "line": 44, "column": 10 } }, "12": { "start": { "line": 49, "column": 11 }, "end": { "line": 71, "column": 9 } }, "13": { "start": { "line": 51, "column": 14 }, "end": { "line": 55, "column": 17 } }, "14": { "start": { "line": 52, "column": 13 }, "end": { "line": 54, "column": 13 } }, "15": { "start": { "line": 58, "column": 11 }, "end": { "line": 60, "column": 10 } }, "16": { "start": { "line": 59, "column": 23 }, "end": { "line": 59, "column": 34 } }, "17": { "start": { "line": 62, "column": 11 }, "end": { "line": 66, "column": 11 } }, "18": { "start": { "line": 63, "column": 13 }, "end": { "line": 65, "column": 13 } }, "19": { "start": { "line": 68, "column": 15 }, "end": { "line": 70, "column": 10 } }, "20": { "start": { "line": 75, "column": 15 }, "end": { "line": null, "column": null } }, "21": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
+__cov_CGGmzWBpiIrgOP5l2sGn1g = __cov_CGGmzWBpiIrgOP5l2sGn1g.__coverage__;
+if (!__cov_CGGmzWBpiIrgOP5l2sGn1g['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/controllers/UserController.js']) {
+   __cov_CGGmzWBpiIrgOP5l2sGn1g['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/controllers/UserController.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/controllers/UserController.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 0, "14": 0, "15": 0, "16": 0, "17": 0, "18": 0, "19": 0, "20": 0, "21": 0 }, "b": {}, "f": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0 }, "fnMap": { "1": { "name": "someMethod", "line": 7, "loc": { "start": { "line": 7, "column": 12 }, "end": { "line": 7, "column": 18 } } }, "2": { "name": "someOtherMethod", "line": 11, "loc": { "start": { "line": 11, "column": 17 }, "end": { "line": 11, "column": 23 } } }, "3": { "name": "anotherMethod", "line": 15, "loc": { "start": { "line": 15, "column": 15 }, "end": { "line": 15, "column": 21 } } }, "4": { "name": "yetAnotherMethod", "line": 23, "loc": { "start": { "line": 23, "column": 18 }, "end": { "line": 23, "column": 24 } } }, "5": { "name": "testMethod", "line": 31, "loc": { "start": { "line": 31, "column": 12 }, "end": { "line": 31, "column": 18 } } }, "6": { "name": "(anonymous_6)", "line": 35, "loc": { "start": { "line": 35, "column": 12 }, "end": { "line": 35, "column": 21 } } }, "7": { "name": "(anonymous_7)", "line": 36, "loc": { "start": { "line": 36, "column": 45 }, "end": { "line": 36, "column": 57 } } }, "8": { "name": "getUserWithId56", "line": 48, "loc": { "start": { "line": 48, "column": 17 }, "end": { "line": 48, "column": 23 } } }, "9": { "name": "(anonymous_9)", "line": 50, "loc": { "start": { "line": 50, "column": 12 }, "end": { "line": 50, "column": 21 } } }, "10": { "name": "(anonymous_10)", "line": 51, "loc": { "start": { "line": 51, "column": 37 }, "end": { "line": 51, "column": 43 } } }, "11": { "name": "(anonymous_11)", "line": 58, "loc": { "start": { "line": 58, "column": 23 }, "end": { "line": 58, "column": 29 } } }, "12": { "name": "(anonymous_12)", "line": 62, "loc": { "start": { "line": 62, "column": 40 }, "end": { "line": 62, "column": 52 } } } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 5, "column": 0 }, "end": { "line": 73, "column": 2 } }, "3": { "start": { "line": 8, "column": 11 }, "end": { "line": 8, "column": 44 } }, "4": { "start": { "line": 12, "column": 11 }, "end": { "line": 12, "column": 41 } }, "5": { "start": { "line": 16, "column": 11 }, "end": { "line": 20, "column": 7 } }, "6": { "start": { "line": 24, "column": 11 }, "end": { "line": 28, "column": 7 } }, "7": { "start": { "line": 32, "column": 10 }, "end": { "line": 32, "column": 31 } }, "8": { "start": { "line": 34, "column": 11 }, "end": { "line": 45, "column": 9 } }, "9": { "start": { "line": 36, "column": 11 }, "end": { "line": 40, "column": 11 } }, "10": { "start": { "line": 37, "column": 13 }, "end": { "line": 39, "column": 13 } }, "11": { "start": { "line": 42, "column": 15 }, "end": { "line": 44, "column": 10 } }, "12": { "start": { "line": 49, "column": 11 }, "end": { "line": 71, "column": 9 } }, "13": { "start": { "line": 51, "column": 14 }, "end": { "line": 55, "column": 17 } }, "14": { "start": { "line": 52, "column": 13 }, "end": { "line": 54, "column": 13 } }, "15": { "start": { "line": 58, "column": 11 }, "end": { "line": 60, "column": 10 } }, "16": { "start": { "line": 59, "column": 23 }, "end": { "line": 59, "column": 34 } }, "17": { "start": { "line": 62, "column": 11 }, "end": { "line": 66, "column": 11 } }, "18": { "start": { "line": 63, "column": 13 }, "end": { "line": 65, "column": 13 } }, "19": { "start": { "line": 68, "column": 15 }, "end": { "line": 70, "column": 10 } }, "20": { "start": { "line": 75, "column": 15 }, "end": { "line": null, "column": null } }, "21": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
 }
-__cov_UZjnz$UFDobr7bTJL3d1kQ = __cov_UZjnz$UFDobr7bTJL3d1kQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/controllers/UserController.js'];
-__cov_UZjnz$UFDobr7bTJL3d1kQ.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_UZjnz$UFDobr7bTJL3d1kQ.s['2']++;var UserController = { someMethod: function someMethod(req) {
-      __cov_UZjnz$UFDobr7bTJL3d1kQ.f['1']++;__cov_UZjnz$UFDobr7bTJL3d1kQ.s['3']++;return Promise.resolve(req.param('id'));
+__cov_CGGmzWBpiIrgOP5l2sGn1g = __cov_CGGmzWBpiIrgOP5l2sGn1g['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/controllers/UserController.js'];
+__cov_CGGmzWBpiIrgOP5l2sGn1g.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_CGGmzWBpiIrgOP5l2sGn1g.s['2']++;var UserController = { someMethod: function someMethod(req) {
+      __cov_CGGmzWBpiIrgOP5l2sGn1g.f['1']++;__cov_CGGmzWBpiIrgOP5l2sGn1g.s['3']++;return Promise.resolve(req.param('id'));
    }, someOtherMethod: function someOtherMethod(req) {
-      __cov_UZjnz$UFDobr7bTJL3d1kQ.f['2']++;__cov_UZjnz$UFDobr7bTJL3d1kQ.s['4']++;return Promise.resolve('staticData');
+      __cov_CGGmzWBpiIrgOP5l2sGn1g.f['2']++;__cov_CGGmzWBpiIrgOP5l2sGn1g.s['4']++;return Promise.resolve('staticData');
    }, anotherMethod: function anotherMethod(req) {
-      __cov_UZjnz$UFDobr7bTJL3d1kQ.f['3']++;__cov_UZjnz$UFDobr7bTJL3d1kQ.s['5']++;return Promise.resolve({ model: { age: 33 } });
+      __cov_CGGmzWBpiIrgOP5l2sGn1g.f['3']++;__cov_CGGmzWBpiIrgOP5l2sGn1g.s['5']++;return Promise.resolve({ model: { age: 33 } });
    }, yetAnotherMethod: function yetAnotherMethod(req) {
-      __cov_UZjnz$UFDobr7bTJL3d1kQ.f['4']++;__cov_UZjnz$UFDobr7bTJL3d1kQ.s['6']++;return Promise.resolve({ model: { age: 45 } });
+      __cov_CGGmzWBpiIrgOP5l2sGn1g.f['4']++;__cov_CGGmzWBpiIrgOP5l2sGn1g.s['6']++;return Promise.resolve({ model: { age: 45 } });
    }, testMethod: function testMethod(req) {
-      __cov_UZjnz$UFDobr7bTJL3d1kQ.f['5']++;__cov_UZjnz$UFDobr7bTJL3d1kQ.s['7']++;var id = req.param('id');__cov_UZjnz$UFDobr7bTJL3d1kQ.s['8']++;return app.models.user.server.findById({ id: id }).then(function (model) {
-         __cov_UZjnz$UFDobr7bTJL3d1kQ.f['6']++;__cov_UZjnz$UFDobr7bTJL3d1kQ.s['9']++;app.models.user.listenToModel(model, function (_model) {
-            __cov_UZjnz$UFDobr7bTJL3d1kQ.f['7']++;__cov_UZjnz$UFDobr7bTJL3d1kQ.s['10']++;req.sync({ model: _model });
-         });__cov_UZjnz$UFDobr7bTJL3d1kQ.s['11']++;return { model: model };
+      __cov_CGGmzWBpiIrgOP5l2sGn1g.f['5']++;__cov_CGGmzWBpiIrgOP5l2sGn1g.s['7']++;var id = req.param('id');__cov_CGGmzWBpiIrgOP5l2sGn1g.s['8']++;return app.models.user.server.findById({ id: id }).then(function (model) {
+         __cov_CGGmzWBpiIrgOP5l2sGn1g.f['6']++;__cov_CGGmzWBpiIrgOP5l2sGn1g.s['9']++;app.models.user.listenToModel(model, function (_model) {
+            __cov_CGGmzWBpiIrgOP5l2sGn1g.f['7']++;__cov_CGGmzWBpiIrgOP5l2sGn1g.s['10']++;req.sync({ model: _model });
+         });__cov_CGGmzWBpiIrgOP5l2sGn1g.s['11']++;return { model: model };
       });
    }, getUserWithId56: function getUserWithId56(req) {
-      __cov_UZjnz$UFDobr7bTJL3d1kQ.f['8']++;__cov_UZjnz$UFDobr7bTJL3d1kQ.s['12']++;return app.models.user.server.findById(56).then(function (model) {
-         __cov_UZjnz$UFDobr7bTJL3d1kQ.f['9']++;__cov_UZjnz$UFDobr7bTJL3d1kQ.s['13']++;var interval = setInterval(function () {
-            __cov_UZjnz$UFDobr7bTJL3d1kQ.f['10']++;__cov_UZjnz$UFDobr7bTJL3d1kQ.s['14']++;req.sync({ model: model });
-         }, 1000);__cov_UZjnz$UFDobr7bTJL3d1kQ.s['15']++;req.destruct = function () {
-            __cov_UZjnz$UFDobr7bTJL3d1kQ.f['11']++;__cov_UZjnz$UFDobr7bTJL3d1kQ.s['16']++;clearInterval(interval);
-         };__cov_UZjnz$UFDobr7bTJL3d1kQ.s['17']++;app.models.user.listenTo(model, function (_model) {
-            __cov_UZjnz$UFDobr7bTJL3d1kQ.f['12']++;__cov_UZjnz$UFDobr7bTJL3d1kQ.s['18']++;req.sync({ model: _model });
-         });__cov_UZjnz$UFDobr7bTJL3d1kQ.s['19']++;return { model: model };
+      __cov_CGGmzWBpiIrgOP5l2sGn1g.f['8']++;__cov_CGGmzWBpiIrgOP5l2sGn1g.s['12']++;return app.models.user.server.findById(56).then(function (model) {
+         __cov_CGGmzWBpiIrgOP5l2sGn1g.f['9']++;__cov_CGGmzWBpiIrgOP5l2sGn1g.s['13']++;var interval = setInterval(function () {
+            __cov_CGGmzWBpiIrgOP5l2sGn1g.f['10']++;__cov_CGGmzWBpiIrgOP5l2sGn1g.s['14']++;req.sync({ model: model });
+         }, 1000);__cov_CGGmzWBpiIrgOP5l2sGn1g.s['15']++;req.destruct = function () {
+            __cov_CGGmzWBpiIrgOP5l2sGn1g.f['11']++;__cov_CGGmzWBpiIrgOP5l2sGn1g.s['16']++;clearInterval(interval);
+         };__cov_CGGmzWBpiIrgOP5l2sGn1g.s['17']++;app.models.user.listenTo(model, function (_model) {
+            __cov_CGGmzWBpiIrgOP5l2sGn1g.f['12']++;__cov_CGGmzWBpiIrgOP5l2sGn1g.s['18']++;req.sync({ model: _model });
+         });__cov_CGGmzWBpiIrgOP5l2sGn1g.s['19']++;return { model: model };
       });
-   } };__cov_UZjnz$UFDobr7bTJL3d1kQ.s['20']++;exports['default'] = UserController;__cov_UZjnz$UFDobr7bTJL3d1kQ.s['21']++;module.exports = exports['default'];
+   } };__cov_CGGmzWBpiIrgOP5l2sGn1g.s['20']++;exports['default'] = UserController;__cov_CGGmzWBpiIrgOP5l2sGn1g.s['21']++;module.exports = exports['default'];
 
 },{}],94:[function(require,module,exports){
 "use strict";
-var __cov_0LbM_ZA5SeWFBF$difu_BQ = Function('return this')();
-if (!__cov_0LbM_ZA5SeWFBF$difu_BQ.__coverage__) {
-   __cov_0LbM_ZA5SeWFBF$difu_BQ.__coverage__ = {};
+var __cov_TkqDspM$VyHxGx$reUjJnQ = Function('return this')();
+if (!__cov_TkqDspM$VyHxGx$reUjJnQ.__coverage__) {
+   __cov_TkqDspM$VyHxGx$reUjJnQ.__coverage__ = {};
 }
-__cov_0LbM_ZA5SeWFBF$difu_BQ = __cov_0LbM_ZA5SeWFBF$difu_BQ.__coverage__;
-if (!__cov_0LbM_ZA5SeWFBF$difu_BQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/models/user.js']) {
-   __cov_0LbM_ZA5SeWFBF$difu_BQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/models/user.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/models/user.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0 }, "b": { "1": [0, 0], "2": [0, 0] }, "f": { "1": 0, "2": 0 }, "fnMap": { "1": { "name": "_interopRequireDefault", "line": 0, "loc": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 } }, "skip": true }, "2": { "name": "resolve", "line": 17, "loc": { "start": { "line": 17, "column": 13 }, "end": { "line": 17, "column": 20 } } } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "3": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "4": { "start": { "line": 4, "column": 20 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "6": { "start": { "line": 11, "column": 0 }, "end": { "line": 22, "column": 2 } }, "7": { "start": { "line": 18, "column": 15 }, "end": { "line": 18, "column": 35 } }, "8": { "start": { "line": 24, "column": 15 }, "end": { "line": null, "column": null } }, "9": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": { "1": { "line": 0, "type": "cond-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] }, "2": { "line": 0, "type": "binary-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] } } };
+__cov_TkqDspM$VyHxGx$reUjJnQ = __cov_TkqDspM$VyHxGx$reUjJnQ.__coverage__;
+if (!__cov_TkqDspM$VyHxGx$reUjJnQ['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/models/user.js']) {
+   __cov_TkqDspM$VyHxGx$reUjJnQ['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/models/user.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/models/user.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0 }, "b": { "1": [0, 0], "2": [0, 0] }, "f": { "1": 0, "2": 0 }, "fnMap": { "1": { "name": "_interopRequireDefault", "line": 0, "loc": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 } }, "skip": true }, "2": { "name": "resolve", "line": 17, "loc": { "start": { "line": 17, "column": 13 }, "end": { "line": 17, "column": 20 } } } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "3": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "4": { "start": { "line": 4, "column": 20 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "6": { "start": { "line": 11, "column": 0 }, "end": { "line": 22, "column": 2 } }, "7": { "start": { "line": 18, "column": 15 }, "end": { "line": 18, "column": 35 } }, "8": { "start": { "line": 24, "column": 15 }, "end": { "line": null, "column": null } }, "9": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": { "1": { "line": 0, "type": "cond-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] }, "2": { "line": 0, "type": "binary-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] } } };
 }
-__cov_0LbM_ZA5SeWFBF$difu_BQ = __cov_0LbM_ZA5SeWFBF$difu_BQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/models/user.js'];
-__cov_0LbM_ZA5SeWFBF$difu_BQ.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function _interopRequireDefault(obj) {
-   __cov_0LbM_ZA5SeWFBF$difu_BQ.f['1']++;__cov_0LbM_ZA5SeWFBF$difu_BQ.s['3']++;return (__cov_0LbM_ZA5SeWFBF$difu_BQ.b['2'][0]++, obj) && (__cov_0LbM_ZA5SeWFBF$difu_BQ.b['2'][1]++, obj.__esModule) ? (__cov_0LbM_ZA5SeWFBF$difu_BQ.b['1'][0]++, obj) : (__cov_0LbM_ZA5SeWFBF$difu_BQ.b['1'][1]++, { 'default': obj });
-}__cov_0LbM_ZA5SeWFBF$difu_BQ.s['4']++;var _frntndFrameworkSrcConstantsSession = require('frntnd-framework/src/constants/session');__cov_0LbM_ZA5SeWFBF$difu_BQ.s['5']++;var _frntndFrameworkSrcConstantsSession2 = _interopRequireDefault(_frntndFrameworkSrcConstantsSession);__cov_0LbM_ZA5SeWFBF$difu_BQ.s['6']++;var UserModel = { connection: 'local-xhr', requests: { login: { method: 'get', route: '/user/login', resolve: function resolve(user) {
-            __cov_0LbM_ZA5SeWFBF$difu_BQ.f['2']++;__cov_0LbM_ZA5SeWFBF$difu_BQ.s['7']++;return _frntndFrameworkSrcConstantsSession2['default'].user = user;
-         } } } };__cov_0LbM_ZA5SeWFBF$difu_BQ.s['8']++;exports['default'] = UserModel;__cov_0LbM_ZA5SeWFBF$difu_BQ.s['9']++;module.exports = exports['default'];
+__cov_TkqDspM$VyHxGx$reUjJnQ = __cov_TkqDspM$VyHxGx$reUjJnQ['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/models/user.js'];
+__cov_TkqDspM$VyHxGx$reUjJnQ.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function _interopRequireDefault(obj) {
+   __cov_TkqDspM$VyHxGx$reUjJnQ.f['1']++;__cov_TkqDspM$VyHxGx$reUjJnQ.s['3']++;return (__cov_TkqDspM$VyHxGx$reUjJnQ.b['2'][0]++, obj) && (__cov_TkqDspM$VyHxGx$reUjJnQ.b['2'][1]++, obj.__esModule) ? (__cov_TkqDspM$VyHxGx$reUjJnQ.b['1'][0]++, obj) : (__cov_TkqDspM$VyHxGx$reUjJnQ.b['1'][1]++, { 'default': obj });
+}__cov_TkqDspM$VyHxGx$reUjJnQ.s['4']++;var _frntndFrameworkSrcConstantsSession = require('frntnd-framework/src/constants/session');__cov_TkqDspM$VyHxGx$reUjJnQ.s['5']++;var _frntndFrameworkSrcConstantsSession2 = _interopRequireDefault(_frntndFrameworkSrcConstantsSession);__cov_TkqDspM$VyHxGx$reUjJnQ.s['6']++;var UserModel = { connection: 'local-xhr', requests: { login: { method: 'get', route: '/user/login', resolve: function resolve(user) {
+            __cov_TkqDspM$VyHxGx$reUjJnQ.f['2']++;__cov_TkqDspM$VyHxGx$reUjJnQ.s['7']++;return _frntndFrameworkSrcConstantsSession2['default'].user = user;
+         } } } };__cov_TkqDspM$VyHxGx$reUjJnQ.s['8']++;exports['default'] = UserModel;__cov_TkqDspM$VyHxGx$reUjJnQ.s['9']++;module.exports = exports['default'];
 
-},{"frntnd-framework/src/constants/session":39}],95:[function(require,module,exports){
+},{"frntnd-framework/src/constants/session":82}],95:[function(require,module,exports){
 "use strict";
-var __cov_HXwg6SxvxezOBhKOAHM_hA = Function('return this')();
-if (!__cov_HXwg6SxvxezOBhKOAHM_hA.__coverage__) {
-   __cov_HXwg6SxvxezOBhKOAHM_hA.__coverage__ = {};
+var __cov_i7byAR0kuwuCp_DsLHWL3A = Function('return this')();
+if (!__cov_i7byAR0kuwuCp_DsLHWL3A.__coverage__) {
+   __cov_i7byAR0kuwuCp_DsLHWL3A.__coverage__ = {};
 }
-__cov_HXwg6SxvxezOBhKOAHM_hA = __cov_HXwg6SxvxezOBhKOAHM_hA.__coverage__;
-if (!__cov_HXwg6SxvxezOBhKOAHM_hA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/policies/alwaysAllow.js']) {
-   __cov_HXwg6SxvxezOBhKOAHM_hA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/policies/alwaysAllow.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/policies/alwaysAllow.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0 }, "b": {}, "f": { "1": 0 }, "fnMap": { "1": { "name": "alwaysAllow", "line": 4, "loc": { "start": { "line": 4, "column": 0 }, "end": { "line": 4, "column": 26 } } } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 4, "column": 0 }, "end": { "line": 6, "column": 1 } }, "3": { "start": { "line": 5, "column": 9 }, "end": { "line": 5, "column": 27 } }, "4": { "start": { "line": 8, "column": 15 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
+__cov_i7byAR0kuwuCp_DsLHWL3A = __cov_i7byAR0kuwuCp_DsLHWL3A.__coverage__;
+if (!__cov_i7byAR0kuwuCp_DsLHWL3A['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/policies/alwaysAllow.js']) {
+   __cov_i7byAR0kuwuCp_DsLHWL3A['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/policies/alwaysAllow.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/policies/alwaysAllow.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0 }, "b": {}, "f": { "1": 0 }, "fnMap": { "1": { "name": "alwaysAllow", "line": 4, "loc": { "start": { "line": 4, "column": 0 }, "end": { "line": 4, "column": 26 } } } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 4, "column": 0 }, "end": { "line": 6, "column": 1 } }, "3": { "start": { "line": 5, "column": 9 }, "end": { "line": 5, "column": 27 } }, "4": { "start": { "line": 8, "column": 15 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
 }
-__cov_HXwg6SxvxezOBhKOAHM_hA = __cov_HXwg6SxvxezOBhKOAHM_hA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/policies/alwaysAllow.js'];
-__cov_HXwg6SxvxezOBhKOAHM_hA.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function alwaysAllow(req) {
-   __cov_HXwg6SxvxezOBhKOAHM_hA.f['1']++;__cov_HXwg6SxvxezOBhKOAHM_hA.s['3']++;return Promise.resolve();
-}__cov_HXwg6SxvxezOBhKOAHM_hA.s['4']++;exports['default'] = alwaysAllow;__cov_HXwg6SxvxezOBhKOAHM_hA.s['5']++;module.exports = exports['default'];
+__cov_i7byAR0kuwuCp_DsLHWL3A = __cov_i7byAR0kuwuCp_DsLHWL3A['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/policies/alwaysAllow.js'];
+__cov_i7byAR0kuwuCp_DsLHWL3A.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function alwaysAllow(req) {
+   __cov_i7byAR0kuwuCp_DsLHWL3A.f['1']++;__cov_i7byAR0kuwuCp_DsLHWL3A.s['3']++;return Promise.resolve();
+}__cov_i7byAR0kuwuCp_DsLHWL3A.s['4']++;exports['default'] = alwaysAllow;__cov_i7byAR0kuwuCp_DsLHWL3A.s['5']++;module.exports = exports['default'];
 
 },{}],96:[function(require,module,exports){
 "use strict";
-var __cov_0Fd5UGGT1m65uX$q2P9Z5A = Function('return this')();
-if (!__cov_0Fd5UGGT1m65uX$q2P9Z5A.__coverage__) {
-   __cov_0Fd5UGGT1m65uX$q2P9Z5A.__coverage__ = {};
+var __cov_7P4lAzLnRxFWCoWlOB35HA = Function('return this')();
+if (!__cov_7P4lAzLnRxFWCoWlOB35HA.__coverage__) {
+   __cov_7P4lAzLnRxFWCoWlOB35HA.__coverage__ = {};
 }
-__cov_0Fd5UGGT1m65uX$q2P9Z5A = __cov_0Fd5UGGT1m65uX$q2P9Z5A.__coverage__;
-if (!__cov_0Fd5UGGT1m65uX$q2P9Z5A['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/policies/alwaysDeny.js']) {
-   __cov_0Fd5UGGT1m65uX$q2P9Z5A['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/policies/alwaysDeny.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/policies/alwaysDeny.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0 }, "b": {}, "f": { "1": 0 }, "fnMap": { "1": { "name": "alwaysDeny", "line": 4, "loc": { "start": { "line": 4, "column": 0 }, "end": { "line": 4, "column": 25 } } } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 4, "column": 0 }, "end": { "line": 6, "column": 1 } }, "3": { "start": { "line": 5, "column": 9 }, "end": { "line": 5, "column": 26 } }, "4": { "start": { "line": 8, "column": 15 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
+__cov_7P4lAzLnRxFWCoWlOB35HA = __cov_7P4lAzLnRxFWCoWlOB35HA.__coverage__;
+if (!__cov_7P4lAzLnRxFWCoWlOB35HA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/policies/alwaysDeny.js']) {
+   __cov_7P4lAzLnRxFWCoWlOB35HA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/policies/alwaysDeny.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/policies/alwaysDeny.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0 }, "b": {}, "f": { "1": 0 }, "fnMap": { "1": { "name": "alwaysDeny", "line": 4, "loc": { "start": { "line": 4, "column": 0 }, "end": { "line": 4, "column": 25 } } } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 4, "column": 0 }, "end": { "line": 6, "column": 1 } }, "3": { "start": { "line": 5, "column": 9 }, "end": { "line": 5, "column": 26 } }, "4": { "start": { "line": 8, "column": 15 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
 }
-__cov_0Fd5UGGT1m65uX$q2P9Z5A = __cov_0Fd5UGGT1m65uX$q2P9Z5A['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/policies/alwaysDeny.js'];
-__cov_0Fd5UGGT1m65uX$q2P9Z5A.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function alwaysDeny(req) {
-   __cov_0Fd5UGGT1m65uX$q2P9Z5A.f['1']++;__cov_0Fd5UGGT1m65uX$q2P9Z5A.s['3']++;return Promise.reject();
-}__cov_0Fd5UGGT1m65uX$q2P9Z5A.s['4']++;exports['default'] = alwaysDeny;__cov_0Fd5UGGT1m65uX$q2P9Z5A.s['5']++;module.exports = exports['default'];
+__cov_7P4lAzLnRxFWCoWlOB35HA = __cov_7P4lAzLnRxFWCoWlOB35HA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/policies/alwaysDeny.js'];
+__cov_7P4lAzLnRxFWCoWlOB35HA.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function alwaysDeny(req) {
+   __cov_7P4lAzLnRxFWCoWlOB35HA.f['1']++;__cov_7P4lAzLnRxFWCoWlOB35HA.s['3']++;return Promise.reject();
+}__cov_7P4lAzLnRxFWCoWlOB35HA.s['4']++;exports['default'] = alwaysDeny;__cov_7P4lAzLnRxFWCoWlOB35HA.s['5']++;module.exports = exports['default'];
 
 },{}],97:[function(require,module,exports){
 "use strict";
-var __cov_XM9_gNtw0Kcf$PvTIZGSow = Function('return this')();
-if (!__cov_XM9_gNtw0Kcf$PvTIZGSow.__coverage__) {
-   __cov_XM9_gNtw0Kcf$PvTIZGSow.__coverage__ = {};
+var __cov_UC7eo_PpTM0SQZV_lIyjRQ = Function('return this')();
+if (!__cov_UC7eo_PpTM0SQZV_lIyjRQ.__coverage__) {
+   __cov_UC7eo_PpTM0SQZV_lIyjRQ.__coverage__ = {};
 }
-__cov_XM9_gNtw0Kcf$PvTIZGSow = __cov_XM9_gNtw0Kcf$PvTIZGSow.__coverage__;
-if (!__cov_XM9_gNtw0Kcf$PvTIZGSow['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/services/UserService.js']) {
-   __cov_XM9_gNtw0Kcf$PvTIZGSow['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/services/UserService.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/services/UserService.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": { "1": 0 }, "fnMap": { "1": { "name": "someMethod", "line": 5, "loc": { "start": { "line": 5, "column": 12 }, "end": { "line": 5, "column": 20 } } } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 4, "column": 0 }, "end": { "line": 8, "column": 2 } }, "3": { "start": { "line": 10, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
+__cov_UC7eo_PpTM0SQZV_lIyjRQ = __cov_UC7eo_PpTM0SQZV_lIyjRQ.__coverage__;
+if (!__cov_UC7eo_PpTM0SQZV_lIyjRQ['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/services/UserService.js']) {
+   __cov_UC7eo_PpTM0SQZV_lIyjRQ['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/services/UserService.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/services/UserService.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": { "1": 0 }, "fnMap": { "1": { "name": "someMethod", "line": 5, "loc": { "start": { "line": 5, "column": 12 }, "end": { "line": 5, "column": 20 } } } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 4, "column": 0 }, "end": { "line": 8, "column": 2 } }, "3": { "start": { "line": 10, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
 }
-__cov_XM9_gNtw0Kcf$PvTIZGSow = __cov_XM9_gNtw0Kcf$PvTIZGSow['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/services/UserService.js'];
-__cov_XM9_gNtw0Kcf$PvTIZGSow.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_XM9_gNtw0Kcf$PvTIZGSow.s['2']++;var UserService = { someMethod: function someMethod(model) {
-      __cov_XM9_gNtw0Kcf$PvTIZGSow.f['1']++;
-   } };__cov_XM9_gNtw0Kcf$PvTIZGSow.s['3']++;exports['default'] = UserService;__cov_XM9_gNtw0Kcf$PvTIZGSow.s['4']++;module.exports = exports['default'];
+__cov_UC7eo_PpTM0SQZV_lIyjRQ = __cov_UC7eo_PpTM0SQZV_lIyjRQ['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/services/UserService.js'];
+__cov_UC7eo_PpTM0SQZV_lIyjRQ.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_UC7eo_PpTM0SQZV_lIyjRQ.s['2']++;var UserService = { someMethod: function someMethod(model) {
+      __cov_UC7eo_PpTM0SQZV_lIyjRQ.f['1']++;
+   } };__cov_UC7eo_PpTM0SQZV_lIyjRQ.s['3']++;exports['default'] = UserService;__cov_UC7eo_PpTM0SQZV_lIyjRQ.s['4']++;module.exports = exports['default'];
 
 },{}],98:[function(require,module,exports){
 "use strict";
-var __cov_QNZbdjJzZPf3kUxA$l7BeQ = Function('return this')();
-if (!__cov_QNZbdjJzZPf3kUxA$l7BeQ.__coverage__) {
-   __cov_QNZbdjJzZPf3kUxA$l7BeQ.__coverage__ = {};
+var __cov_AnWylRjHE5nLBlh2cSQ$NA = Function('return this')();
+if (!__cov_AnWylRjHE5nLBlh2cSQ$NA.__coverage__) {
+   __cov_AnWylRjHE5nLBlh2cSQ$NA.__coverage__ = {};
 }
-__cov_QNZbdjJzZPf3kUxA$l7BeQ = __cov_QNZbdjJzZPf3kUxA$l7BeQ.__coverage__;
-if (!__cov_QNZbdjJzZPf3kUxA$l7BeQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/staticViews/test.js']) {
-   __cov_QNZbdjJzZPf3kUxA$l7BeQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/staticViews/test.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/staticViews/test.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0 }, "b": { "1": [0, 0], "2": [0, 0] }, "f": { "1": 0 }, "fnMap": { "1": { "name": "_interopRequireDefault", "line": 0, "loc": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 } }, "skip": true } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "3": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "4": { "start": { "line": 4, "column": 17 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "6": { "start": { "line": 6, "column": 0 }, "end": { "line": 9, "column": 2 } }, "7": { "start": { "line": 11, "column": 15 }, "end": { "line": null, "column": null } }, "8": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": { "1": { "line": 0, "type": "cond-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] }, "2": { "line": 0, "type": "binary-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] } } };
+__cov_AnWylRjHE5nLBlh2cSQ$NA = __cov_AnWylRjHE5nLBlh2cSQ$NA.__coverage__;
+if (!__cov_AnWylRjHE5nLBlh2cSQ$NA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/staticViews/test.js']) {
+   __cov_AnWylRjHE5nLBlh2cSQ$NA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/staticViews/test.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/staticViews/test.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0 }, "b": { "1": [0, 0], "2": [0, 0] }, "f": { "1": 0 }, "fnMap": { "1": { "name": "_interopRequireDefault", "line": 0, "loc": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 } }, "skip": true } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "3": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "4": { "start": { "line": 4, "column": 17 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "6": { "start": { "line": 6, "column": 0 }, "end": { "line": 9, "column": 2 } }, "7": { "start": { "line": 11, "column": 15 }, "end": { "line": null, "column": null } }, "8": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": { "1": { "line": 0, "type": "cond-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] }, "2": { "line": 0, "type": "binary-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] } } };
 }
-__cov_QNZbdjJzZPf3kUxA$l7BeQ = __cov_QNZbdjJzZPf3kUxA$l7BeQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/staticViews/test.js'];
-__cov_QNZbdjJzZPf3kUxA$l7BeQ.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function _interopRequireDefault(obj) {
-   __cov_QNZbdjJzZPf3kUxA$l7BeQ.f['1']++;__cov_QNZbdjJzZPf3kUxA$l7BeQ.s['3']++;return (__cov_QNZbdjJzZPf3kUxA$l7BeQ.b['2'][0]++, obj) && (__cov_QNZbdjJzZPf3kUxA$l7BeQ.b['2'][1]++, obj.__esModule) ? (__cov_QNZbdjJzZPf3kUxA$l7BeQ.b['1'][0]++, obj) : (__cov_QNZbdjJzZPf3kUxA$l7BeQ.b['1'][1]++, { 'default': obj });
-}__cov_QNZbdjJzZPf3kUxA$l7BeQ.s['4']++;var _tagsTestTag = require('../../../tags/test.tag');__cov_QNZbdjJzZPf3kUxA$l7BeQ.s['5']++;var _tagsTestTag2 = _interopRequireDefault(_tagsTestTag);__cov_QNZbdjJzZPf3kUxA$l7BeQ.s['6']++;var TestStaticView = { tag: _tagsTestTag2['default'], holder: 'body' };__cov_QNZbdjJzZPf3kUxA$l7BeQ.s['7']++;exports['default'] = TestStaticView;__cov_QNZbdjJzZPf3kUxA$l7BeQ.s['8']++;module.exports = exports['default'];
+__cov_AnWylRjHE5nLBlh2cSQ$NA = __cov_AnWylRjHE5nLBlh2cSQ$NA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/staticViews/test.js'];
+__cov_AnWylRjHE5nLBlh2cSQ$NA.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function _interopRequireDefault(obj) {
+   __cov_AnWylRjHE5nLBlh2cSQ$NA.f['1']++;__cov_AnWylRjHE5nLBlh2cSQ$NA.s['3']++;return (__cov_AnWylRjHE5nLBlh2cSQ$NA.b['2'][0]++, obj) && (__cov_AnWylRjHE5nLBlh2cSQ$NA.b['2'][1]++, obj.__esModule) ? (__cov_AnWylRjHE5nLBlh2cSQ$NA.b['1'][0]++, obj) : (__cov_AnWylRjHE5nLBlh2cSQ$NA.b['1'][1]++, { 'default': obj });
+}__cov_AnWylRjHE5nLBlh2cSQ$NA.s['4']++;var _tagsTestTag = require('../../../tags/test.tag');__cov_AnWylRjHE5nLBlh2cSQ$NA.s['5']++;var _tagsTestTag2 = _interopRequireDefault(_tagsTestTag);__cov_AnWylRjHE5nLBlh2cSQ$NA.s['6']++;var TestStaticView = { tag: _tagsTestTag2['default'], holder: 'body' };__cov_AnWylRjHE5nLBlh2cSQ$NA.s['7']++;exports['default'] = TestStaticView;__cov_AnWylRjHE5nLBlh2cSQ$NA.s['8']++;module.exports = exports['default'];
 
 },{"../../../tags/test.tag":116}],99:[function(require,module,exports){
 "use strict";
-var __cov_HL2IGjYMpyWs5l7ErJPwtA = Function('return this')();
-if (!__cov_HL2IGjYMpyWs5l7ErJPwtA.__coverage__) {
-   __cov_HL2IGjYMpyWs5l7ErJPwtA.__coverage__ = {};
+var __cov_qVaxdYdvsp0lxveMY9hmqg = Function('return this')();
+if (!__cov_qVaxdYdvsp0lxveMY9hmqg.__coverage__) {
+   __cov_qVaxdYdvsp0lxveMY9hmqg.__coverage__ = {};
 }
-__cov_HL2IGjYMpyWs5l7ErJPwtA = __cov_HL2IGjYMpyWs5l7ErJPwtA.__coverage__;
-if (!__cov_HL2IGjYMpyWs5l7ErJPwtA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/views/test.js']) {
-   __cov_HL2IGjYMpyWs5l7ErJPwtA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/views/test.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/views/test.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0 }, "b": { "1": [0, 0], "2": [0, 0] }, "f": { "1": 0 }, "fnMap": { "1": { "name": "_interopRequireDefault", "line": 0, "loc": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 } }, "skip": true } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "3": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "4": { "start": { "line": 4, "column": 17 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "6": { "start": { "line": 6, "column": 0 }, "end": { "line": 9, "column": 2 } }, "7": { "start": { "line": 11, "column": 15 }, "end": { "line": null, "column": null } }, "8": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": { "1": { "line": 0, "type": "cond-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] }, "2": { "line": 0, "type": "binary-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] } } };
+__cov_qVaxdYdvsp0lxveMY9hmqg = __cov_qVaxdYdvsp0lxveMY9hmqg.__coverage__;
+if (!__cov_qVaxdYdvsp0lxveMY9hmqg['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/views/test.js']) {
+   __cov_qVaxdYdvsp0lxveMY9hmqg['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/views/test.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/views/test.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0 }, "b": { "1": [0, 0], "2": [0, 0] }, "f": { "1": 0 }, "fnMap": { "1": { "name": "_interopRequireDefault", "line": 0, "loc": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 } }, "skip": true } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "3": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "4": { "start": { "line": 4, "column": 17 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "6": { "start": { "line": 6, "column": 0 }, "end": { "line": 9, "column": 2 } }, "7": { "start": { "line": 11, "column": 15 }, "end": { "line": null, "column": null } }, "8": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": { "1": { "line": 0, "type": "cond-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] }, "2": { "line": 0, "type": "binary-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] } } };
 }
-__cov_HL2IGjYMpyWs5l7ErJPwtA = __cov_HL2IGjYMpyWs5l7ErJPwtA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/views/test.js'];
-__cov_HL2IGjYMpyWs5l7ErJPwtA.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function _interopRequireDefault(obj) {
-   __cov_HL2IGjYMpyWs5l7ErJPwtA.f['1']++;__cov_HL2IGjYMpyWs5l7ErJPwtA.s['3']++;return (__cov_HL2IGjYMpyWs5l7ErJPwtA.b['2'][0]++, obj) && (__cov_HL2IGjYMpyWs5l7ErJPwtA.b['2'][1]++, obj.__esModule) ? (__cov_HL2IGjYMpyWs5l7ErJPwtA.b['1'][0]++, obj) : (__cov_HL2IGjYMpyWs5l7ErJPwtA.b['1'][1]++, { 'default': obj });
-}__cov_HL2IGjYMpyWs5l7ErJPwtA.s['4']++;var _tagsUserDetailsTag = require('../../../tags/user-details.tag');__cov_HL2IGjYMpyWs5l7ErJPwtA.s['5']++;var _tagsUserDetailsTag2 = _interopRequireDefault(_tagsUserDetailsTag);__cov_HL2IGjYMpyWs5l7ErJPwtA.s['6']++;var TestView = { tag: _tagsUserDetailsTag2['default'], holder: 'body' };__cov_HL2IGjYMpyWs5l7ErJPwtA.s['7']++;exports['default'] = TestView;__cov_HL2IGjYMpyWs5l7ErJPwtA.s['8']++;module.exports = exports['default'];
+__cov_qVaxdYdvsp0lxveMY9hmqg = __cov_qVaxdYdvsp0lxveMY9hmqg['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/views/test.js'];
+__cov_qVaxdYdvsp0lxveMY9hmqg.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function _interopRequireDefault(obj) {
+   __cov_qVaxdYdvsp0lxveMY9hmqg.f['1']++;__cov_qVaxdYdvsp0lxveMY9hmqg.s['3']++;return (__cov_qVaxdYdvsp0lxveMY9hmqg.b['2'][0]++, obj) && (__cov_qVaxdYdvsp0lxveMY9hmqg.b['2'][1]++, obj.__esModule) ? (__cov_qVaxdYdvsp0lxveMY9hmqg.b['1'][0]++, obj) : (__cov_qVaxdYdvsp0lxveMY9hmqg.b['1'][1]++, { 'default': obj });
+}__cov_qVaxdYdvsp0lxveMY9hmqg.s['4']++;var _tagsUserDetailsTag = require('../../../tags/user-details.tag');__cov_qVaxdYdvsp0lxveMY9hmqg.s['5']++;var _tagsUserDetailsTag2 = _interopRequireDefault(_tagsUserDetailsTag);__cov_qVaxdYdvsp0lxveMY9hmqg.s['6']++;var TestView = { tag: _tagsUserDetailsTag2['default'], holder: 'body' };__cov_qVaxdYdvsp0lxveMY9hmqg.s['7']++;exports['default'] = TestView;__cov_qVaxdYdvsp0lxveMY9hmqg.s['8']++;module.exports = exports['default'];
 
 },{"../../../tags/user-details.tag":118}],100:[function(require,module,exports){
 "use strict";
-var __cov_Ekj33MmC8$IGppTvr6CDIw = Function('return this')();
-if (!__cov_Ekj33MmC8$IGppTvr6CDIw.__coverage__) {
-   __cov_Ekj33MmC8$IGppTvr6CDIw.__coverage__ = {};
+var __cov_4NppAFyK0ITdFMbzISROqA = Function('return this')();
+if (!__cov_4NppAFyK0ITdFMbzISROqA.__coverage__) {
+   __cov_4NppAFyK0ITdFMbzISROqA.__coverage__ = {};
 }
-__cov_Ekj33MmC8$IGppTvr6CDIw = __cov_Ekj33MmC8$IGppTvr6CDIw.__coverage__;
-if (!__cov_Ekj33MmC8$IGppTvr6CDIw['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/views/test2.js']) {
-   __cov_Ekj33MmC8$IGppTvr6CDIw['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/views/test2.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/views/test2.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0 }, "b": { "1": [0, 0], "2": [0, 0] }, "f": { "1": 0 }, "fnMap": { "1": { "name": "_interopRequireDefault", "line": 0, "loc": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 } }, "skip": true } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "3": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "4": { "start": { "line": 4, "column": 16 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "6": { "start": { "line": 6, "column": 0 }, "end": { "line": 9, "column": 2 } }, "7": { "start": { "line": 11, "column": 15 }, "end": { "line": null, "column": null } }, "8": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": { "1": { "line": 0, "type": "cond-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] }, "2": { "line": 0, "type": "binary-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] } } };
+__cov_4NppAFyK0ITdFMbzISROqA = __cov_4NppAFyK0ITdFMbzISROqA.__coverage__;
+if (!__cov_4NppAFyK0ITdFMbzISROqA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/views/test2.js']) {
+   __cov_4NppAFyK0ITdFMbzISROqA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/views/test2.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/views/test2.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0 }, "b": { "1": [0, 0], "2": [0, 0] }, "f": { "1": 0 }, "fnMap": { "1": { "name": "_interopRequireDefault", "line": 0, "loc": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 } }, "skip": true } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "3": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "4": { "start": { "line": 4, "column": 16 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "6": { "start": { "line": 6, "column": 0 }, "end": { "line": 9, "column": 2 } }, "7": { "start": { "line": 11, "column": 15 }, "end": { "line": null, "column": null } }, "8": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": { "1": { "line": 0, "type": "cond-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] }, "2": { "line": 0, "type": "binary-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] } } };
 }
-__cov_Ekj33MmC8$IGppTvr6CDIw = __cov_Ekj33MmC8$IGppTvr6CDIw['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/api/views/test2.js'];
-__cov_Ekj33MmC8$IGppTvr6CDIw.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function _interopRequireDefault(obj) {
-   __cov_Ekj33MmC8$IGppTvr6CDIw.f['1']++;__cov_Ekj33MmC8$IGppTvr6CDIw.s['3']++;return (__cov_Ekj33MmC8$IGppTvr6CDIw.b['2'][0]++, obj) && (__cov_Ekj33MmC8$IGppTvr6CDIw.b['2'][1]++, obj.__esModule) ? (__cov_Ekj33MmC8$IGppTvr6CDIw.b['1'][0]++, obj) : (__cov_Ekj33MmC8$IGppTvr6CDIw.b['1'][1]++, { 'default': obj });
-}__cov_Ekj33MmC8$IGppTvr6CDIw.s['4']++;var _tagsUserDetails2Tag = require('../../../tags/user-details-2.tag');__cov_Ekj33MmC8$IGppTvr6CDIw.s['5']++;var _tagsUserDetails2Tag2 = _interopRequireDefault(_tagsUserDetails2Tag);__cov_Ekj33MmC8$IGppTvr6CDIw.s['6']++;var testStaticView = { tag: _tagsUserDetails2Tag2['default'], holder: '.static' };__cov_Ekj33MmC8$IGppTvr6CDIw.s['7']++;exports['default'] = testStaticView;__cov_Ekj33MmC8$IGppTvr6CDIw.s['8']++;module.exports = exports['default'];
+__cov_4NppAFyK0ITdFMbzISROqA = __cov_4NppAFyK0ITdFMbzISROqA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/api/views/test2.js'];
+__cov_4NppAFyK0ITdFMbzISROqA.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function _interopRequireDefault(obj) {
+   __cov_4NppAFyK0ITdFMbzISROqA.f['1']++;__cov_4NppAFyK0ITdFMbzISROqA.s['3']++;return (__cov_4NppAFyK0ITdFMbzISROqA.b['2'][0]++, obj) && (__cov_4NppAFyK0ITdFMbzISROqA.b['2'][1]++, obj.__esModule) ? (__cov_4NppAFyK0ITdFMbzISROqA.b['1'][0]++, obj) : (__cov_4NppAFyK0ITdFMbzISROqA.b['1'][1]++, { 'default': obj });
+}__cov_4NppAFyK0ITdFMbzISROqA.s['4']++;var _tagsUserDetails2Tag = require('../../../tags/user-details-2.tag');__cov_4NppAFyK0ITdFMbzISROqA.s['5']++;var _tagsUserDetails2Tag2 = _interopRequireDefault(_tagsUserDetails2Tag);__cov_4NppAFyK0ITdFMbzISROqA.s['6']++;var testStaticView = { tag: _tagsUserDetails2Tag2['default'], holder: '.static' };__cov_4NppAFyK0ITdFMbzISROqA.s['7']++;exports['default'] = testStaticView;__cov_4NppAFyK0ITdFMbzISROqA.s['8']++;module.exports = exports['default'];
 
 },{"../../../tags/user-details-2.tag":117}],101:[function(require,module,exports){
 "use strict";
-var __cov_ghXMprdRhbNhPbzGZZBTtQ = Function('return this')();
-if (!__cov_ghXMprdRhbNhPbzGZZBTtQ.__coverage__) {
-   __cov_ghXMprdRhbNhPbzGZZBTtQ.__coverage__ = {};
+var __cov_kZpu8$bt6yVnEB4pwWwQ4A = Function('return this')();
+if (!__cov_kZpu8$bt6yVnEB4pwWwQ4A.__coverage__) {
+   __cov_kZpu8$bt6yVnEB4pwWwQ4A.__coverage__ = {};
 }
-__cov_ghXMprdRhbNhPbzGZZBTtQ = __cov_ghXMprdRhbNhPbzGZZBTtQ.__coverage__;
-if (!__cov_ghXMprdRhbNhPbzGZZBTtQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/app.js']) {
-   __cov_ghXMprdRhbNhPbzGZZBTtQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/app.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/app.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 5, "column": 0 }, "end": { "line": 10, "column": 2 } }, "3": { "start": { "line": 12, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
+__cov_kZpu8$bt6yVnEB4pwWwQ4A = __cov_kZpu8$bt6yVnEB4pwWwQ4A.__coverage__;
+if (!__cov_kZpu8$bt6yVnEB4pwWwQ4A['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/app.js']) {
+   __cov_kZpu8$bt6yVnEB4pwWwQ4A['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/app.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/app.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 5, "column": 0 }, "end": { "line": 10, "column": 2 } }, "3": { "start": { "line": 12, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
 }
-__cov_ghXMprdRhbNhPbzGZZBTtQ = __cov_ghXMprdRhbNhPbzGZZBTtQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/app.js'];
-__cov_ghXMprdRhbNhPbzGZZBTtQ.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_ghXMprdRhbNhPbzGZZBTtQ.s['2']++;var appConfig = { defaultLocale: 'en-GB', defaultConnection: 'local-xhr' };__cov_ghXMprdRhbNhPbzGZZBTtQ.s['3']++;exports['default'] = appConfig;__cov_ghXMprdRhbNhPbzGZZBTtQ.s['4']++;module.exports = exports['default'];
+__cov_kZpu8$bt6yVnEB4pwWwQ4A = __cov_kZpu8$bt6yVnEB4pwWwQ4A['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/app.js'];
+__cov_kZpu8$bt6yVnEB4pwWwQ4A.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_kZpu8$bt6yVnEB4pwWwQ4A.s['2']++;var appConfig = { defaultLocale: 'en-GB', defaultConnection: 'local-xhr' };__cov_kZpu8$bt6yVnEB4pwWwQ4A.s['3']++;exports['default'] = appConfig;__cov_kZpu8$bt6yVnEB4pwWwQ4A.s['4']++;module.exports = exports['default'];
 
 },{}],102:[function(require,module,exports){
 "use strict";
-var __cov_nc5S_mmJ1CNNGk3n4J$bzw = Function('return this')();
-if (!__cov_nc5S_mmJ1CNNGk3n4J$bzw.__coverage__) {
-   __cov_nc5S_mmJ1CNNGk3n4J$bzw.__coverage__ = {};
+var __cov_TNCtZF4fcjwIuFpCQGMwUA = Function('return this')();
+if (!__cov_TNCtZF4fcjwIuFpCQGMwUA.__coverage__) {
+   __cov_TNCtZF4fcjwIuFpCQGMwUA.__coverage__ = {};
 }
-__cov_nc5S_mmJ1CNNGk3n4J$bzw = __cov_nc5S_mmJ1CNNGk3n4J$bzw.__coverage__;
-if (!__cov_nc5S_mmJ1CNNGk3n4J$bzw['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/bootstrap.js']) {
-   __cov_nc5S_mmJ1CNNGk3n4J$bzw['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/bootstrap.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/bootstrap.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0 }, "b": {}, "f": { "1": 0 }, "fnMap": { "1": { "name": "bootstrap", "line": 5, "loc": { "start": { "line": 5, "column": 0 }, "end": { "line": 5, "column": 21 } } } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 5, "column": 0 }, "end": { "line": 7, "column": 1 } }, "3": { "start": { "line": 6, "column": 9 }, "end": { "line": 6, "column": 27 } }, "4": { "start": { "line": 9, "column": 15 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
+__cov_TNCtZF4fcjwIuFpCQGMwUA = __cov_TNCtZF4fcjwIuFpCQGMwUA.__coverage__;
+if (!__cov_TNCtZF4fcjwIuFpCQGMwUA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/bootstrap.js']) {
+   __cov_TNCtZF4fcjwIuFpCQGMwUA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/bootstrap.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/bootstrap.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0 }, "b": {}, "f": { "1": 0 }, "fnMap": { "1": { "name": "bootstrap", "line": 5, "loc": { "start": { "line": 5, "column": 0 }, "end": { "line": 5, "column": 21 } } } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 5, "column": 0 }, "end": { "line": 7, "column": 1 } }, "3": { "start": { "line": 6, "column": 9 }, "end": { "line": 6, "column": 27 } }, "4": { "start": { "line": 9, "column": 15 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
 }
-__cov_nc5S_mmJ1CNNGk3n4J$bzw = __cov_nc5S_mmJ1CNNGk3n4J$bzw['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/bootstrap.js'];
-__cov_nc5S_mmJ1CNNGk3n4J$bzw.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function bootstrap() {
-   __cov_nc5S_mmJ1CNNGk3n4J$bzw.f['1']++;__cov_nc5S_mmJ1CNNGk3n4J$bzw.s['3']++;return Promise.resolve();
-}__cov_nc5S_mmJ1CNNGk3n4J$bzw.s['4']++;exports['default'] = bootstrap;__cov_nc5S_mmJ1CNNGk3n4J$bzw.s['5']++;module.exports = exports['default'];
+__cov_TNCtZF4fcjwIuFpCQGMwUA = __cov_TNCtZF4fcjwIuFpCQGMwUA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/bootstrap.js'];
+__cov_TNCtZF4fcjwIuFpCQGMwUA.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function bootstrap() {
+   __cov_TNCtZF4fcjwIuFpCQGMwUA.f['1']++;__cov_TNCtZF4fcjwIuFpCQGMwUA.s['3']++;return Promise.resolve();
+}__cov_TNCtZF4fcjwIuFpCQGMwUA.s['4']++;exports['default'] = bootstrap;__cov_TNCtZF4fcjwIuFpCQGMwUA.s['5']++;module.exports = exports['default'];
 
 },{}],103:[function(require,module,exports){
 "use strict";
-var __cov_2JfYuW_1r3gLxIPUHxWwbA = Function('return this')();
-if (!__cov_2JfYuW_1r3gLxIPUHxWwbA.__coverage__) {
-   __cov_2JfYuW_1r3gLxIPUHxWwbA.__coverage__ = {};
+var __cov_lJ9kqIbssK9NKNGoStWn_Q = Function('return this')();
+if (!__cov_lJ9kqIbssK9NKNGoStWn_Q.__coverage__) {
+   __cov_lJ9kqIbssK9NKNGoStWn_Q.__coverage__ = {};
 }
-__cov_2JfYuW_1r3gLxIPUHxWwbA = __cov_2JfYuW_1r3gLxIPUHxWwbA.__coverage__;
-if (!__cov_2JfYuW_1r3gLxIPUHxWwbA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/connections.js']) {
-   __cov_2JfYuW_1r3gLxIPUHxWwbA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/connections.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/connections.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 5, "column": 0 }, "end": { "line": 10, "column": 2 } }, "3": { "start": { "line": 12, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
+__cov_lJ9kqIbssK9NKNGoStWn_Q = __cov_lJ9kqIbssK9NKNGoStWn_Q.__coverage__;
+if (!__cov_lJ9kqIbssK9NKNGoStWn_Q['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/connections.js']) {
+   __cov_lJ9kqIbssK9NKNGoStWn_Q['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/connections.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/connections.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 5, "column": 0 }, "end": { "line": 10, "column": 2 } }, "3": { "start": { "line": 12, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
 }
-__cov_2JfYuW_1r3gLxIPUHxWwbA = __cov_2JfYuW_1r3gLxIPUHxWwbA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/connections.js'];
-__cov_2JfYuW_1r3gLxIPUHxWwbA.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_2JfYuW_1r3gLxIPUHxWwbA.s['2']++;var connectionConfig = { 'local-xhr': { url: 'http://192.168.0.7:1337', adapter: 'XHR' } };__cov_2JfYuW_1r3gLxIPUHxWwbA.s['3']++;exports['default'] = connectionConfig;__cov_2JfYuW_1r3gLxIPUHxWwbA.s['4']++;module.exports = exports['default'];
+__cov_lJ9kqIbssK9NKNGoStWn_Q = __cov_lJ9kqIbssK9NKNGoStWn_Q['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/connections.js'];
+__cov_lJ9kqIbssK9NKNGoStWn_Q.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_lJ9kqIbssK9NKNGoStWn_Q.s['2']++;var connectionConfig = { 'local-xhr': { url: 'http://192.168.0.7:1337', adapter: 'XHR' } };__cov_lJ9kqIbssK9NKNGoStWn_Q.s['3']++;exports['default'] = connectionConfig;__cov_lJ9kqIbssK9NKNGoStWn_Q.s['4']++;module.exports = exports['default'];
 
 },{}],104:[function(require,module,exports){
 "use strict";
-var __cov_myl88fPn5hMZ$S0Gywjo0Q = Function('return this')();
-if (!__cov_myl88fPn5hMZ$S0Gywjo0Q.__coverage__) {
-   __cov_myl88fPn5hMZ$S0Gywjo0Q.__coverage__ = {};
+var __cov_wbEKa4TpkX4HoDyHMP8DAA = Function('return this')();
+if (!__cov_wbEKa4TpkX4HoDyHMP8DAA.__coverage__) {
+   __cov_wbEKa4TpkX4HoDyHMP8DAA.__coverage__ = {};
 }
-__cov_myl88fPn5hMZ$S0Gywjo0Q = __cov_myl88fPn5hMZ$S0Gywjo0Q.__coverage__;
-if (!__cov_myl88fPn5hMZ$S0Gywjo0Q['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/env/dev.js']) {
-   __cov_myl88fPn5hMZ$S0Gywjo0Q['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/env/dev.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/env/dev.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 1, "column": 0 }, "end": { "line": 5, "column": 2 } }, "3": { "start": { "line": 7, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
+__cov_wbEKa4TpkX4HoDyHMP8DAA = __cov_wbEKa4TpkX4HoDyHMP8DAA.__coverage__;
+if (!__cov_wbEKa4TpkX4HoDyHMP8DAA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/env/dev.js']) {
+   __cov_wbEKa4TpkX4HoDyHMP8DAA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/env/dev.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/env/dev.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 1, "column": 0 }, "end": { "line": 5, "column": 2 } }, "3": { "start": { "line": 7, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
 }
-__cov_myl88fPn5hMZ$S0Gywjo0Q = __cov_myl88fPn5hMZ$S0Gywjo0Q['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/env/dev.js'];
-__cov_myl88fPn5hMZ$S0Gywjo0Q.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_myl88fPn5hMZ$S0Gywjo0Q.s['2']++;var devEnv = { config: {}, api: {}, components: {} };__cov_myl88fPn5hMZ$S0Gywjo0Q.s['3']++;exports['default'] = devEnv;__cov_myl88fPn5hMZ$S0Gywjo0Q.s['4']++;module.exports = exports['default'];
+__cov_wbEKa4TpkX4HoDyHMP8DAA = __cov_wbEKa4TpkX4HoDyHMP8DAA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/env/dev.js'];
+__cov_wbEKa4TpkX4HoDyHMP8DAA.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_wbEKa4TpkX4HoDyHMP8DAA.s['2']++;var devEnv = { config: {}, api: {}, components: {} };__cov_wbEKa4TpkX4HoDyHMP8DAA.s['3']++;exports['default'] = devEnv;__cov_wbEKa4TpkX4HoDyHMP8DAA.s['4']++;module.exports = exports['default'];
 
 },{}],105:[function(require,module,exports){
 "use strict";
-var __cov_Ca8HN2Vfn7dntJ01m2MDOQ = Function('return this')();
-if (!__cov_Ca8HN2Vfn7dntJ01m2MDOQ.__coverage__) {
-   __cov_Ca8HN2Vfn7dntJ01m2MDOQ.__coverage__ = {};
+var __cov_QDfDTf3Nt7P77H5j$8E_lA = Function('return this')();
+if (!__cov_QDfDTf3Nt7P77H5j$8E_lA.__coverage__) {
+   __cov_QDfDTf3Nt7P77H5j$8E_lA.__coverage__ = {};
 }
-__cov_Ca8HN2Vfn7dntJ01m2MDOQ = __cov_Ca8HN2Vfn7dntJ01m2MDOQ.__coverage__;
-if (!__cov_Ca8HN2Vfn7dntJ01m2MDOQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/env/prod.js']) {
-   __cov_Ca8HN2Vfn7dntJ01m2MDOQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/env/prod.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/env/prod.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 1, "column": 0 }, "end": { "line": 5, "column": 2 } }, "3": { "start": { "line": 7, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
+__cov_QDfDTf3Nt7P77H5j$8E_lA = __cov_QDfDTf3Nt7P77H5j$8E_lA.__coverage__;
+if (!__cov_QDfDTf3Nt7P77H5j$8E_lA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/env/prod.js']) {
+   __cov_QDfDTf3Nt7P77H5j$8E_lA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/env/prod.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/env/prod.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 1, "column": 0 }, "end": { "line": 5, "column": 2 } }, "3": { "start": { "line": 7, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
 }
-__cov_Ca8HN2Vfn7dntJ01m2MDOQ = __cov_Ca8HN2Vfn7dntJ01m2MDOQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/env/prod.js'];
-__cov_Ca8HN2Vfn7dntJ01m2MDOQ.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_Ca8HN2Vfn7dntJ01m2MDOQ.s['2']++;var prodEnv = { config: {}, api: {}, components: {} };__cov_Ca8HN2Vfn7dntJ01m2MDOQ.s['3']++;exports['default'] = prodEnv;__cov_Ca8HN2Vfn7dntJ01m2MDOQ.s['4']++;module.exports = exports['default'];
+__cov_QDfDTf3Nt7P77H5j$8E_lA = __cov_QDfDTf3Nt7P77H5j$8E_lA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/env/prod.js'];
+__cov_QDfDTf3Nt7P77H5j$8E_lA.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_QDfDTf3Nt7P77H5j$8E_lA.s['2']++;var prodEnv = { config: {}, api: {}, components: {} };__cov_QDfDTf3Nt7P77H5j$8E_lA.s['3']++;exports['default'] = prodEnv;__cov_QDfDTf3Nt7P77H5j$8E_lA.s['4']++;module.exports = exports['default'];
 
 },{}],106:[function(require,module,exports){
 "use strict";
-var __cov_FJDQN9TC4vFQA2pVHwCNqg = Function('return this')();
-if (!__cov_FJDQN9TC4vFQA2pVHwCNqg.__coverage__) {
-   __cov_FJDQN9TC4vFQA2pVHwCNqg.__coverage__ = {};
+var __cov_f2qFCrp_n9HQ_OYK5mDuSA = Function('return this')();
+if (!__cov_f2qFCrp_n9HQ_OYK5mDuSA.__coverage__) {
+   __cov_f2qFCrp_n9HQ_OYK5mDuSA.__coverage__ = {};
 }
-__cov_FJDQN9TC4vFQA2pVHwCNqg = __cov_FJDQN9TC4vFQA2pVHwCNqg.__coverage__;
-if (!__cov_FJDQN9TC4vFQA2pVHwCNqg['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/locales/en-GB.js']) {
-   __cov_FJDQN9TC4vFQA2pVHwCNqg['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/locales/en-GB.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/locales/en-GB.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 1, "column": 0 }, "end": { "line": 9, "column": 2 } }, "3": { "start": { "line": 11, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
+__cov_f2qFCrp_n9HQ_OYK5mDuSA = __cov_f2qFCrp_n9HQ_OYK5mDuSA.__coverage__;
+if (!__cov_f2qFCrp_n9HQ_OYK5mDuSA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/locales/en-GB.js']) {
+   __cov_f2qFCrp_n9HQ_OYK5mDuSA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/locales/en-GB.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/locales/en-GB.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 1, "column": 0 }, "end": { "line": 9, "column": 2 } }, "3": { "start": { "line": 11, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
 }
-__cov_FJDQN9TC4vFQA2pVHwCNqg = __cov_FJDQN9TC4vFQA2pVHwCNqg['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/locales/en-GB.js'];
-__cov_FJDQN9TC4vFQA2pVHwCNqg.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_FJDQN9TC4vFQA2pVHwCNqg.s['2']++;var en_GB = { words: { general: { 'yes': 'yes' } } };__cov_FJDQN9TC4vFQA2pVHwCNqg.s['3']++;exports['default'] = en_GB;__cov_FJDQN9TC4vFQA2pVHwCNqg.s['4']++;module.exports = exports['default'];
+__cov_f2qFCrp_n9HQ_OYK5mDuSA = __cov_f2qFCrp_n9HQ_OYK5mDuSA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/locales/en-GB.js'];
+__cov_f2qFCrp_n9HQ_OYK5mDuSA.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_f2qFCrp_n9HQ_OYK5mDuSA.s['2']++;var en_GB = { words: { general: { 'yes': 'yes' } } };__cov_f2qFCrp_n9HQ_OYK5mDuSA.s['3']++;exports['default'] = en_GB;__cov_f2qFCrp_n9HQ_OYK5mDuSA.s['4']++;module.exports = exports['default'];
 
 },{}],107:[function(require,module,exports){
 "use strict";
-var __cov_Usu3PixsoLhmbQaKwndbvA = Function('return this')();
-if (!__cov_Usu3PixsoLhmbQaKwndbvA.__coverage__) {
-   __cov_Usu3PixsoLhmbQaKwndbvA.__coverage__ = {};
+var __cov_0mdToIMWlc3b9MR09jfnyQ = Function('return this')();
+if (!__cov_0mdToIMWlc3b9MR09jfnyQ.__coverage__) {
+   __cov_0mdToIMWlc3b9MR09jfnyQ.__coverage__ = {};
 }
-__cov_Usu3PixsoLhmbQaKwndbvA = __cov_Usu3PixsoLhmbQaKwndbvA.__coverage__;
-if (!__cov_Usu3PixsoLhmbQaKwndbvA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/locales/nl-NL.js']) {
-   __cov_Usu3PixsoLhmbQaKwndbvA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/locales/nl-NL.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/locales/nl-NL.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 1, "column": 0 }, "end": { "line": 9, "column": 2 } }, "3": { "start": { "line": 11, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
+__cov_0mdToIMWlc3b9MR09jfnyQ = __cov_0mdToIMWlc3b9MR09jfnyQ.__coverage__;
+if (!__cov_0mdToIMWlc3b9MR09jfnyQ['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/locales/nl-NL.js']) {
+   __cov_0mdToIMWlc3b9MR09jfnyQ['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/locales/nl-NL.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/locales/nl-NL.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 1, "column": 0 }, "end": { "line": 9, "column": 2 } }, "3": { "start": { "line": 11, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
 }
-__cov_Usu3PixsoLhmbQaKwndbvA = __cov_Usu3PixsoLhmbQaKwndbvA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/locales/nl-NL.js'];
-__cov_Usu3PixsoLhmbQaKwndbvA.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_Usu3PixsoLhmbQaKwndbvA.s['2']++;var nl_NL = { words: { general: { 'yes': 'ja' } } };__cov_Usu3PixsoLhmbQaKwndbvA.s['3']++;exports['default'] = nl_NL;__cov_Usu3PixsoLhmbQaKwndbvA.s['4']++;module.exports = exports['default'];
+__cov_0mdToIMWlc3b9MR09jfnyQ = __cov_0mdToIMWlc3b9MR09jfnyQ['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/locales/nl-NL.js'];
+__cov_0mdToIMWlc3b9MR09jfnyQ.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_0mdToIMWlc3b9MR09jfnyQ.s['2']++;var nl_NL = { words: { general: { 'yes': 'ja' } } };__cov_0mdToIMWlc3b9MR09jfnyQ.s['3']++;exports['default'] = nl_NL;__cov_0mdToIMWlc3b9MR09jfnyQ.s['4']++;module.exports = exports['default'];
 
 },{}],108:[function(require,module,exports){
 "use strict";
-var __cov_mh$XkwGmrArVVImr_jZG0w = Function('return this')();
-if (!__cov_mh$XkwGmrArVVImr_jZG0w.__coverage__) {
-   __cov_mh$XkwGmrArVVImr_jZG0w.__coverage__ = {};
+var __cov_qx012ufWhGzS5Rc7GAaa5Q = Function('return this')();
+if (!__cov_qx012ufWhGzS5Rc7GAaa5Q.__coverage__) {
+   __cov_qx012ufWhGzS5Rc7GAaa5Q.__coverage__ = {};
 }
-__cov_mh$XkwGmrArVVImr_jZG0w = __cov_mh$XkwGmrArVVImr_jZG0w.__coverage__;
-if (!__cov_mh$XkwGmrArVVImr_jZG0w['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/models.js']) {
-   __cov_mh$XkwGmrArVVImr_jZG0w['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/models.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/models.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 4, "column": 0 }, "end": { "line": 9, "column": 2 } }, "3": { "start": { "line": 11, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
+__cov_qx012ufWhGzS5Rc7GAaa5Q = __cov_qx012ufWhGzS5Rc7GAaa5Q.__coverage__;
+if (!__cov_qx012ufWhGzS5Rc7GAaa5Q['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/models.js']) {
+   __cov_qx012ufWhGzS5Rc7GAaa5Q['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/models.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/models.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 4, "column": 0 }, "end": { "line": 9, "column": 2 } }, "3": { "start": { "line": 11, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
 }
-__cov_mh$XkwGmrArVVImr_jZG0w = __cov_mh$XkwGmrArVVImr_jZG0w['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/models.js'];
-__cov_mh$XkwGmrArVVImr_jZG0w.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_mh$XkwGmrArVVImr_jZG0w.s['2']++;var modelsConfig = { idAttribute: 'id', createdOnAttribute: 'createdAt', updatedOnAttribute: 'updatedAt' };__cov_mh$XkwGmrArVVImr_jZG0w.s['3']++;exports['default'] = modelsConfig;__cov_mh$XkwGmrArVVImr_jZG0w.s['4']++;module.exports = exports['default'];
+__cov_qx012ufWhGzS5Rc7GAaa5Q = __cov_qx012ufWhGzS5Rc7GAaa5Q['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/models.js'];
+__cov_qx012ufWhGzS5Rc7GAaa5Q.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_qx012ufWhGzS5Rc7GAaa5Q.s['2']++;var modelsConfig = { idAttribute: 'id', createdOnAttribute: 'createdAt', updatedOnAttribute: 'updatedAt' };__cov_qx012ufWhGzS5Rc7GAaa5Q.s['3']++;exports['default'] = modelsConfig;__cov_qx012ufWhGzS5Rc7GAaa5Q.s['4']++;module.exports = exports['default'];
 
 },{}],109:[function(require,module,exports){
 "use strict";
-var __cov_D7APTHzhjrdfAKGAvDrrOA = Function('return this')();
-if (!__cov_D7APTHzhjrdfAKGAvDrrOA.__coverage__) {
-   __cov_D7APTHzhjrdfAKGAvDrrOA.__coverage__ = {};
+var __cov_H5ccK825AX7RCd7foN3KzA = Function('return this')();
+if (!__cov_H5ccK825AX7RCd7foN3KzA.__coverage__) {
+   __cov_H5ccK825AX7RCd7foN3KzA.__coverage__ = {};
 }
-__cov_D7APTHzhjrdfAKGAvDrrOA = __cov_D7APTHzhjrdfAKGAvDrrOA.__coverage__;
-if (!__cov_D7APTHzhjrdfAKGAvDrrOA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/router.js']) {
-   __cov_D7APTHzhjrdfAKGAvDrrOA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/router.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/router.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 5, "column": 0 }, "end": { "line": 8, "column": 2 } }, "3": { "start": { "line": 10, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
+__cov_H5ccK825AX7RCd7foN3KzA = __cov_H5ccK825AX7RCd7foN3KzA.__coverage__;
+if (!__cov_H5ccK825AX7RCd7foN3KzA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/router.js']) {
+   __cov_H5ccK825AX7RCd7foN3KzA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/router.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/router.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 5, "column": 0 }, "end": { "line": 8, "column": 2 } }, "3": { "start": { "line": 10, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
 }
-__cov_D7APTHzhjrdfAKGAvDrrOA = __cov_D7APTHzhjrdfAKGAvDrrOA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/router.js'];
-__cov_D7APTHzhjrdfAKGAvDrrOA.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_D7APTHzhjrdfAKGAvDrrOA.s['2']++;var routerConfig = { defaultRoute: '/users', pushState: true };__cov_D7APTHzhjrdfAKGAvDrrOA.s['3']++;exports['default'] = routerConfig;__cov_D7APTHzhjrdfAKGAvDrrOA.s['4']++;module.exports = exports['default'];
+__cov_H5ccK825AX7RCd7foN3KzA = __cov_H5ccK825AX7RCd7foN3KzA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/router.js'];
+__cov_H5ccK825AX7RCd7foN3KzA.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_H5ccK825AX7RCd7foN3KzA.s['2']++;var routerConfig = { defaultRoute: '/users', pushState: true };__cov_H5ccK825AX7RCd7foN3KzA.s['3']++;exports['default'] = routerConfig;__cov_H5ccK825AX7RCd7foN3KzA.s['4']++;module.exports = exports['default'];
 
 },{}],110:[function(require,module,exports){
 "use strict";
-var __cov_I8fC909N5Uu$RPmSY$HFVQ = Function('return this')();
-if (!__cov_I8fC909N5Uu$RPmSY$HFVQ.__coverage__) {
-   __cov_I8fC909N5Uu$RPmSY$HFVQ.__coverage__ = {};
+var __cov_5ZLhmibwf_CLlHXQ4zqAeA = Function('return this')();
+if (!__cov_5ZLhmibwf_CLlHXQ4zqAeA.__coverage__) {
+   __cov_5ZLhmibwf_CLlHXQ4zqAeA.__coverage__ = {};
 }
-__cov_I8fC909N5Uu$RPmSY$HFVQ = __cov_I8fC909N5Uu$RPmSY$HFVQ.__coverage__;
-if (!__cov_I8fC909N5Uu$RPmSY$HFVQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/routes.js']) {
-   __cov_I8fC909N5Uu$RPmSY$HFVQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/routes.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/routes.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 5, "column": 0 }, "end": { "line": 31, "column": 2 } }, "3": { "start": { "line": 33, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
+__cov_5ZLhmibwf_CLlHXQ4zqAeA = __cov_5ZLhmibwf_CLlHXQ4zqAeA.__coverage__;
+if (!__cov_5ZLhmibwf_CLlHXQ4zqAeA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/routes.js']) {
+   __cov_5ZLhmibwf_CLlHXQ4zqAeA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/routes.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/routes.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 5, "column": 0 }, "end": { "line": 31, "column": 2 } }, "3": { "start": { "line": 33, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
 }
-__cov_I8fC909N5Uu$RPmSY$HFVQ = __cov_I8fC909N5Uu$RPmSY$HFVQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/routes.js'];
-__cov_I8fC909N5Uu$RPmSY$HFVQ.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_I8fC909N5Uu$RPmSY$HFVQ.s['2']++;var routes = { '/users': { policies: ['alwaysDeny'], unauthorized: '/user/56', view: 'test', controller: 'ModelController.list', model: 'user' }, '/user/:id': { view: 'test', controller: 'ModelController.details', model: 'user' }, '/user56': { view: 'test2', controller: 'UserController.getUserWithId56' } };__cov_I8fC909N5Uu$RPmSY$HFVQ.s['3']++;exports['default'] = routes;__cov_I8fC909N5Uu$RPmSY$HFVQ.s['4']++;module.exports = exports['default'];
+__cov_5ZLhmibwf_CLlHXQ4zqAeA = __cov_5ZLhmibwf_CLlHXQ4zqAeA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/routes.js'];
+__cov_5ZLhmibwf_CLlHXQ4zqAeA.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_5ZLhmibwf_CLlHXQ4zqAeA.s['2']++;var routes = { '/users': { policies: ['alwaysDeny'], unauthorized: '/user/56', view: 'test', controller: 'ModelController.list', model: 'user' }, '/user/:id': { view: 'test', controller: 'ModelController.details', model: 'user' }, '/user56': { view: 'test2', controller: 'UserController.getUserWithId56' } };__cov_5ZLhmibwf_CLlHXQ4zqAeA.s['3']++;exports['default'] = routes;__cov_5ZLhmibwf_CLlHXQ4zqAeA.s['4']++;module.exports = exports['default'];
 
 },{}],111:[function(require,module,exports){
 "use strict";
-var __cov_L3AwCRPnlFj3awV8gKN1qA = Function('return this')();
-if (!__cov_L3AwCRPnlFj3awV8gKN1qA.__coverage__) {
-   __cov_L3AwCRPnlFj3awV8gKN1qA.__coverage__ = {};
+var __cov_aa_Gpd8k7zNeA2xiFM2LKA = Function('return this')();
+if (!__cov_aa_Gpd8k7zNeA2xiFM2LKA.__coverage__) {
+   __cov_aa_Gpd8k7zNeA2xiFM2LKA.__coverage__ = {};
 }
-__cov_L3AwCRPnlFj3awV8gKN1qA = __cov_L3AwCRPnlFj3awV8gKN1qA.__coverage__;
-if (!__cov_L3AwCRPnlFj3awV8gKN1qA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/staticViews.js']) {
-   __cov_L3AwCRPnlFj3awV8gKN1qA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/staticViews.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/staticViews.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 4, "column": 0 }, "end": { "line": 4, "column": 29 } }, "3": { "start": { "line": 6, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
+__cov_aa_Gpd8k7zNeA2xiFM2LKA = __cov_aa_Gpd8k7zNeA2xiFM2LKA.__coverage__;
+if (!__cov_aa_Gpd8k7zNeA2xiFM2LKA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/staticViews.js']) {
+   __cov_aa_Gpd8k7zNeA2xiFM2LKA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/staticViews.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/staticViews.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 4, "column": 0 }, "end": { "line": 4, "column": 29 } }, "3": { "start": { "line": 6, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
 }
-__cov_L3AwCRPnlFj3awV8gKN1qA = __cov_L3AwCRPnlFj3awV8gKN1qA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/staticViews.js'];
-__cov_L3AwCRPnlFj3awV8gKN1qA.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_L3AwCRPnlFj3awV8gKN1qA.s['2']++;var staticViewsConfig = {};__cov_L3AwCRPnlFj3awV8gKN1qA.s['3']++;exports['default'] = staticViewsConfig;__cov_L3AwCRPnlFj3awV8gKN1qA.s['4']++;module.exports = exports['default'];
+__cov_aa_Gpd8k7zNeA2xiFM2LKA = __cov_aa_Gpd8k7zNeA2xiFM2LKA['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/staticViews.js'];
+__cov_aa_Gpd8k7zNeA2xiFM2LKA.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_aa_Gpd8k7zNeA2xiFM2LKA.s['2']++;var staticViewsConfig = {};__cov_aa_Gpd8k7zNeA2xiFM2LKA.s['3']++;exports['default'] = staticViewsConfig;__cov_aa_Gpd8k7zNeA2xiFM2LKA.s['4']++;module.exports = exports['default'];
 
 },{}],112:[function(require,module,exports){
 "use strict";
-var __cov_bHJj78dSnCyMk_ZxZtm7QA = Function('return this')();
-if (!__cov_bHJj78dSnCyMk_ZxZtm7QA.__coverage__) {
-   __cov_bHJj78dSnCyMk_ZxZtm7QA.__coverage__ = {};
+var __cov_hdf4m$qSWPNXMLdMmX$2Xg = Function('return this')();
+if (!__cov_hdf4m$qSWPNXMLdMmX$2Xg.__coverage__) {
+   __cov_hdf4m$qSWPNXMLdMmX$2Xg.__coverage__ = {};
 }
-__cov_bHJj78dSnCyMk_ZxZtm7QA = __cov_bHJj78dSnCyMk_ZxZtm7QA.__coverage__;
-if (!__cov_bHJj78dSnCyMk_ZxZtm7QA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/views.js']) {
-   __cov_bHJj78dSnCyMk_ZxZtm7QA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/views.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/views.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 4, "column": 0 }, "end": { "line": 4, "column": 22 } }, "3": { "start": { "line": 6, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
+__cov_hdf4m$qSWPNXMLdMmX$2Xg = __cov_hdf4m$qSWPNXMLdMmX$2Xg.__coverage__;
+if (!__cov_hdf4m$qSWPNXMLdMmX$2Xg['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/views.js']) {
+   __cov_hdf4m$qSWPNXMLdMmX$2Xg['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/views.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/views.js", "s": { "1": 0, "2": 0, "3": 0, "4": 0 }, "b": {}, "f": {}, "fnMap": {}, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 4, "column": 0 }, "end": { "line": 4, "column": 22 } }, "3": { "start": { "line": 6, "column": 15 }, "end": { "line": null, "column": null } }, "4": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": {} };
 }
-__cov_bHJj78dSnCyMk_ZxZtm7QA = __cov_bHJj78dSnCyMk_ZxZtm7QA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/config/views.js'];
-__cov_bHJj78dSnCyMk_ZxZtm7QA.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_bHJj78dSnCyMk_ZxZtm7QA.s['2']++;var viewConfig = {};__cov_bHJj78dSnCyMk_ZxZtm7QA.s['3']++;exports['default'] = viewConfig;__cov_bHJj78dSnCyMk_ZxZtm7QA.s['4']++;module.exports = exports['default'];
+__cov_hdf4m$qSWPNXMLdMmX$2Xg = __cov_hdf4m$qSWPNXMLdMmX$2Xg['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/config/views.js'];
+__cov_hdf4m$qSWPNXMLdMmX$2Xg.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });__cov_hdf4m$qSWPNXMLdMmX$2Xg.s['2']++;var viewConfig = {};__cov_hdf4m$qSWPNXMLdMmX$2Xg.s['3']++;exports['default'] = viewConfig;__cov_hdf4m$qSWPNXMLdMmX$2Xg.s['4']++;module.exports = exports['default'];
 
 },{}],113:[function(require,module,exports){
 "use strict";
-var __cov_Bkrh1e2Gp6yqqJ8H9gtDIQ = Function('return this')();
-if (!__cov_Bkrh1e2Gp6yqqJ8H9gtDIQ.__coverage__) {
-   __cov_Bkrh1e2Gp6yqqJ8H9gtDIQ.__coverage__ = {};
+var __cov_6YCLo5WJTvmeS8C0vX2_5g = Function('return this')();
+if (!__cov_6YCLo5WJTvmeS8C0vX2_5g.__coverage__) {
+   __cov_6YCLo5WJTvmeS8C0vX2_5g.__coverage__ = {};
 }
-__cov_Bkrh1e2Gp6yqqJ8H9gtDIQ = __cov_Bkrh1e2Gp6yqqJ8H9gtDIQ.__coverage__;
-if (!__cov_Bkrh1e2Gp6yqqJ8H9gtDIQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/constants/session.js']) {
-   __cov_Bkrh1e2Gp6yqqJ8H9gtDIQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/constants/session.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/constants/session.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0 }, "b": { "1": [0, 0], "2": [0, 0] }, "f": { "1": 0 }, "fnMap": { "1": { "name": "_interopRequireDefault", "line": 0, "loc": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 } }, "skip": true } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "3": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "4": { "start": { "line": 4, "column": 20 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "6": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "7": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": { "1": { "line": 0, "type": "cond-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] }, "2": { "line": 0, "type": "binary-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] } } };
+__cov_6YCLo5WJTvmeS8C0vX2_5g = __cov_6YCLo5WJTvmeS8C0vX2_5g.__coverage__;
+if (!__cov_6YCLo5WJTvmeS8C0vX2_5g['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/constants/session.js']) {
+   __cov_6YCLo5WJTvmeS8C0vX2_5g['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/constants/session.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/constants/session.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0 }, "b": { "1": [0, 0], "2": [0, 0] }, "f": { "1": 0 }, "fnMap": { "1": { "name": "_interopRequireDefault", "line": 0, "loc": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 } }, "skip": true } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "3": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "4": { "start": { "line": 4, "column": 20 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "6": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "7": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": { "1": { "line": 0, "type": "cond-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] }, "2": { "line": 0, "type": "binary-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] } } };
 }
-__cov_Bkrh1e2Gp6yqqJ8H9gtDIQ = __cov_Bkrh1e2Gp6yqqJ8H9gtDIQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/constants/session.js'];
-__cov_Bkrh1e2Gp6yqqJ8H9gtDIQ.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function _interopRequireDefault(obj) {
-   __cov_Bkrh1e2Gp6yqqJ8H9gtDIQ.f['1']++;__cov_Bkrh1e2Gp6yqqJ8H9gtDIQ.s['3']++;return (__cov_Bkrh1e2Gp6yqqJ8H9gtDIQ.b['2'][0]++, obj) && (__cov_Bkrh1e2Gp6yqqJ8H9gtDIQ.b['2'][1]++, obj.__esModule) ? (__cov_Bkrh1e2Gp6yqqJ8H9gtDIQ.b['1'][0]++, obj) : (__cov_Bkrh1e2Gp6yqqJ8H9gtDIQ.b['1'][1]++, { 'default': obj });
-}__cov_Bkrh1e2Gp6yqqJ8H9gtDIQ.s['4']++;var _frntndFrameworkSrcConstantsSession = require('frntnd-framework/src/constants/session');__cov_Bkrh1e2Gp6yqqJ8H9gtDIQ.s['5']++;var _frntndFrameworkSrcConstantsSession2 = _interopRequireDefault(_frntndFrameworkSrcConstantsSession);__cov_Bkrh1e2Gp6yqqJ8H9gtDIQ.s['6']++;exports['default'] = _frntndFrameworkSrcConstantsSession2['default'];__cov_Bkrh1e2Gp6yqqJ8H9gtDIQ.s['7']++;module.exports = exports['default'];
+__cov_6YCLo5WJTvmeS8C0vX2_5g = __cov_6YCLo5WJTvmeS8C0vX2_5g['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/constants/session.js'];
+__cov_6YCLo5WJTvmeS8C0vX2_5g.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function _interopRequireDefault(obj) {
+   __cov_6YCLo5WJTvmeS8C0vX2_5g.f['1']++;__cov_6YCLo5WJTvmeS8C0vX2_5g.s['3']++;return (__cov_6YCLo5WJTvmeS8C0vX2_5g.b['2'][0]++, obj) && (__cov_6YCLo5WJTvmeS8C0vX2_5g.b['2'][1]++, obj.__esModule) ? (__cov_6YCLo5WJTvmeS8C0vX2_5g.b['1'][0]++, obj) : (__cov_6YCLo5WJTvmeS8C0vX2_5g.b['1'][1]++, { 'default': obj });
+}__cov_6YCLo5WJTvmeS8C0vX2_5g.s['4']++;var _frntndFrameworkSrcConstantsSession = require('frntnd-framework/src/constants/session');__cov_6YCLo5WJTvmeS8C0vX2_5g.s['5']++;var _frntndFrameworkSrcConstantsSession2 = _interopRequireDefault(_frntndFrameworkSrcConstantsSession);__cov_6YCLo5WJTvmeS8C0vX2_5g.s['6']++;exports['default'] = _frntndFrameworkSrcConstantsSession2['default'];__cov_6YCLo5WJTvmeS8C0vX2_5g.s['7']++;module.exports = exports['default'];
 
-},{"frntnd-framework/src/constants/session":39}],114:[function(require,module,exports){
+},{"frntnd-framework/src/constants/session":82}],114:[function(require,module,exports){
 "use strict";
-var __cov_c24xl5M1yeCz5bPaYe$kFQ = Function('return this')();
-if (!__cov_c24xl5M1yeCz5bPaYe$kFQ.__coverage__) {
-   __cov_c24xl5M1yeCz5bPaYe$kFQ.__coverage__ = {};
+var __cov_mG$yJyVxCuPv07PwtcOg3g = Function('return this')();
+if (!__cov_mG$yJyVxCuPv07PwtcOg3g.__coverage__) {
+   __cov_mG$yJyVxCuPv07PwtcOg3g.__coverage__ = {};
 }
-__cov_c24xl5M1yeCz5bPaYe$kFQ = __cov_c24xl5M1yeCz5bPaYe$kFQ.__coverage__;
-if (!__cov_c24xl5M1yeCz5bPaYe$kFQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/main.js']) {
-   __cov_c24xl5M1yeCz5bPaYe$kFQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/main.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/main.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 0, "14": 0, "15": 0, "16": 0, "17": 0, "18": 0, "19": 0 }, "b": { "1": [0, 0], "2": [0, 0] }, "f": { "1": 0, "2": 0 }, "fnMap": { "1": { "name": "_interopRequireDefault", "line": 0, "loc": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 } }, "skip": true }, "2": { "name": "(anonymous_2)", "line": 19, "loc": { "start": { "line": 19, "column": 14 }, "end": { "line": 19, "column": 30 } } } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "3": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "4": { "start": { "line": 4, "column": 14 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "6": { "start": { "line": 5, "column": 19 }, "end": { "line": null, "column": null } }, "7": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "8": { "start": { "line": 6, "column": 17 }, "end": { "line": null, "column": null } }, "9": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "10": { "start": { "line": 9, "column": 0 }, "end": { "line": 11, "column": 3 } }, "11": { "start": { "line": 14, "column": 0 }, "end": { "line": 14, "column": 27 } }, "12": { "start": { "line": 19, "column": 0 }, "end": { "line": 25, "column": 3 } }, "13": { "start": { "line": 21, "column": 6 }, "end": { "line": 21, "column": 44 } }, "14": { "start": { "line": 24, "column": 4 }, "end": { "line": 24, "column": 40 } }, "15": { "start": { "line": 28, "column": 0 }, "end": { "line": 28, "column": 18 } }, "16": { "start": { "line": 29, "column": 0 }, "end": { "line": 29, "column": 13 } }, "17": { "start": { "line": 31, "column": 0 }, "end": { "line": 34, "column": 2 } }, "18": { "start": { "line": 37, "column": 15 }, "end": { "line": null, "column": null } }, "19": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": { "1": { "line": 0, "type": "cond-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] }, "2": { "line": 0, "type": "binary-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] } } };
+__cov_mG$yJyVxCuPv07PwtcOg3g = __cov_mG$yJyVxCuPv07PwtcOg3g.__coverage__;
+if (!__cov_mG$yJyVxCuPv07PwtcOg3g['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/main.js']) {
+   __cov_mG$yJyVxCuPv07PwtcOg3g['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/main.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/main.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 0, "14": 0, "15": 0, "16": 0, "17": 0, "18": 0, "19": 0 }, "b": { "1": [0, 0], "2": [0, 0] }, "f": { "1": 0, "2": 0 }, "fnMap": { "1": { "name": "_interopRequireDefault", "line": 0, "loc": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 } }, "skip": true }, "2": { "name": "(anonymous_2)", "line": 19, "loc": { "start": { "line": 19, "column": 14 }, "end": { "line": 19, "column": 30 } } } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "3": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "4": { "start": { "line": 4, "column": 14 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "6": { "start": { "line": 5, "column": 19 }, "end": { "line": null, "column": null } }, "7": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "8": { "start": { "line": 6, "column": 17 }, "end": { "line": null, "column": null } }, "9": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "10": { "start": { "line": 9, "column": 0 }, "end": { "line": 11, "column": 3 } }, "11": { "start": { "line": 14, "column": 0 }, "end": { "line": 14, "column": 27 } }, "12": { "start": { "line": 19, "column": 0 }, "end": { "line": 25, "column": 3 } }, "13": { "start": { "line": 21, "column": 6 }, "end": { "line": 21, "column": 44 } }, "14": { "start": { "line": 24, "column": 4 }, "end": { "line": 24, "column": 40 } }, "15": { "start": { "line": 28, "column": 0 }, "end": { "line": 28, "column": 18 } }, "16": { "start": { "line": 29, "column": 0 }, "end": { "line": 29, "column": 13 } }, "17": { "start": { "line": 31, "column": 0 }, "end": { "line": 34, "column": 2 } }, "18": { "start": { "line": 37, "column": 15 }, "end": { "line": null, "column": null } }, "19": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": { "1": { "line": 0, "type": "cond-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] }, "2": { "line": 0, "type": "binary-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] } } };
 }
-__cov_c24xl5M1yeCz5bPaYe$kFQ = __cov_c24xl5M1yeCz5bPaYe$kFQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/main.js'];
-__cov_c24xl5M1yeCz5bPaYe$kFQ.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function _interopRequireDefault(obj) {
-   __cov_c24xl5M1yeCz5bPaYe$kFQ.f['1']++;__cov_c24xl5M1yeCz5bPaYe$kFQ.s['3']++;return (__cov_c24xl5M1yeCz5bPaYe$kFQ.b['2'][0]++, obj) && (__cov_c24xl5M1yeCz5bPaYe$kFQ.b['2'][1]++, obj.__esModule) ? (__cov_c24xl5M1yeCz5bPaYe$kFQ.b['1'][0]++, obj) : (__cov_c24xl5M1yeCz5bPaYe$kFQ.b['1'][1]++, { 'default': obj });
-}__cov_c24xl5M1yeCz5bPaYe$kFQ.s['4']++;var _lodash = require('lodash');__cov_c24xl5M1yeCz5bPaYe$kFQ.s['5']++;var _lodash2 = _interopRequireDefault(_lodash);__cov_c24xl5M1yeCz5bPaYe$kFQ.s['6']++;var _jquery = require('jquery');__cov_c24xl5M1yeCz5bPaYe$kFQ.s['7']++;var _jquery2 = _interopRequireDefault(_jquery);__cov_c24xl5M1yeCz5bPaYe$kFQ.s['8']++;var _riot = require('riot');__cov_c24xl5M1yeCz5bPaYe$kFQ.s['9']++;var _riot2 = _interopRequireDefault(_riot);__cov_c24xl5M1yeCz5bPaYe$kFQ.s['10']++;var files = {'api/controllers/UserController': require('./api/controllers/UserController.js'),'api/models/user': require('./api/models/user.js'),'api/policies/alwaysAllow': require('./api/policies/alwaysAllow.js'),'api/policies/alwaysDeny': require('./api/policies/alwaysDeny.js'),'api/services/UserService': require('./api/services/UserService.js'),'api/staticViews/test': require('./api/staticViews/test.js'),'api/views/test': require('./api/views/test.js'),'api/views/test2': require('./api/views/test2.js'),'config/app': require('./config/app.js'),'config/bootstrap': require('./config/bootstrap.js'),'config/connections': require('./config/connections.js'),'config/env/dev': require('./config/env/dev.js'),'config/env/prod': require('./config/env/prod.js'),'config/locales/en-GB': require('./config/locales/en-GB.js'),'config/locales/nl-NL': require('./config/locales/nl-NL.js'),'config/models': require('./config/models.js'),'config/router': require('./config/router.js'),'config/routes': require('./config/routes.js'),'config/staticViews': require('./config/staticViews.js'),'config/views': require('./config/views.js'),'constants/session': require('./constants/session.js')};__cov_c24xl5M1yeCz5bPaYe$kFQ.s['11']++;var frontendOptions = {};__cov_c24xl5M1yeCz5bPaYe$kFQ.s['12']++;_lodash2['default'].each(files, function (file, path) {
-   __cov_c24xl5M1yeCz5bPaYe$kFQ.f['2']++;__cov_c24xl5M1yeCz5bPaYe$kFQ.s['13']++;var objPath = path.replace(/\/|\\/g, '.');__cov_c24xl5M1yeCz5bPaYe$kFQ.s['14']++;_lodash2['default'].set(frontendOptions, objPath, file);
-});__cov_c24xl5M1yeCz5bPaYe$kFQ.s['15']++;window.$ = _jquery2['default'];__cov_c24xl5M1yeCz5bPaYe$kFQ.s['16']++;window._ = _lodash2['default'];__cov_c24xl5M1yeCz5bPaYe$kFQ.s['17']++;frontendOptions.libraries = { riot: _riot2['default'], jquery: _jquery2['default'] };__cov_c24xl5M1yeCz5bPaYe$kFQ.s['18']++;exports['default'] = frontendOptions;__cov_c24xl5M1yeCz5bPaYe$kFQ.s['19']++;module.exports = exports['default'];
+__cov_mG$yJyVxCuPv07PwtcOg3g = __cov_mG$yJyVxCuPv07PwtcOg3g['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/main.js'];
+__cov_mG$yJyVxCuPv07PwtcOg3g.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function _interopRequireDefault(obj) {
+   __cov_mG$yJyVxCuPv07PwtcOg3g.f['1']++;__cov_mG$yJyVxCuPv07PwtcOg3g.s['3']++;return (__cov_mG$yJyVxCuPv07PwtcOg3g.b['2'][0]++, obj) && (__cov_mG$yJyVxCuPv07PwtcOg3g.b['2'][1]++, obj.__esModule) ? (__cov_mG$yJyVxCuPv07PwtcOg3g.b['1'][0]++, obj) : (__cov_mG$yJyVxCuPv07PwtcOg3g.b['1'][1]++, { 'default': obj });
+}__cov_mG$yJyVxCuPv07PwtcOg3g.s['4']++;var _lodash = require('lodash');__cov_mG$yJyVxCuPv07PwtcOg3g.s['5']++;var _lodash2 = _interopRequireDefault(_lodash);__cov_mG$yJyVxCuPv07PwtcOg3g.s['6']++;var _jquery = require('jquery');__cov_mG$yJyVxCuPv07PwtcOg3g.s['7']++;var _jquery2 = _interopRequireDefault(_jquery);__cov_mG$yJyVxCuPv07PwtcOg3g.s['8']++;var _riot = require('riot');__cov_mG$yJyVxCuPv07PwtcOg3g.s['9']++;var _riot2 = _interopRequireDefault(_riot);__cov_mG$yJyVxCuPv07PwtcOg3g.s['10']++;var files = {'api/controllers/UserController': require('./api/controllers/UserController.js'),'api/models/user': require('./api/models/user.js'),'api/policies/alwaysAllow': require('./api/policies/alwaysAllow.js'),'api/policies/alwaysDeny': require('./api/policies/alwaysDeny.js'),'api/services/UserService': require('./api/services/UserService.js'),'api/staticViews/test': require('./api/staticViews/test.js'),'api/views/test': require('./api/views/test.js'),'api/views/test2': require('./api/views/test2.js'),'config/app': require('./config/app.js'),'config/bootstrap': require('./config/bootstrap.js'),'config/connections': require('./config/connections.js'),'config/env/dev': require('./config/env/dev.js'),'config/env/prod': require('./config/env/prod.js'),'config/locales/en-GB': require('./config/locales/en-GB.js'),'config/locales/nl-NL': require('./config/locales/nl-NL.js'),'config/models': require('./config/models.js'),'config/router': require('./config/router.js'),'config/routes': require('./config/routes.js'),'config/staticViews': require('./config/staticViews.js'),'config/views': require('./config/views.js'),'constants/session': require('./constants/session.js')};__cov_mG$yJyVxCuPv07PwtcOg3g.s['11']++;var frontendOptions = {};__cov_mG$yJyVxCuPv07PwtcOg3g.s['12']++;_lodash2['default'].each(files, function (file, path) {
+   __cov_mG$yJyVxCuPv07PwtcOg3g.f['2']++;__cov_mG$yJyVxCuPv07PwtcOg3g.s['13']++;var objPath = path.replace(/\/|\\/g, '.');__cov_mG$yJyVxCuPv07PwtcOg3g.s['14']++;_lodash2['default'].set(frontendOptions, objPath, file);
+});__cov_mG$yJyVxCuPv07PwtcOg3g.s['15']++;window.$ = _jquery2['default'];__cov_mG$yJyVxCuPv07PwtcOg3g.s['16']++;window._ = _lodash2['default'];__cov_mG$yJyVxCuPv07PwtcOg3g.s['17']++;frontendOptions.libraries = { riot: _riot2['default'], jquery: _jquery2['default'] };__cov_mG$yJyVxCuPv07PwtcOg3g.s['18']++;exports['default'] = frontendOptions;__cov_mG$yJyVxCuPv07PwtcOg3g.s['19']++;module.exports = exports['default'];
 
 },{"./api/controllers/UserController.js":93,"./api/models/user.js":94,"./api/policies/alwaysAllow.js":95,"./api/policies/alwaysDeny.js":96,"./api/services/UserService.js":97,"./api/staticViews/test.js":98,"./api/views/test.js":99,"./api/views/test2.js":100,"./config/app.js":101,"./config/bootstrap.js":102,"./config/connections.js":103,"./config/env/dev.js":104,"./config/env/prod.js":105,"./config/locales/en-GB.js":106,"./config/locales/nl-NL.js":107,"./config/models.js":108,"./config/router.js":109,"./config/routes.js":110,"./config/staticViews.js":111,"./config/views.js":112,"./constants/session.js":113,"jquery":89,"lodash":90,"riot":92}],115:[function(require,module,exports){
 "use strict";
-var __cov_2wbEjGzSVxWNLYABMptuZA = Function('return this')();
-if (!__cov_2wbEjGzSVxWNLYABMptuZA.__coverage__) {
-   __cov_2wbEjGzSVxWNLYABMptuZA.__coverage__ = {};
+var __cov_Q6a21fux_kXyaY6bx6ALtg = Function('return this')();
+if (!__cov_Q6a21fux_kXyaY6bx6ALtg.__coverage__) {
+   __cov_Q6a21fux_kXyaY6bx6ALtg.__coverage__ = {};
 }
-__cov_2wbEjGzSVxWNLYABMptuZA = __cov_2wbEjGzSVxWNLYABMptuZA.__coverage__;
-if (!__cov_2wbEjGzSVxWNLYABMptuZA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/main_dev.js']) {
-   __cov_2wbEjGzSVxWNLYABMptuZA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/main_dev.js'] = { "path": "/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/main_dev.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0 }, "b": { "1": [0, 0], "2": [0, 0] }, "f": { "1": 0 }, "fnMap": { "1": { "name": "_interopRequireDefault", "line": 0, "loc": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 } }, "skip": true } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "3": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "4": { "start": { "line": 4, "column": 21 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "6": { "start": { "line": 5, "column": 17 }, "end": { "line": null, "column": null } }, "7": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "8": { "start": { "line": 7, "column": 0 }, "end": { "line": 7, "column": 17 } }, "9": { "start": { "line": 8, "column": 0 }, "end": { "line": 8, "column": 28 } }, "10": { "start": { "line": 10, "column": 15 }, "end": { "line": null, "column": null } }, "11": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": { "1": { "line": 0, "type": "cond-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] }, "2": { "line": 0, "type": "binary-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] } } };
+__cov_Q6a21fux_kXyaY6bx6ALtg = __cov_Q6a21fux_kXyaY6bx6ALtg.__coverage__;
+if (!__cov_Q6a21fux_kXyaY6bx6ALtg['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/main_prod.js']) {
+   __cov_Q6a21fux_kXyaY6bx6ALtg['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/main_prod.js'] = { "path": "/Users/rik/Develop/Personal/setup/asset-server/src/src/js/main_prod.js", "s": { "1": 0, "2": 1, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0 }, "b": { "1": [0, 0], "2": [0, 0] }, "f": { "1": 0 }, "fnMap": { "1": { "name": "_interopRequireDefault", "line": 0, "loc": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 } }, "skip": true } }, "statementMap": { "1": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "2": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "3": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "4": { "start": { "line": 4, "column": 21 }, "end": { "line": null, "column": null } }, "5": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "6": { "start": { "line": 5, "column": 17 }, "end": { "line": null, "column": null } }, "7": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, "8": { "start": { "line": 7, "column": 0 }, "end": { "line": 7, "column": 18 } }, "9": { "start": { "line": 8, "column": 0 }, "end": { "line": 8, "column": 28 } }, "10": { "start": { "line": 10, "column": 15 }, "end": { "line": null, "column": null } }, "11": { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true } }, "branchMap": { "1": { "line": 0, "type": "cond-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] }, "2": { "line": 0, "type": "binary-expr", "locations": [{ "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }, { "start": { "line": 0, "column": 0 }, "end": { "line": 0, "column": 0 }, "skip": true }] } } };
 }
-__cov_2wbEjGzSVxWNLYABMptuZA = __cov_2wbEjGzSVxWNLYABMptuZA['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/js/main_dev.js'];
-__cov_2wbEjGzSVxWNLYABMptuZA.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function _interopRequireDefault(obj) {
-   __cov_2wbEjGzSVxWNLYABMptuZA.f['1']++;__cov_2wbEjGzSVxWNLYABMptuZA.s['3']++;return (__cov_2wbEjGzSVxWNLYABMptuZA.b['2'][0]++, obj) && (__cov_2wbEjGzSVxWNLYABMptuZA.b['2'][1]++, obj.__esModule) ? (__cov_2wbEjGzSVxWNLYABMptuZA.b['1'][0]++, obj) : (__cov_2wbEjGzSVxWNLYABMptuZA.b['1'][1]++, { 'default': obj });
-}__cov_2wbEjGzSVxWNLYABMptuZA.s['4']++;var _frntndFramework = require('frntnd-framework');__cov_2wbEjGzSVxWNLYABMptuZA.s['5']++;var _frntndFramework2 = _interopRequireDefault(_frntndFramework);__cov_2wbEjGzSVxWNLYABMptuZA.s['6']++;var _main = require('./main');__cov_2wbEjGzSVxWNLYABMptuZA.s['7']++;var _main2 = _interopRequireDefault(_main);__cov_2wbEjGzSVxWNLYABMptuZA.s['8']++;_main2['default'].env = 'dev';__cov_2wbEjGzSVxWNLYABMptuZA.s['9']++;window.app = (0, _frntndFramework2['default'])(_main2['default']);__cov_2wbEjGzSVxWNLYABMptuZA.s['10']++;exports['default'] = window.app;__cov_2wbEjGzSVxWNLYABMptuZA.s['11']++;module.exports = exports['default'];
+__cov_Q6a21fux_kXyaY6bx6ALtg = __cov_Q6a21fux_kXyaY6bx6ALtg['/Users/rik/Develop/Personal/setup/asset-server/src/src/js/main_prod.js'];
+__cov_Q6a21fux_kXyaY6bx6ALtg.s['1']++;Object.defineProperty(exports, '__esModule', { value: true });function _interopRequireDefault(obj) {
+   __cov_Q6a21fux_kXyaY6bx6ALtg.f['1']++;__cov_Q6a21fux_kXyaY6bx6ALtg.s['3']++;return (__cov_Q6a21fux_kXyaY6bx6ALtg.b['2'][0]++, obj) && (__cov_Q6a21fux_kXyaY6bx6ALtg.b['2'][1]++, obj.__esModule) ? (__cov_Q6a21fux_kXyaY6bx6ALtg.b['1'][0]++, obj) : (__cov_Q6a21fux_kXyaY6bx6ALtg.b['1'][1]++, { 'default': obj });
+}__cov_Q6a21fux_kXyaY6bx6ALtg.s['4']++;var _frntndFramework = require('frntnd-framework');__cov_Q6a21fux_kXyaY6bx6ALtg.s['5']++;var _frntndFramework2 = _interopRequireDefault(_frntndFramework);__cov_Q6a21fux_kXyaY6bx6ALtg.s['6']++;var _main = require('./main');__cov_Q6a21fux_kXyaY6bx6ALtg.s['7']++;var _main2 = _interopRequireDefault(_main);__cov_Q6a21fux_kXyaY6bx6ALtg.s['8']++;_main2['default'].env = 'prod';__cov_Q6a21fux_kXyaY6bx6ALtg.s['9']++;window.app = (0, _frntndFramework2['default'])(_main2['default']);__cov_Q6a21fux_kXyaY6bx6ALtg.s['10']++;exports['default'] = window.app;__cov_Q6a21fux_kXyaY6bx6ALtg.s['11']++;module.exports = exports['default'];
 
 },{"./main":114,"frntnd-framework":4}],116:[function(require,module,exports){
 var riot = require('riot');
 module.exports = "use strict";
-var __cov_mFn94_2LS1cD2QkPNdmTYQ = (Function('return this'))();
-if (!__cov_mFn94_2LS1cD2QkPNdmTYQ.__coverage__) { __cov_mFn94_2LS1cD2QkPNdmTYQ.__coverage__ = {}; }
-__cov_mFn94_2LS1cD2QkPNdmTYQ = __cov_mFn94_2LS1cD2QkPNdmTYQ.__coverage__;
-if (!(__cov_mFn94_2LS1cD2QkPNdmTYQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/tags/test.tag'])) {
-   __cov_mFn94_2LS1cD2QkPNdmTYQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/tags/test.tag'] = {"path":"/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/tags/test.tag","s":{"1":0,"2":0,"3":0},"b":{},"f":{"1":0},"fnMap":{"1":{"name":"(anonymous_1)","line":2,"loc":{"start":{"line":2,"column":70},"end":{"line":2,"column":85}}}},"statementMap":{"1":{"start":{"line":1,"column":0},"end":{"line":1,"column":27}},"2":{"start":{"line":2,"column":0},"end":{"line":4,"column":10}},"3":{"start":{"line":3,"column":10},"end":{"line":3,"column":28}}},"branchMap":{}};
+var __cov_OHXHs1sVzI4kDhxShtMsNg = (Function('return this'))();
+if (!__cov_OHXHs1sVzI4kDhxShtMsNg.__coverage__) { __cov_OHXHs1sVzI4kDhxShtMsNg.__coverage__ = {}; }
+__cov_OHXHs1sVzI4kDhxShtMsNg = __cov_OHXHs1sVzI4kDhxShtMsNg.__coverage__;
+if (!(__cov_OHXHs1sVzI4kDhxShtMsNg['/Users/rik/Develop/Personal/setup/asset-server/src/src/tags/test.tag'])) {
+   __cov_OHXHs1sVzI4kDhxShtMsNg['/Users/rik/Develop/Personal/setup/asset-server/src/src/tags/test.tag'] = {"path":"/Users/rik/Develop/Personal/setup/asset-server/src/src/tags/test.tag","s":{"1":0,"2":0,"3":0},"b":{},"f":{"1":0},"fnMap":{"1":{"name":"(anonymous_1)","line":2,"loc":{"start":{"line":2,"column":70},"end":{"line":2,"column":85}}}},"statementMap":{"1":{"start":{"line":1,"column":0},"end":{"line":1,"column":27}},"2":{"start":{"line":2,"column":0},"end":{"line":4,"column":10}},"3":{"start":{"line":3,"column":10},"end":{"line":3,"column":28}}},"branchMap":{}};
 }
-__cov_mFn94_2LS1cD2QkPNdmTYQ = __cov_mFn94_2LS1cD2QkPNdmTYQ['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/tags/test.tag'];
-__cov_mFn94_2LS1cD2QkPNdmTYQ.s['1']++;var riot=require('riot');__cov_mFn94_2LS1cD2QkPNdmTYQ.s['2']++;module.exports=riot.tag2('test','<h1> TEST! {test} </h1>','','',function(opts){__cov_mFn94_2LS1cD2QkPNdmTYQ.f['1']++;__cov_mFn94_2LS1cD2QkPNdmTYQ.s['3']++;this.test=opts.test;},'{ }');
+__cov_OHXHs1sVzI4kDhxShtMsNg = __cov_OHXHs1sVzI4kDhxShtMsNg['/Users/rik/Develop/Personal/setup/asset-server/src/src/tags/test.tag'];
+__cov_OHXHs1sVzI4kDhxShtMsNg.s['1']++;var riot=require('riot');__cov_OHXHs1sVzI4kDhxShtMsNg.s['2']++;module.exports=riot.tag2('test','<h1> TEST! {test} </h1>','','',function(opts){__cov_OHXHs1sVzI4kDhxShtMsNg.f['1']++;__cov_OHXHs1sVzI4kDhxShtMsNg.s['3']++;this.test=opts.test;},'{ }');
 
 },{"riot":92}],117:[function(require,module,exports){
 var riot = require('riot');
 module.exports = "use strict";
-var __cov_0sgJf297V18sJYm5YPGfIg = (Function('return this'))();
-if (!__cov_0sgJf297V18sJYm5YPGfIg.__coverage__) { __cov_0sgJf297V18sJYm5YPGfIg.__coverage__ = {}; }
-__cov_0sgJf297V18sJYm5YPGfIg = __cov_0sgJf297V18sJYm5YPGfIg.__coverage__;
-if (!(__cov_0sgJf297V18sJYm5YPGfIg['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/tags/user-details-2.tag'])) {
-   __cov_0sgJf297V18sJYm5YPGfIg['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/tags/user-details-2.tag'] = {"path":"/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/tags/user-details-2.tag","s":{"1":0,"2":0,"3":0},"b":{},"f":{"1":0},"fnMap":{"1":{"name":"(anonymous_1)","line":2,"loc":{"start":{"line":2,"column":99},"end":{"line":2,"column":114}}}},"statementMap":{"1":{"start":{"line":1,"column":0},"end":{"line":1,"column":27}},"2":{"start":{"line":2,"column":0},"end":{"line":4,"column":10}},"3":{"start":{"line":3,"column":8},"end":{"line":3,"column":28}}},"branchMap":{}};
+var __cov_xEbtoAwUCCQ_dyPefR65qg = (Function('return this'))();
+if (!__cov_xEbtoAwUCCQ_dyPefR65qg.__coverage__) { __cov_xEbtoAwUCCQ_dyPefR65qg.__coverage__ = {}; }
+__cov_xEbtoAwUCCQ_dyPefR65qg = __cov_xEbtoAwUCCQ_dyPefR65qg.__coverage__;
+if (!(__cov_xEbtoAwUCCQ_dyPefR65qg['/Users/rik/Develop/Personal/setup/asset-server/src/src/tags/user-details-2.tag'])) {
+   __cov_xEbtoAwUCCQ_dyPefR65qg['/Users/rik/Develop/Personal/setup/asset-server/src/src/tags/user-details-2.tag'] = {"path":"/Users/rik/Develop/Personal/setup/asset-server/src/src/tags/user-details-2.tag","s":{"1":0,"2":0,"3":0},"b":{},"f":{"1":0},"fnMap":{"1":{"name":"(anonymous_1)","line":2,"loc":{"start":{"line":2,"column":99},"end":{"line":2,"column":114}}}},"statementMap":{"1":{"start":{"line":1,"column":0},"end":{"line":1,"column":27}},"2":{"start":{"line":2,"column":0},"end":{"line":4,"column":10}},"3":{"start":{"line":3,"column":8},"end":{"line":3,"column":28}}},"branchMap":{}};
 }
-__cov_0sgJf297V18sJYm5YPGfIg = __cov_0sgJf297V18sJYm5YPGfIg['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/tags/user-details-2.tag'];
-__cov_0sgJf297V18sJYm5YPGfIg.s['1']++;var riot=require('riot');__cov_0sgJf297V18sJYm5YPGfIg.s['2']++;module.exports=riot.tag2('user-details-2','<div> first name: {model.firstName} </div>','','',function(opts){__cov_0sgJf297V18sJYm5YPGfIg.f['1']++;__cov_0sgJf297V18sJYm5YPGfIg.s['3']++;this.model=opts.model;},'{ }');
+__cov_xEbtoAwUCCQ_dyPefR65qg = __cov_xEbtoAwUCCQ_dyPefR65qg['/Users/rik/Develop/Personal/setup/asset-server/src/src/tags/user-details-2.tag'];
+__cov_xEbtoAwUCCQ_dyPefR65qg.s['1']++;var riot=require('riot');__cov_xEbtoAwUCCQ_dyPefR65qg.s['2']++;module.exports=riot.tag2('user-details-2','<div> first name: {model.firstName} </div>','','',function(opts){__cov_xEbtoAwUCCQ_dyPefR65qg.f['1']++;__cov_xEbtoAwUCCQ_dyPefR65qg.s['3']++;this.model=opts.model;},'{ }');
 
 },{"riot":92}],118:[function(require,module,exports){
 var riot = require('riot');
 module.exports = "use strict";
-var __cov_4f4QScvuvn5o9ny$GcW$7g = (Function('return this'))();
-if (!__cov_4f4QScvuvn5o9ny$GcW$7g.__coverage__) { __cov_4f4QScvuvn5o9ny$GcW$7g.__coverage__ = {}; }
-__cov_4f4QScvuvn5o9ny$GcW$7g = __cov_4f4QScvuvn5o9ny$GcW$7g.__coverage__;
-if (!(__cov_4f4QScvuvn5o9ny$GcW$7g['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/tags/user-details.tag'])) {
-   __cov_4f4QScvuvn5o9ny$GcW$7g['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/tags/user-details.tag'] = {"path":"/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/tags/user-details.tag","s":{"1":0,"2":0,"3":0},"b":{},"f":{"1":0},"fnMap":{"1":{"name":"(anonymous_1)","line":2,"loc":{"start":{"line":2,"column":85},"end":{"line":2,"column":100}}}},"statementMap":{"1":{"start":{"line":1,"column":0},"end":{"line":1,"column":27}},"2":{"start":{"line":2,"column":0},"end":{"line":4,"column":10}},"3":{"start":{"line":3,"column":8},"end":{"line":3,"column":28}}},"branchMap":{}};
+var __cov_7cm0sfheES87b37JvPlLTQ = (Function('return this'))();
+if (!__cov_7cm0sfheES87b37JvPlLTQ.__coverage__) { __cov_7cm0sfheES87b37JvPlLTQ.__coverage__ = {}; }
+__cov_7cm0sfheES87b37JvPlLTQ = __cov_7cm0sfheES87b37JvPlLTQ.__coverage__;
+if (!(__cov_7cm0sfheES87b37JvPlLTQ['/Users/rik/Develop/Personal/setup/asset-server/src/src/tags/user-details.tag'])) {
+   __cov_7cm0sfheES87b37JvPlLTQ['/Users/rik/Develop/Personal/setup/asset-server/src/src/tags/user-details.tag'] = {"path":"/Users/rik/Develop/Personal/setup/asset-server/src/src/tags/user-details.tag","s":{"1":0,"2":0,"3":0},"b":{},"f":{"1":0},"fnMap":{"1":{"name":"(anonymous_1)","line":2,"loc":{"start":{"line":2,"column":85},"end":{"line":2,"column":100}}}},"statementMap":{"1":{"start":{"line":1,"column":0},"end":{"line":1,"column":27}},"2":{"start":{"line":2,"column":0},"end":{"line":4,"column":10}},"3":{"start":{"line":3,"column":8},"end":{"line":3,"column":28}}},"branchMap":{}};
 }
-__cov_4f4QScvuvn5o9ny$GcW$7g = __cov_4f4QScvuvn5o9ny$GcW$7g['/Users/rik/Develop/Personal/tiny_modules/boilerplate/src/tags/user-details.tag'];
-__cov_4f4QScvuvn5o9ny$GcW$7g.s['1']++;var riot=require('riot');__cov_4f4QScvuvn5o9ny$GcW$7g.s['2']++;module.exports=riot.tag2('user-details','<div> {model.firstName} </div>','','',function(opts){__cov_4f4QScvuvn5o9ny$GcW$7g.f['1']++;__cov_4f4QScvuvn5o9ny$GcW$7g.s['3']++;this.model=opts.model;},'{ }');
+__cov_7cm0sfheES87b37JvPlLTQ = __cov_7cm0sfheES87b37JvPlLTQ['/Users/rik/Develop/Personal/setup/asset-server/src/src/tags/user-details.tag'];
+__cov_7cm0sfheES87b37JvPlLTQ.s['1']++;var riot=require('riot');__cov_7cm0sfheES87b37JvPlLTQ.s['2']++;module.exports=riot.tag2('user-details','<div> {model.firstName} </div>','','',function(opts){__cov_7cm0sfheES87b37JvPlLTQ.f['1']++;__cov_7cm0sfheES87b37JvPlLTQ.s['3']++;this.model=opts.model;},'{ }');
 
 },{"riot":92}]},{},[115])
 

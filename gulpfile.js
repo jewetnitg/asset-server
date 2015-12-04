@@ -67,7 +67,9 @@ function invokeTaskRegisterFunctions(tasks, plugins) {
 }
 
 function invokeTaskRegisterFunction(task, plugins) {
-  task(gulp, plugins, config);
+  if (typeof task === 'function') {
+    task(gulp, plugins, config);
+  }
 }
 
 registerTasks(config);
