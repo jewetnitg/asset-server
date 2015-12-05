@@ -1,4 +1,4 @@
 [submodule "src"]
 	path = src
-	url = /Users/rik/Repositories/boilerplate.git
+url=https://github.com/jewetnitg/boilerplate.git
 	branch = master
