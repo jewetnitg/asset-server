@@ -2,7 +2,7 @@
  * @author rik
  */
 module.exports = {
-  dst: 'assets',
+  dst: 'dst',
 
   // submodule repo that contains the project that builds the static assets
   remote: {
