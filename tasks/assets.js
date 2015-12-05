@@ -27,7 +27,7 @@ module.exports = function (gulp) {
       'rm -rf ' + targetDir,
       'mkdir ' + tempDir,
       // pull the submodule
-      'git -C ' + srcDir + ' pull origin master',
+      'git -C ' + srcDir + ' checkout master',
       // npm install the submodule
       'npm i --prefix ' + srcDir,
       // run the submodules build
